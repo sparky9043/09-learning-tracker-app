@@ -100,8 +100,10 @@ entryRouter.put('/loggedin/:id', async (req: Request<{ id: string }, unknown, Ne
       throw new error.ForbiddenError('access forbidden. user id does not match');
     }
     
-    console.log(req.params.id, req.body);
-
+    const savedEntry = await entryQueries.updateLearningEntry(Number(req.params.id), req.body);
+    
+    console.log(savedEntry);
+    
     res.send(200);
   } catch (error) {
     next(error);
