@@ -2,6 +2,7 @@ import type { SavedLearningEntry } from "@/types/types";
 import { Card, CardContent, CardDescription, CardHeader } from "../ui/card";
 import { format } from 'date-fns';
 import Togglelable from "../misc/Toggleable";
+import { Button } from "../ui/button";
 
 interface LearningEntriesProps {
   data: SavedLearningEntry[]
@@ -25,13 +26,16 @@ const LearningEntries = ({ data }: LearningEntriesProps) => {
             </CardDescription>
           </CardHeader>
           <CardContent>
-              <Togglelable text="see details">
-                <CardDescription>
-                  <div>
-                    {entry.note}
-                  </div>
-                </CardDescription>
-              </Togglelable>
+            <Togglelable text="see details">
+              <CardDescription>
+                <div>
+                  {entry.note}
+                </div>
+              </CardDescription>
+            </Togglelable>
+            <Button className="cursor-pointer hover:bg-red-200" variant="ghost">
+              delete entry
+            </Button>
           </CardContent>
         </Card>
         </li>)}
