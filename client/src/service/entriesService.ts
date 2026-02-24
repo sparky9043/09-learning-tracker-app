@@ -17,10 +17,16 @@ const createEntryByUser = async (newEntryObject: NewLearningEntry) => {
 const getOpenAISummaryForEntry = async (promptObject: UserPrompt) => {
   const response = await axios.post<OpenaiResponse>(`${baseUrl}/ai/summarize`, promptObject);
   return response.data;
-}
+};
+
+const deleteEntryByUser = async (userId: number) => {
+  const response = await axios.post(`${baseUrl}/loggedin/${userId}`);
+  return response.data;
+};
 
 export default {
   getAllEntriesByUser,
   createEntryByUser,
   getOpenAISummaryForEntry,
+  deleteEntryByUser,
 };
