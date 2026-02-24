@@ -90,8 +90,16 @@ entryRouter.delete('/loggedin/:id', async (req: Request<{ id: string }>, res: Re
   }
 });
 
-entryRouter.put('/loggedin/:id', (req: Request<{ id: string }, unknown, NewLearningEntry>, res: Response, next: NextFunction) => {
+entryRouter.put('/loggedin/:id', async (req: Request<{ id: string }, unknown, NewLearningEntry>, res: Response, next: NextFunction) => {
   try {
+    if (!req.user) { return res.redirect('/authrequired'); }
+    const savedUserId = await userQueries.getUserIdByEntryId(req.params.id);
+    
+    console.log('inside PUT: ', savedUserId.user_id, req.user.id);
+    if (Number(savedUserId.user_id) !== Number(req.user.id)) {
+      throw new error.ForbiddenError('access forbidden. user id does not match');
+    }
+    
     console.log(req.params.id, req.body);
 
     res.send(200);
