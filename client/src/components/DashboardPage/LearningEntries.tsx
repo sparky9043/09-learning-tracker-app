@@ -10,6 +10,10 @@ interface LearningEntriesProps {
 
 const LearningEntries = ({ data }: LearningEntriesProps) => {
 
+  const handleDelete = (entryId: number) => {
+    console.log(entryId);
+  }
+
   return (
     <ul className="flex flex-wrap justify-center">
       {data.map(entry => <li key={entry.id} className="w-100 h-100 p-2">
@@ -33,7 +37,11 @@ const LearningEntries = ({ data }: LearningEntriesProps) => {
                 </div>
               </CardDescription>
             </Togglelable>
-            <Button className="cursor-pointer hover:bg-red-200" variant="ghost">
+            <Button
+              className="cursor-pointer hover:bg-red-200"
+              variant="ghost"
+              onClick={() => handleDelete(entry.id)}
+            >
               delete entry
             </Button>
           </CardContent>
