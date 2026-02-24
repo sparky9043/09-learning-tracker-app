@@ -86,7 +86,7 @@ const deleteEntryById = async (entryId: number): Promise<ResponseStatus> => {
   return { status: 'success', message: 'entry deleted' };
 };
 
-const updateLearningEntry = async (entryId: number, newLearningEntryObject: NewLearningEntry) => {
+const updateLearningEntry = async (entryId: number, newLearningEntryObject: NewLearningEntry):  Promise<LearningEntry> => {
   const savedEntry = await getLearningEntryById(entryId);
 
   const newLearningEntry = {
@@ -94,8 +94,21 @@ const updateLearningEntry = async (entryId: number, newLearningEntryObject: NewL
     ...newLearningEntryObject,
   };
 
-  console.log('inside entryQuery - updateLearningEntry', newLearningEntry);
+  const { topic, note, difficulty, minutes_spent, created_at, id, user_id } = newLearningEntry;
 
+  const response = await pool.query<LearningEntry>(
+    `
+      UPDATE learning_entries SET topic = $1, note = $2, difficulty = $3, minutes_spent = $4, created_at = $5 WHERE id = $6 AND user_id = $7
+      RETURNING *;
+    `,
+    [topic, note, difficulty, minutes_spent, created_at, id, user_id]
+  );
+
+  if (!response.rows || response.rowCount != 1) {
+    throw new error.NotFoundError('the entry you want to edit was not found');
+  }
+
+  return response.rows[0];
 };
 
 export default {
