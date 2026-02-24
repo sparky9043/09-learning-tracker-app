@@ -120,11 +120,10 @@ void describe('AFTER User Logs In', () => {
     const user_id = 1;
     const entryId = 1;
 
+    // updatedEntry doesn't have note and difficulty
     const updatedEntry = {
       user_id,
       topic: 'Django',
-      note: 'Learned how to setup Django using Virtual Environments with Python',
-      difficulty: 2,
       minutes_spent: 30,
     };
 
