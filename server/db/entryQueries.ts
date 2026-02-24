@@ -86,10 +86,22 @@ const deleteEntryById = async (entryId: number): Promise<ResponseStatus> => {
   return { status: 'success', message: 'entry deleted' };
 };
 
+const updateLearningEntry = async (entryId: number, newLearningEntryObject: NewLearningEntry) => {
+  const savedEntry = await getLearningEntryById(entryId);
+
+  const newLearningEntry = {
+    ...newLearningEntryObject,
+    ...savedEntry,
+  };
+
+  console.log(newLearningEntry);
+};
+
 export default {
   getLearningEntries,
   getLearningEntryById,
   getAllLearningEntriesByUserId,
   createLearningEntry,
   deleteEntryById,
+  updateLearningEntry,
 };
