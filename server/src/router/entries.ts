@@ -90,4 +90,14 @@ entryRouter.delete('/loggedin/:id', async (req: Request<{ id: string }>, res: Re
   }
 });
 
+entryRouter.put('/loggedin/:id', (req: Request<{ id: string }, unknown, NewLearningEntry>, res: Response, next: NextFunction) => {
+  try {
+    console.log(req.params.id, req.body);
+
+    res.send(200);
+  } catch (error) {
+    next(error);
+  }
+});
+
 export default entryRouter;
