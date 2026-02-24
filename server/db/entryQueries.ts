@@ -53,8 +53,8 @@ const createLearningEntry = async (newEntryObject: NewLearningEntry): Promise<Le
     `,
     [Number(user_id), topic, note, Number(difficulty), Number(minutes_spent), timestamp],
   );
-  return response.rows[0];
 
+  return response.rows[0];
 };
 
 const deleteEntryById = async (entryId: number): Promise<ResponseStatus> => {
@@ -90,7 +90,9 @@ const updateLearningEntry = async (entryId: number, newLearningEntryObject: NewL
 
   const response = await pool.query<LearningEntry>(
     `
-      UPDATE learning_entries SET topic = $1, note = $2, difficulty = $3, minutes_spent = $4, created_at = $5 WHERE id = $6 AND user_id = $7
+      UPDATE learning_entries
+      SET topic = $1, note = $2,difficulty = $3, minutes_spent = $4, created_at = $5
+      WHERE id = $6 AND user_id = $7
       RETURNING *;
     `,
     [topic, note, difficulty, minutes_spent, created_at, id, user_id]
