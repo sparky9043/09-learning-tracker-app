@@ -43,26 +43,18 @@ const getAllLearningEntriesByUserId = async (userid: number): Promise<LearningEn
 const createLearningEntry = async (newEntryObject: NewLearningEntry): Promise<LearningEntry> => {
   const { user_id, topic, note, difficulty, minutes_spent, created_at } = newEntryObject;
 
+  const timestamp = created_at ? created_at : 'NOW()';
+
   // if timestamp is given, use first condition. if not second
-  if (created_at) {
-    const response = await pool.query<LearningEntry>(
-      `
-        INSERT INTO learning_entries (user_id, topic, note, difficulty, minutes_spent, created_at)
-        VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;
-      `,
-      [Number(user_id), topic, note, Number(difficulty), Number(minutes_spent), created_at],
-    );
-    return response.rows[0];
-  } else {
-    const response = await pool.query<LearningEntry>(
-      `
-        INSERT INTO learning_entries (user_id, topic, note, difficulty, minutes_spent)
-        VALUES ($1, $2, $3, $4, $5) RETURNING *;
-      `,
-      [Number(user_id), topic, note, Number(difficulty), Number(minutes_spent)],
-    );
-    return response.rows[0];
-  }
+  const response = await pool.query<LearningEntry>(
+    `
+      INSERT INTO learning_entries (user_id, topic, note, difficulty, minutes_spent, created_at)
+      VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;
+    `,
+    [Number(user_id), topic, note, Number(difficulty), Number(minutes_spent), timestamp],
+  );
+  return response.rows[0];
+
 };
 
 const deleteEntryById = async (entryId: number): Promise<ResponseStatus> => {
