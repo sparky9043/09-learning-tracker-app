@@ -102,7 +102,7 @@ entryRouter.put('/loggedin/:id', async (req: Request<{ id: string }, unknown, Ne
     
     const savedEntry = await entryQueries.updateLearningEntry(Number(req.params.id), req.body);
     
-    console.log(savedEntry);
+    console.log('inside entryRouter:', savedEntry);
     
     res.send(200);
   } catch (error) {

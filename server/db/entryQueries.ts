@@ -90,11 +90,12 @@ const updateLearningEntry = async (entryId: number, newLearningEntryObject: NewL
   const savedEntry = await getLearningEntryById(entryId);
 
   const newLearningEntry = {
-    ...newLearningEntryObject,
     ...savedEntry,
+    ...newLearningEntryObject,
   };
 
-  console.log(newLearningEntry);
+  console.log('inside entryQuery - updateLearningEntry', newLearningEntry);
+
 };
 
 export default {
