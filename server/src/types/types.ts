@@ -1,5 +1,5 @@
 import z from "zod";
-import { LearningEntryOpenAIResponseSchema } from "../schemas/learning-entry-schema";
+import { LearningEntryOpenAIResponseSchema, NewLearningEntrySchema } from "../schemas/learning-entry-schema";
 import { NewUserPasswordHashedSchema, NewUserSchema } from "../schemas/user-schema";
 
 // user types
@@ -21,14 +21,15 @@ export interface SavedUserSensitive extends SavedUser {
 }
 
 // entries types
-export interface NewLearningEntry {
-  user_id: number,
-  topic: string;
-  note: string;
-  difficulty: number;
-  minutes_spent: number;
-  created_at?: string;
-};
+// export interface NewLearningEntry {
+//   user_id: number,
+//   topic: string;
+//   note: string;
+//   difficulty: number;
+//   minutes_spent: number;
+//   created_at?: string;
+// };
+export type NewLearningEntry = z.infer<typeof NewLearningEntrySchema>;
 
 export interface LearningEntry extends NewLearningEntry {
   id: number;
