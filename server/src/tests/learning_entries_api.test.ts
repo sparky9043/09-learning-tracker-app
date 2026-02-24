@@ -116,6 +116,24 @@ void describe('AFTER User Logs In', () => {
     assert.strictEqual(entriesAtEnd.length, entriesAtStart.length - 1);
   });
 
+  void test('PUT /api/entries/loggedin/:id returns 200 and status success', async () => {
+    const user_id = 1;
+    const entryId = 1;
+
+    const updatedEntry = {
+      user_id,
+      topic: 'Django',
+      note: 'Learned how to setup Django using Virtual Environments with Python',
+      difficulty: 2,
+      minutes_spent: 30,
+    };
+
+    await agent
+      .put(`${entriesUrl}/loggedin/${entryId}`)
+      .send(updatedEntry)
+      .expect(200);
+  });
+
   after(async () => {
     await agent.post('/api/logout');
   });
