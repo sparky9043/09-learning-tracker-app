@@ -19,9 +19,9 @@ const getOpenAISummaryForEntry = async (promptObject: UserPrompt) => {
   return response.data;
 };
 
-const deleteEntryByUser = async (userId: number) => {
-  const response = await axios.post(`${baseUrl}/loggedin/${userId}`);
-  return response.data;
+const deleteEntryByUser = async (entryId: number) => {
+  console.log('inside deleteEntryByUser', entryId);
+  await axios.delete(`${baseUrl}/loggedin/${entryId}`);
 };
 
 export default {
