@@ -3,15 +3,29 @@ import { Card, CardContent, CardDescription, CardHeader } from "../ui/card";
 import { format } from 'date-fns';
 import Togglelable from "../misc/Toggleable";
 import { Button } from "../ui/button";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import entriesService from "@/service/entriesService";
 
 interface LearningEntriesProps {
   data: SavedLearningEntry[]
 }
 
 const LearningEntries = ({ data }: LearningEntriesProps) => {
+  const client = useQueryClient();
+
+  const deleteEntryMutation = useMutation({
+    mutationKey: ['entriesByUser'],
+    mutationFn: entriesService.deleteEntryByUser,
+    onSuccess: () => {
+      client.invalidateQueries({
+        queryKey: ['entriesByUser'],
+      })
+    }
+  });
 
   const handleDelete = (entryId: number) => {
     console.log(entryId);
+    deleteEntryMutation.mutate(entryId);
   }
 
   return (
