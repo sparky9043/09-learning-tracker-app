@@ -46,7 +46,7 @@ const defaultEntries = [
     note: 'Learned difference between SERIAL and IDENTITY and how sequences work',
     difficulty: 3,
     minutes_spent: 45,
-    created_at: '2026-01-19T12:45:04.323Z'
+    created_at: '2026-01-02T08:14:33.482Z'
   },
   {
     user_id: 1,
@@ -54,7 +54,7 @@ const defaultEntries = [
     note: 'Practiced GROUP BY vs HAVING and why WHERE runs first',
     difficulty: 4,
     minutes_spent: 60,
-    created_at: '2026-01-19T12:45:04.323Z'
+    created_at: '2026-01-05T18:42:11.907Z'
   },
   {
     user_id: 1,
@@ -62,7 +62,7 @@ const defaultEntries = [
     note: 'Finally understood how psql connects to the running Postgres service in WSL',
     difficulty: 3,
     minutes_spent: 30,
-    created_at: '2026-01-19T12:45:04.323Z'
+    created_at: '2026-01-08T07:25:49.163Z'
   },
   {
     user_id: 1,
@@ -70,7 +70,7 @@ const defaultEntries = [
     note: 'Configured pg Pool and clarified why DB works even when terminal is closed',
     difficulty: 2,
     minutes_spent: 25,
-    created_at: '2026-01-19T12:45:04.323Z'
+    created_at: '2026-01-11T21:03:17.554Z'
   },
   {
     user_id: 1,
@@ -78,7 +78,7 @@ const defaultEntries = [
     note: 'Struggled with motivation but picked a concrete micro project and schema',
     difficulty: 2,
     minutes_spent: 20,
-    created_at: '2026-01-19T12:45:04.323Z'
+    created_at: '2026-01-14T13:37:58.291Z'
   },
   {
     user_id: 2,
@@ -86,7 +86,7 @@ const defaultEntries = [
     note: 'Refactored routes into separate router files and reduced duplication',
     difficulty: 3,
     minutes_spent: 50,
-    created_at: '2026-01-19T12:45:59.028Z'
+    created_at: '2026-01-17T16:55:02.740Z'
   },
   {
     user_id: 2,
@@ -94,7 +94,7 @@ const defaultEntries = [
     note: 'Reviewed sessions vs JWT and when each makes sense',
     difficulty: 4,
     minutes_spent: 40,
-    created_at: '2026-01-19T12:45:59.028Z'
+    created_at: '2026-01-20T10:08:44.019Z'
   },
   {
     user_id: 2,
@@ -102,7 +102,7 @@ const defaultEntries = [
     note: 'Practiced INNER vs LEFT JOIN and how missing rows affect results',
     difficulty: 4,
     minutes_spent: 55,
-    created_at: '2026-01-19T12:45:59.028Z'
+    created_at: '2026-01-23T19:29:36.875Z'
   },
   {
     user_id: 2,
@@ -110,7 +110,7 @@ const defaultEntries = [
     note: 'Added centralized error middleware in Express',
     difficulty: 3,
     minutes_spent: 35,
-    created_at: '2026-01-19T12:45:59.028Z'
+    created_at: '2026-01-27T08:17:05.336Z'
   },
   {
     user_id: 2,
@@ -118,7 +118,7 @@ const defaultEntries = [
     note: 'Learned when indexes help and why too many can hurt performance',
     difficulty: 5,
     minutes_spent: 45,
-    created_at: '2026-01-19T12:45:59.028Z'
+    created_at: '2026-01-30T22:41:50.602Z'
   },
   {
     user_id: 3,
@@ -126,7 +126,7 @@ const defaultEntries = [
     note: 'Finally clicked how closures retain access to outer scope',
     difficulty: 4,
     minutes_spent: 30,
-    created_at: '2026-01-19T12:47:24.156Z'
+    created_at: '2026-02-03T10:44:27.148Z'
   },
   {
     user_id: 3,
@@ -134,7 +134,7 @@ const defaultEntries = [
     note: 'Refactored promise chains into async/await for readability',
     difficulty: 2,
     minutes_spent: 25,
-    created_at: '2026-01-19T12:47:24.156Z'
+    created_at: '2026-02-07T18:26:49.993Z'
   },
   {
     user_id: 3,
@@ -142,7 +142,7 @@ const defaultEntries = [
     note: 'Focused on reproducing bugs instead of guessing fixes',
     difficulty: 3,
     minutes_spent: 20,
-    created_at: '2026-01-19T12:47:24.156Z'
+    created_at: '2026-02-12T06:38:11.257Z'
   },
   {
     user_id: 3,
@@ -150,7 +150,7 @@ const defaultEntries = [
     note: 'Learned about the basics of authorization',
     difficulty: 4,
     minutes_spent: 120,
-    created_at: '2026-01-21T15:18:24.156Z'
+    created_at: '2026-02-18T15:57:03.684Z'
   },
 ];
 
