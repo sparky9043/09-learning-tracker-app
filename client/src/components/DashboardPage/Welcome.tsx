@@ -28,8 +28,8 @@ const Welcome = ({ currentUser, setCurrentUser }: WelcomeProps) => {
 
 
   return (
-    <div className="bg-stone-900 text-stone-200 p-8">
-      <div className="w-25">
+    <div className="bg-stone-900 text-stone-200 p-2 w-1/2">
+      <div>
         <div>
           <h1>Welcome {currentUser.username}</h1>
         </div>
@@ -37,7 +37,8 @@ const Welcome = ({ currentUser, setCurrentUser }: WelcomeProps) => {
           <Button onClick={handleLogout} variant="outline" className="text-stone-800 bg-stone-200 hover:bg-stone-400 hover:border-stone-400 mb-2">log out</Button>
         </div>
         <div>
-          <p>Try the AI Summary!
+          <p className="mb-2">
+            Try the AI Summary!
           </p>
           <Link
             to='summarize'
