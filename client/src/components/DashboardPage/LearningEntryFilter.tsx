@@ -2,14 +2,15 @@ import { Input } from "../ui/input";
 import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSet } from "../ui/field";
 import { Button } from "../ui/button";
 import Togglelable from "../misc/Toggleable";
+import type { FilterBy } from "./LearningEntriesList";
 
 interface LearningEntryFilterProps {
-  filterBy
-  topicFilter
-  noteFilter
-  setFilterBy
-  setTopicFilter
-  setNoteFilter
+  filterBy: FilterBy;
+  topicFilter: string;
+  noteFilter: string;
+  setFilterBy: React.Dispatch<React.SetStateAction<FilterBy>>
+  setTopicFilter: React.Dispatch<React.SetStateAction<string>>
+  setNoteFilter: React.Dispatch<React.SetStateAction<string>>
 };
 
 const LearningEntryFilter = ({ filterBy, setFilterBy, topicFilter, setTopicFilter, noteFilter, setNoteFilter }: LearningEntryFilterProps) => {
