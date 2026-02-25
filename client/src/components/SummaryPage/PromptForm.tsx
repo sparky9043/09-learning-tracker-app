@@ -49,10 +49,9 @@ const PromptForm = ({ openaiResponse, setOpenaiResponse }: PromptFormProps) => {
       <FieldSet>
         <FieldGroup>
           <Field>
-            <h3>write a short summary of what you learned</h3>
             <FieldLabel htmlFor="prompt">User Prompt</FieldLabel>
             <Textarea
-              className="resize-none"
+              className="resize-none min-h-40"
               id="prompt"
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
