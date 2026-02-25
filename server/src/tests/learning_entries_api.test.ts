@@ -1,4 +1,4 @@
-import { test, after, beforeEach, describe, before } from 'node:test';
+import { test, after, beforeEach, describe } from 'node:test';
 import assert from 'node:assert';
 import supertest from 'supertest';
 import app from '../app';
@@ -57,7 +57,7 @@ void describe('GET Requests', () => {
 void describe('AFTER User Logs In', () => {
   // persist login cookies by calling supertest agent instead of regular supertest
   const agent = supertest.agent(app);
-  before(async () => {
+  beforeEach(async () => {
     await agent
       .post(loginUrl)
       .send({ username: 'default', password: 'password123' })
