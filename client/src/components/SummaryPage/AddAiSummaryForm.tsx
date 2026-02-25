@@ -72,7 +72,7 @@ const AddAiSummaryForm = () => {
 
   return (
     <div>
-      <button type="button" onClick={handleUseAiSummary}>use ai summary</button>
+      <Button type="button" onClick={handleUseAiSummary}>use ai summary</Button>
       <form
         className="rounded-md p-4 shadow-lg shadow-stone-300"
         onSubmit={handleAddAiSummaryEntry}
