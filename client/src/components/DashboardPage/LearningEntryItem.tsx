@@ -30,8 +30,8 @@ const LearningEntryItem = ({ entry }: LearningEntryItemProps) => {
   }
 
   return (
-    <li key={entry.id} className="w-80 h-80 p-2">
-      <Card className="h-full flex flex-col item-center justify-center text-center text-2xl shadow-lg">
+    <li key={entry.id} className="w-60 h-80 min-h-80 p-2">
+      <Card className="h-full text-center text-2xl shadow-lg">
         <CardHeader>
           <CardHeader className="margin-0 padding-0 text-shadow-md text-shadow-stone-300">{entry.topic}</CardHeader>
           <CardDescription>
