@@ -13,9 +13,7 @@ const Dashboard = () => {
 
   return (
     <div className="text-center flex">
-      <div className="bg-stone-900 text-stone-200 p-4">
-        <Welcome currentUser={currentUser} setCurrentUser={setCurrentUser} />
-      </div>
+      <Welcome currentUser={currentUser} setCurrentUser={setCurrentUser} />
       <LearningEntriesList />
     </div>
   )
