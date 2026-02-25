@@ -30,7 +30,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="text-center">
+    <div className="text-center flex">
       <div className="bg-stone-900 text-stone-200 p-4">
         {currentUser
           &&
