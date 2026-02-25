@@ -16,7 +16,7 @@ export type FilterBy = 'topic' | 'note';
 
 const LearningEntriesList = () => {
   const { currentUser } = useCurrentUserContext();
-  const [sortBy, setSortBy] = useState<string>('default');
+  const [sortBy, setSortBy] = useState<string>('newest');
   const [filterBy, setFilterBy] = useState<FilterBy>('note');
   const [showModal, setShowModal] = useState<boolean>(false);
   const [topicFilter, setTopicFilter] = useState<string>('');
@@ -103,7 +103,7 @@ const LearningEntriesList = () => {
       <SelectComponent
         value={sortBy}
         onChange={setSortBy}
-        options={['default', 'newest', 'oldest', 'longest time', 'shortest time']}
+        options={['newest', 'oldest', 'longest time', 'shortest time']}
         className="text-center border-2 border-stone-200 rounded-md"
       />
 
