@@ -10,7 +10,7 @@ const Summary = () =>  {
 
   return (
     <div className="flex justify-center p-4">
-      <div className="flex flex-col w-1/2 p-4 border-2 border-stone-200 shadow-xl rounded-md">
+      <div className="flex flex-col w-1/2 p-8 border-2 border-stone-200 shadow-xl rounded-md">
         <h2>
           Summary
         </h2>
