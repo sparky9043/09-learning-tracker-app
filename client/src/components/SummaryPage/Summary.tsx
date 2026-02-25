@@ -4,6 +4,7 @@ import AddAiSummaryForm from "./AddAiSummaryForm";
 import Togglelable from "../misc/Toggleable";
 import useOpenaiResponseContext from "../../hooks/useOpenaiResponseContext";
 import SummaryHeader from "./SummaryHeader";
+import OpenAITopicAndSummary from "./OpenAITopicAndSummary";
 
 const Summary = () =>  {
   const { openaiResponse, setOpenaiResponse } = useOpenaiResponseContext();
@@ -16,20 +17,7 @@ const Summary = () =>  {
           openaiResponse={openaiResponse}
           setOpenaiResponse={setOpenaiResponse}
         />
-        <div>
-          {
-            openaiResponse !== null
-              ? <div>
-                  <p>
-                    <strong>Topic</strong>: {openaiResponse.topic}
-                  </p>
-                  <p>
-                    <strong>Summary</strong>: {openaiResponse.note}
-                  </p>
-                </div>
-              : null
-          }
-        </div>
+        <OpenAITopicAndSummary openaiResponse={openaiResponse} />
         {
           openaiResponse
             ? 
