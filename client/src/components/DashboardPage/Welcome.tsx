@@ -28,7 +28,7 @@ const Welcome = ({ currentUser, setCurrentUser }: WelcomeProps) => {
 
 
   return (
-    <div className="bg-stone-900 text-stone-200 p-2 w-1/4 min-w-50 h-min-dvh">
+    <div className="bg-stone-900 text-stone-200 p-2 w-1/4 min-w-50 border-2">
       <div>
         <div>
           <h1>Welcome {currentUser.username}</h1>

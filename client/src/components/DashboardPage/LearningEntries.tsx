@@ -8,7 +8,7 @@ interface LearningEntriesProps {
 const LearningEntries = ({ data }: LearningEntriesProps) => {
 
   return (
-    <ul className="flex">
+    <ul className="flex flex-wrap">
       {data.map(entry =>
         <LearningEntryItem key={entry.id} entry={entry} />
       )}
