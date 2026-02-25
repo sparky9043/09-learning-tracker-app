@@ -6,15 +6,18 @@ import Togglelable from "../misc/Toggleable";
 import useOpenaiResponseContext from "../../hooks/useOpenaiResponseContext";
 
 const Summary = () =>  {
-  const { openaiResponse } = useOpenaiResponseContext();
+  const { openaiResponse, setOpenaiResponse } = useOpenaiResponseContext();
 
   return (
-    <div>
+    <div className="flex flex-col w-1/2 border-2">
       <h2>
         Summary
       </h2>
       <Link to='/dashboard'>Back</Link>
-      <PromptForm />
+      <PromptForm
+        openaiResponse={openaiResponse}
+        setOpenaiResponse={setOpenaiResponse}
+      />
       <div>
         {
           openaiResponse !== null

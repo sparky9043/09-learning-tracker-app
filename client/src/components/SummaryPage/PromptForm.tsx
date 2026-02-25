@@ -1,9 +1,16 @@
-import { useState } from "react"
+import { useState, type Dispatch, type SetStateAction } from "react"
 import entriesService from "../../service/entriesService";
-import useOpenaiResponseContext from "../../hooks/useOpenaiResponseContext";
+import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSet } from "../ui/field";
+import { Textarea } from "../ui/textarea";
+import { Button } from "../ui/button";
+import type { OpenaiResponse } from "@/types/types";
 
-const PromptForm = () => {
-  const {openaiResponse, setOpenaiResponse} = useOpenaiResponseContext();
+interface PromptFormProps {
+  openaiResponse: OpenaiResponse | null;
+  setOpenaiResponse: Dispatch<SetStateAction<OpenaiResponse | null>>;
+}
+
+const PromptForm = ({ openaiResponse, setOpenaiResponse }: PromptFormProps) => {
   const [prompt, setPrompt] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -39,25 +46,28 @@ const PromptForm = () => {
 
   return (
     <form onSubmit={handleSubmitPrompt}>
-      <h3>write a short summary of what you learned</h3>
-      <ul>
-        <li>
-          <label htmlFor="prompt">User Prompt</label>
-          <textarea
-            id="prompt"
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-            disabled={isLoading}
-            rows={10}
-            cols={100}
-          />
-        </li>
-        <li>
-          <button type="submit" disabled={isLoading}>
-            {openaiResponse ? 'try again' : 'summarize!'}
-          </button>
-        </li>
-      </ul>
+      <FieldSet>
+        <FieldGroup>
+          <Field>
+            <h3>write a short summary of what you learned</h3>
+            <FieldLabel htmlFor="prompt">User Prompt</FieldLabel>
+            <Textarea
+              id="prompt"
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              disabled={isLoading}
+              rows={10}
+              cols={100}
+            />
+            <FieldDescription>Enter what you learned. Keep it to 1-2 topics</FieldDescription>
+          </Field>
+          <Field>
+            <Button type="submit" disabled={isLoading}>
+              {openaiResponse ? 'try again' : 'summarize!'}
+            </Button>
+          </Field>
+        </FieldGroup>
+      </ FieldSet>
     </form>
   )
 }
