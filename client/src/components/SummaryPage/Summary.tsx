@@ -1,20 +1,17 @@
 import PromptForm from "./PromptForm";
 // import type { OpenaiResponse } from "../../types/types";
-import { Link } from "react-router";
 import AddAiSummaryForm from "./AddAiSummaryForm";
 import Togglelable from "../misc/Toggleable";
 import useOpenaiResponseContext from "../../hooks/useOpenaiResponseContext";
+import SummaryHeader from "./SummaryHeader";
 
 const Summary = () =>  {
   const { openaiResponse, setOpenaiResponse } = useOpenaiResponseContext();
 
   return (
     <div className="flex justify-center p-4">
-      <div className="flex flex-col w-1/2 p-8 border-2 border-stone-200 shadow-xl rounded-md">
-        <h2>
-          Summary
-        </h2>
-        <Link to='/dashboard'>Back</Link>
+      <div className="flex flex-col w-1/2 p-8 border-2 border-stone-200 shadow-xl rounded-md ">
+        <SummaryHeader />
         <PromptForm
           openaiResponse={openaiResponse}
           setOpenaiResponse={setOpenaiResponse}
