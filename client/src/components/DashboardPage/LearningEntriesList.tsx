@@ -1,32 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import entriesService from "../../service/entriesService";
 import type { SavedLearningEntry } from "../../types/types";
-// import { useCurrentUserContext } from "../../hooks/useCurrentUserContext";
-// import Togglelable from "../Toggleable";
 import AddLearningEntryForm from "./AddLearningEntryForm";
-// import { useCurrentUserContext } from "../../hooks/useCurrentUserContext";
 import { useState } from "react";
 import { isBefore } from 'date-fns';
-// import { useCurrentUserStore } from "@/stores/currentUserStore";
 import { useCurrentUserContext } from "@/hooks/useCurrentUserContext";
 import LearningEntries from "./LearningEntries";
-// import { Dialog } from "../ui/dialog";
 import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-// import { Card, CardHeader } from "../ui/card";
-// import { Label } from "../ui/label";
-import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSet } from "../ui/field";
-import Togglelable from "../misc/Toggleable";
 import SelectComponent from "../misc/SelectComponent";
 import LearningStats from "./LearningStats";
 import AddEntryDialog from "./AddEntryDialog";
-// import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select";
-// import { useRef } from "react";
-// import useCheckAuth from "../../hooks/useCheckAuth";
-// import { useCurrentUserContext } from "../../hooks/useCurrentUserContext";
+import LearningEntryFilter from "./LearningEntryFilter";
 
-// type SortBy = 'default' | 'oldest' | 'newest' | 'longest time' | 'shortest time';
-type FilterBy = 'topic' | 'note';
+export type FilterBy = 'topic' | 'note';
 
 const LearningEntriesList = () => {
   const { currentUser } = useCurrentUserContext();
@@ -93,47 +79,26 @@ const LearningEntriesList = () => {
 
   const filteredData = filterData(sortedData);
 
-  const handleUpdateFilter = () => {
-    setTopicFilter('');
-    setNoteFilter('');
-    setFilterBy(prev => prev === 'note' ? 'topic' : 'note')
-  }
-
   return (
     <div className="p-8 relative">
-        {showModal &&
-          <AddEntryDialog className="w-full top-4 bottom-0 p-4 flex flex-col items-center h-dvh sticky">
-            <Button
-              className="absolute right-0 rounded-lg hover:cursor-pointer hover:bg-red-200"
-              variant="ghost"
-              onClick={() => setShowModal(false)}
-            > x </Button>
-            <AddLearningEntryForm setShowModal={setShowModal} />
-          </AddEntryDialog>}
+      {showModal &&
+        <AddEntryDialog className="w-full top-4 bottom-0 p-4 flex flex-col items-center h-dvh sticky">
+          <Button
+            className="absolute right-0 rounded-lg hover:cursor-pointer hover:bg-red-200"
+            variant="ghost"
+            onClick={() => setShowModal(false)}
+          > x </Button>
+          <AddLearningEntryForm setShowModal={setShowModal} />
+        </AddEntryDialog>}
       <Button onClick={() => setShowModal(true)}>add entry</Button>
-      <Togglelable text="show filter" className="text-left">
-        <Field>
-          <FieldGroup>
-            {filterBy === 'topic' ? <FieldSet>
-              <FieldLabel>
-                filter by topic title
-              </FieldLabel>
-              <Input value={topicFilter} onChange={(e) => setTopicFilter(e.target.value)} />
-              <FieldDescription>type a word to filter by topic</FieldDescription>
-            </FieldSet>
-            : filterBy === 'note' ? <FieldSet>
-              <FieldLabel>
-                filter by description
-              </FieldLabel>
-              <Input value={noteFilter} onChange={(e) => setNoteFilter(e.target.value)} />
-              <FieldDescription>type a word to filter by description</FieldDescription>
-            </FieldSet> : null}
-            <FieldSet>
-              <Button className="w-1/4 mb-4" onClick={handleUpdateFilter}>filter by {filterBy === 'note' ? 'topic' : 'description'}</Button>
-            </FieldSet>
-          </FieldGroup>
-        </Field>
-      </Togglelable>
+      <LearningEntryFilter
+        filterBy={filterBy}
+        setFilterBy={setFilterBy}
+        topicFilter={topicFilter}
+        setTopicFilter={setTopicFilter}
+        noteFilter={noteFilter}
+        setNoteFilter={setNoteFilter}
+      />
       <LearningStats totalTimeSpent={totalTimeSpent} />
       <SelectComponent
         value={sortBy}
