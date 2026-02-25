@@ -23,12 +23,9 @@ const Summary = () =>  {
             ? 
               <div>
                 <p>
-                  are you satisfied with this summary? If not, click the retry button
+                  To use the AI summary, click the button below
                 </p>
-                <p>
-                  If you are, click below to open forms
-                </p>
-                <Togglelable text="use ai response">
+                <Togglelable text="show response form">
                   <AddAiSummaryForm />
                 </Togglelable>
               </div>
