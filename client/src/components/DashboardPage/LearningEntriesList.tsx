@@ -1,31 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import entriesService from "../../service/entriesService";
 import type { SavedLearningEntry } from "../../types/types";
-// import { useCurrentUserContext } from "../../hooks/useCurrentUserContext";
-// import Togglelable from "../Toggleable";
 import AddLearningEntryForm from "./AddLearningEntryForm";
-// import { useCurrentUserContext } from "../../hooks/useCurrentUserContext";
 import { useState } from "react";
 import { isBefore } from 'date-fns';
-// import { useCurrentUserStore } from "@/stores/currentUserStore";
 import { useCurrentUserContext } from "@/hooks/useCurrentUserContext";
 import LearningEntries from "./LearningEntries";
-// import { Dialog } from "../ui/dialog";
 import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-// import { Card, CardHeader } from "../ui/card";
-// import { Label } from "../ui/label";
-import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSet } from "../ui/field";
-import Togglelable from "../misc/Toggleable";
 import SelectComponent from "../misc/SelectComponent";
 import LearningStats from "./LearningStats";
 import AddEntryDialog from "./AddEntryDialog";
-// import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select";
-// import { useRef } from "react";
-// import useCheckAuth from "../../hooks/useCheckAuth";
-// import { useCurrentUserContext } from "../../hooks/useCurrentUserContext";
 
-// type SortBy = 'default' | 'oldest' | 'newest' | 'longest time' | 'shortest time';
 type FilterBy = 'topic' | 'note';
 
 const LearningEntriesList = () => {
@@ -111,7 +96,7 @@ const LearningEntriesList = () => {
             <AddLearningEntryForm setShowModal={setShowModal} />
           </AddEntryDialog>}
       <Button onClick={() => setShowModal(true)}>add entry</Button>
-      <Togglelable text="show filter" className="text-left">
+      {/* <Togglelable text="show filter" className="text-left">
         <Field>
           <FieldGroup>
             {filterBy === 'topic' ? <FieldSet>
@@ -133,7 +118,7 @@ const LearningEntriesList = () => {
             </FieldSet>
           </FieldGroup>
         </Field>
-      </Togglelable>
+      </Togglelable> */}
       <LearningStats totalTimeSpent={totalTimeSpent} />
       <SelectComponent
         value={sortBy}
