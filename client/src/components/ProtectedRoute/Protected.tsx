@@ -6,7 +6,7 @@ import { useCurrentUserContext } from "../../hooks/useCurrentUserContext";
 const Protected = () => {
   const { currentUser } = useCurrentUserContext();
   void useCheckAuth(currentUser);
-  console.log(currentUser);
+  console.log('Protected Route', currentUser);
 
   return (
     <Outlet />
