@@ -1,16 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import entriesService from "../../service/entriesService";
 import type { SavedLearningEntry } from "../../types/types";
-import AddLearningEntryForm from "./AddLearningEntryForm";
 import { useState } from "react";
 import { isBefore } from 'date-fns';
 import { useCurrentUserContext } from "@/hooks/useCurrentUserContext";
 import LearningEntries from "./LearningEntries";
-import { Button } from "../ui/button";
 import SelectComponent from "../misc/SelectComponent";
 import LearningStats from "./LearningStats";
-import AddEntryDialog from "./AddEntryDialog";
 import LearningEntryFilter from "./LearningEntryFilter";
+import AddEntryModal from "./AddEntryModal";
 
 export type FilterBy = 'topic' | 'note';
 
@@ -18,7 +16,6 @@ const LearningEntriesList = () => {
   const { currentUser } = useCurrentUserContext();
   const [sortBy, setSortBy] = useState<string>('newest');
   const [filterBy, setFilterBy] = useState<FilterBy>('note');
-  const [showModal, setShowModal] = useState<boolean>(false);
   const [topicFilter, setTopicFilter] = useState<string>('');
   const [noteFilter, setNoteFilter] = useState<string>('');
   
@@ -81,16 +78,7 @@ const LearningEntriesList = () => {
 
   return (
     <div className="p-8 relative">
-      {showModal &&
-        <AddEntryDialog className="w-full top-4 bottom-0 p-4 flex flex-col items-center h-dvh sticky">
-          <Button
-            className="absolute right-0 rounded-lg hover:cursor-pointer hover:bg-red-200"
-            variant="ghost"
-            onClick={() => setShowModal(false)}
-          > x </Button>
-          <AddLearningEntryForm setShowModal={setShowModal} />
-        </AddEntryDialog>}
-      <Button onClick={() => setShowModal(true)}>add entry</Button>
+      <AddEntryModal />
       <LearningEntryFilter
         filterBy={filterBy}
         setFilterBy={setFilterBy}
