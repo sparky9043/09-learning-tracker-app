@@ -13,3 +13,12 @@ export const LearningEntryOpenAIResponseSchema = z.object({
   topic: z.string(),
   note: z.string(),
 });
+
+export const AIUserEntryInputSchema = z.object({
+  topic: z.string(),
+  note: z.string(),
+});
+
+export const AIGenerateStudyQuestionRequestSchema = z.object({
+  concepts: z.array(AIUserEntryInputSchema),
+});
