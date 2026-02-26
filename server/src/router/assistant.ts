@@ -15,6 +15,8 @@ const assistant = Router();
 
 assistant.post('/', async (req: Request<unknown, unknown, AIGenerateStudyQuestionRequest>, res: Response, next: NextFunction) => {
   try {
+    if (!req.user) { res.redirect('/authrequired'); }
+
     const { concepts } = req.body;
 
     if (!concepts || !Array.isArray(concepts) || concepts.length == 0 || concepts.some(concept => !concept.note || !concept.topic)) {
