@@ -63,7 +63,7 @@ entryRouter.get('/:id', async (req: Request<{ id: string }>, res: Response<Learn
   }
 });
 
-entryRouter.post('/loggedin', middleware.validationHandler, async (req: Request<ParamsDictionary, unknown, NewLearningEntry>, res: Response<LearningEntry>, next: NextFunction) => {
+entryRouter.post('/loggedin', middleware.newLearningEntryValidator, async (req: Request<ParamsDictionary, unknown, NewLearningEntry>, res: Response<LearningEntry>, next: NextFunction) => {
   try {
     if (!req.user) { return res.redirect('/authrequired'); }
     const savedLearningEntry = await entryQueries.createLearningEntry(req.body);

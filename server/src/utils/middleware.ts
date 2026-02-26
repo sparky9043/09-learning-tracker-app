@@ -10,7 +10,7 @@ import { NewUserSchema } from "../schemas/user-schema";
 // import { ZodError } from "zod";
 
 // validation middleware
-const validationHandler = (req: Request, _res: Response, next: NextFunction) => {
+const newLearningEntryValidator = (req: Request, _res: Response, next: NextFunction) => {
   try {
     console.log('validationHandler reached');
     req.body = NewLearningEntrySchema.parse(req.body);
@@ -69,7 +69,7 @@ const newUserValidator = (req: Request<ParamsDictionary, unknown, NewUser>, _res
 
 export default {
   errorHandler,
-  validationHandler,
+  newLearningEntryValidator,
   hashPassword,
   newUserValidator,
 };

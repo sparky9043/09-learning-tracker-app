@@ -1,5 +1,5 @@
 import z from "zod";
-import { LearningEntryOpenAIResponseSchema, NewLearningEntrySchema } from "../schemas/learning-entry-schema";
+import { AIGenerateStudyQuestionRequestSchema, AIGenerateStudyQuestionResponseSchema, AIUserEntryInputSchema, LearningEntryOpenAIResponseSchema, NewLearningEntrySchema } from "../schemas/learning-entry-schema";
 import { NewUserPasswordHashedSchema, NewUserSchema } from "../schemas/user-schema";
 
 // user types
@@ -55,13 +55,10 @@ export interface UserPrompt {
 }
 
 // Separate Types for Interacting With AI Assistant
-export interface AIUserEntryInput {
-  topic: string;
-  note: string;
-};
+export type AIUserEntryInput = z.infer<typeof AIUserEntryInputSchema>;
 
-export interface AIGenerateStudyQuestionRequest {
-  concepts: AIUserEntryInput[];
-};
+export type AIGenerateStudyQuestionRequest = z.infer<typeof AIGenerateStudyQuestionRequestSchema>;
 
 export type OpenAIResponseSingleEntry = z.infer<typeof LearningEntryOpenAIResponseSchema>;
+
+export type AIGenerateStudyQuestionResponse = z.infer<typeof AIGenerateStudyQuestionResponseSchema>;
