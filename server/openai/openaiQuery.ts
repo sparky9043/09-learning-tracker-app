@@ -38,7 +38,7 @@ const getAIGeneratedQuestions = async (userEntries: AIUserEntryInput[]) => {
     input: [
       {
         role: 'system',
-        content: 'You are an effective generator of study guide questions. You will be receiving a stringified JSON. The JSON has only one property named "concepts" and will be an array of objects each with topic and note keys. Treat each of these as one concept that the  user learned. Generate 3 questions for each concept that the user sent. Your response should be a structured object. The questions key will have an array as its value. The array will have the same number of concepts sent by the user. Each member of the array will consist of the topic sent by the user and the concept which will contain the 3 questions per topic',
+        content: 'You are an effective generator of study guide questions. You will be receiving a stringified JSON. The JSON has only one property named "concepts" and will be an array of objects each with topic and note keys. Treat each of these as one concept that the user learned. Read each of the title and note and generate 3 questions for each concept that the user sent. Make sure each question does not exceed 100 characters. Your response is an object with one key named "questions". The array will have the same number of concepts sent by the user. Each member of the array will consist of the topic sent by the user and the concept which will contain the 3 questions per topic.',
       },
       {
         role: 'user',
