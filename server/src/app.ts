@@ -8,6 +8,7 @@ import middleware from './utils/middleware';
 import entryRouter from './router/entries';
 import SessionFileStore from 'session-file-store';
 import morgan from 'morgan';
+import assistantRouter from './router/assistant';
 
 const FileStore = SessionFileStore(session);
 
@@ -32,6 +33,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', loginRouter);
+app.use('/api/assistant', assistantRouter);
 app.use('/api/entries', entryRouter);
 app.use('/api/users', usersRouter);
 

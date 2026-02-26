@@ -2,7 +2,7 @@ import { NextFunction, Request, Response, Router } from "express";
 
 const assistant = Router();
 
-assistant.post('/', (_req: Request, res: Response, next: NextFunction) => {
+assistant.get('/', (_req: Request, res: Response, next: NextFunction) => {
   try {
     res.send('connected');
   } catch (error) {
