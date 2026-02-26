@@ -4,13 +4,13 @@ import openaiQuery from "../../openai/openaiQuery";
 
 const assistant = Router();
 
-assistant.get('/', (_req: Request, res: Response, next: NextFunction) => {
-  try {
-    res.send('connected');
-  } catch (error) {
-    next(error);
-  }
-});
+// assistant.get('/', (_req: Request, res: Response, next: NextFunction) => {
+//   try {
+//     res.send('connected');
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 assistant.post('/', async (req: Request<unknown, unknown, AIGenerateStudyQuestionRequest>, res: Response, next: NextFunction) => {
   try {
