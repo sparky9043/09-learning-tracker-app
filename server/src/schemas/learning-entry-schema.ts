@@ -28,5 +28,8 @@ export const AIGeneratedQuestionSchema = z.object({
 });
 
 export const AIGenerateStudyQuestionResponseSchema = z.object({
-  questions: z.array(AIGeneratedQuestionSchema),
+  questions: z.array(z.object({
+    topic: z.string(),
+    concept: z.array(AIGeneratedQuestionSchema)
+  })),
 });

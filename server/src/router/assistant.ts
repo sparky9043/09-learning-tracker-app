@@ -12,13 +12,12 @@ assistant.get('/', (_req: Request, res: Response, next: NextFunction) => {
   }
 });
 
-assistant.post('/', (req: Request<unknown, unknown, AIGenerateStudyQuestionRequest>, res: Response, next: NextFunction) => {
+assistant.post('/', async (req: Request<unknown, unknown, AIGenerateStudyQuestionRequest>, res: Response, next: NextFunction) => {
   try {
     const { concepts } = req.body;
     
-    const generatedQuestions = openaiQuery.getAIGeneratedQuestions(concepts);
-    console.log(generatedQuestions);
-    res.send('connected');
+    const generatedQuestions = await openaiQuery.getAIGeneratedQuestions(concepts);
+    res.json(generatedQuestions);
   } catch (error) {
     next(error);
   }
