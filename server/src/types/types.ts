@@ -1,5 +1,5 @@
 import z from "zod";
-import { AIGenerateStudyQuestionRequestSchema, AIUserEntryInputSchema, LearningEntryOpenAIResponseSchema, NewLearningEntrySchema } from "../schemas/learning-entry-schema";
+import { AIGenerateStudyQuestionRequestSchema, AIGenerateStudyQuestionResponseSchema, AIUserEntryInputSchema, LearningEntryOpenAIResponseSchema, NewLearningEntrySchema } from "../schemas/learning-entry-schema";
 import { NewUserPasswordHashedSchema, NewUserSchema } from "../schemas/user-schema";
 
 // user types
@@ -60,3 +60,5 @@ export type AIUserEntryInput = z.infer<typeof AIUserEntryInputSchema>;
 export type AIGenerateStudyQuestionRequest = z.infer<typeof AIGenerateStudyQuestionRequestSchema>;
 
 export type OpenAIResponseSingleEntry = z.infer<typeof LearningEntryOpenAIResponseSchema>;
+
+export type AIGenerateStudyQuestionResponse = z.infer<typeof AIGenerateStudyQuestionResponseSchema>;
