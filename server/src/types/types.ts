@@ -60,4 +60,8 @@ export interface AIUserEntryInput {
   note: string;
 };
 
+export interface AIGenerateStudyQuestionRequest {
+  concepts: AIUserEntryInput[];
+};
+
 export type OpenAIResponseSingleEntry = z.infer<typeof LearningEntryOpenAIResponseSchema>;
