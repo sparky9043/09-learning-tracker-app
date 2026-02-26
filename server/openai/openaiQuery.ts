@@ -1,6 +1,6 @@
 import error from "../src/errors/error";
 import { LearningEntryOpenAIResponseSchema } from "../src/schemas/learning-entry-schema";
-import { OpenAIResponseSingleEntry } from "../src/types/types";
+import { AIUserEntryInput, OpenAIResponseSingleEntry } from "../src/types/types";
 import openai from "./openai";
 import { zodTextFormat } from 'openai/helpers/zod';
 
@@ -30,4 +30,9 @@ const getAISummaryResponse = async (userPrompt: string): Promise<OpenAIResponseS
   return learning_entry_response;
 };
 
-export default { getAISummaryResponse };
+const getAIGeneratedTopics = (userEntries: AIUserEntryInput[]) => {
+  const entriesString = JSON.stringify(userEntries);
+  console.log(entriesString);
+};
+
+export default { getAISummaryResponse, getAIGeneratedTopics };
