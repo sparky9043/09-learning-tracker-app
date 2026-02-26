@@ -1,7 +1,7 @@
 import LearningEntriesList from "./LearningEntriesList";
 import { useCurrentUserContext } from "@/hooks/useCurrentUserContext";
 import Welcome from "./Welcome";
-import Togglelable from "../misc/Toggleable";
+// import Togglelable from "../misc/Toggleable";
 
 const Dashboard = () => {
   const { currentUser, setCurrentUser } = useCurrentUserContext();
@@ -14,9 +14,9 @@ const Dashboard = () => {
 
   return (
     <div className="text-center flex min-h-dvh min-w-dvh">
-      <Togglelable text="expand" className="bg-neutral-900">
+      {/* <Togglelable text="expand" className="bg-neutral-900"> */}
         <Welcome currentUser={currentUser} setCurrentUser={setCurrentUser} />
-      </Togglelable>
+      {/* </Togglelable> */}
       <LearningEntriesList />
     </div>
   )
