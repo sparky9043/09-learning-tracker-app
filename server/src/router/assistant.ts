@@ -16,7 +16,7 @@ assistant.post('/', (req: Request<unknown, unknown, AIGenerateStudyQuestionReque
   try {
     const { concepts } = req.body;
     
-    const generatedQuestions = openaiQuery.getAIGeneratedTopics(concepts);
+    const generatedQuestions = openaiQuery.getAIGeneratedQuestions(concepts);
     console.log(generatedQuestions);
     res.send('connected');
   } catch (error) {

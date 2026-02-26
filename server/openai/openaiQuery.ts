@@ -30,9 +30,9 @@ const getAISummaryResponse = async (userPrompt: string): Promise<OpenAIResponseS
   return learning_entry_response;
 };
 
-const getAIGeneratedTopics = (userEntries: AIUserEntryInput[]) => {
+const getAIGeneratedQuestions = (userEntries: AIUserEntryInput[]) => {
   const entriesString = JSON.stringify(userEntries);
   console.log(entriesString);
 };
 
-export default { getAISummaryResponse, getAIGeneratedTopics };
+export default { getAISummaryResponse, getAIGeneratedQuestions };
