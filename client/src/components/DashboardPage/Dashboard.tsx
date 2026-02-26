@@ -13,7 +13,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="text-center flex min-h-dvh">
+    <div className="text-center flex min-h-dvh min-w-dvh">
       <Togglelable text="expand" className="bg-neutral-900">
         <Welcome currentUser={currentUser} setCurrentUser={setCurrentUser} />
       </Togglelable>

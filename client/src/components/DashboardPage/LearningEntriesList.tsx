@@ -77,7 +77,7 @@ const LearningEntriesList = () => {
   const filteredData = filterData(sortedData);
 
   return (
-    <div className="p-8 relative">
+    <div className="p-8 relative w-full">
       <AddEntryModal />
       <LearningEntryFilter
         filterBy={filterBy}
