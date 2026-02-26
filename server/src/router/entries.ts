@@ -14,7 +14,7 @@ entryRouter.post(
   async (req: Request<ParamsDictionary, unknown, UserPrompt>, res: Response<OpenAIResponseSingleEntry>) => {
 
   const { prompt } = req.body;
-  const responseAI = await openaiQuery.getStructuredResponse(prompt);
+  const responseAI = await openaiQuery.getAISummaryResponse(prompt);
 
   if (!responseAI.note || !responseAI.topic) {
     throw new error.ValidationError('openai should return both the note and the title of the topic');
