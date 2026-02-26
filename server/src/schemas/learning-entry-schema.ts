@@ -22,3 +22,11 @@ export const AIUserEntryInputSchema = z.object({
 export const AIGenerateStudyQuestionRequestSchema = z.object({
   concepts: z.array(AIUserEntryInputSchema),
 });
+
+export const AIGeneratedQuestionSchema = z.object({
+  question: z.string(),
+});
+
+export const AIGenerateStudyQuestionResponseSchema = z.object({
+  questions: z.array(AIGeneratedQuestionSchema),
+});
