@@ -4,7 +4,7 @@ import { OpenAIResponseSingleEntry } from "../src/types/types";
 import openai from "./openai";
 import { zodTextFormat } from 'openai/helpers/zod';
 
-const getStructuredResponse = async (userPrompt: string): Promise<OpenAIResponseSingleEntry> => {
+const getAISummaryResponse = async (userPrompt: string): Promise<OpenAIResponseSingleEntry> => {
   const response = await openai.responses.parse({
     model: 'gpt-5-mini',
     input: [
@@ -30,4 +30,4 @@ const getStructuredResponse = async (userPrompt: string): Promise<OpenAIResponse
   return learning_entry_response;
 };
 
-export default { getStructuredResponse };
+export default { getAISummaryResponse };

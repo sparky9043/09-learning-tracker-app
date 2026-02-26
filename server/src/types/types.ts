@@ -54,4 +54,14 @@ export interface UserPrompt {
   prompt: string;
 }
 
+// Separate Types for Interacting With AI Assistant
+export interface AIUserEntryInput {
+  topic: string;
+  note: string;
+};
+
+export interface AIGenerateStudyQuestionRequest {
+  concepts: AIUserEntryInput[];
+};
+
 export type OpenAIResponseSingleEntry = z.infer<typeof LearningEntryOpenAIResponseSchema>;
