@@ -37,3 +37,8 @@ export interface OpenaiResponse {
   topic: string;
   note: string;
 }
+
+export interface AIUserEntryInput {
+  note: string;
+  topic: string;
+};
