@@ -5,6 +5,7 @@ import Login from './components/LoginPage/Login'
 import Dashboard from './components/DashboardPage/Dashboard'
 import Protected from './components/ProtectedRoute/Protected'
 import Summary from './components/SummaryPage/Summary'
+import AIAssistantPage from './components/AIAssistantPage/AIAssistantPage'
 // import Summary from './components/SummaryPage/Summary'
 
 function App() {
@@ -30,7 +31,11 @@ function App() {
             {
               Component: Summary,
               path: 'summarize',
-            }
+            },
+            {
+              Component: AIAssistantPage,
+              path: 'ai-assistant',
+            },
           ]
         },
       ]
