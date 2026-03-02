@@ -1,11 +1,9 @@
 import entriesService from "@/service/entriesService";
 import type { SavedLearningEntry } from "@/types/types";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
 import { Button } from "../ui/button";
 
 const AIAssistantPage = () => {
-  const [selectedEntries, setSelectedEntries] = useState([]);
 
   const entryByUserQuery = useQuery<SavedLearningEntry[]>({
     queryKey: ['entriesByUser'],
