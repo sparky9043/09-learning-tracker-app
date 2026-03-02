@@ -2,9 +2,10 @@ import entriesService from "@/service/entriesService";
 import type { SavedLearningEntry } from "@/types/types";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { Button } from "../ui/button";
 
 const AIAssistantPage = () => {
-  const [selected, notSelected] = useState();
+  const [selectedEntries, setSelectedEntries] = useState([]);
 
   const entryByUserQuery = useQuery<SavedLearningEntry[]>({
     queryKey: ['entriesByUser'],
@@ -29,13 +30,17 @@ const AIAssistantPage = () => {
     </div>
   }
 
-  console.log(entryByUserQuery.data);
   if (!entryByUserQuery.data) {
     return (
       <div>
         Data not loaded
       </div>
     )
+  }
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log('hello');
   }
   
   return (
@@ -49,6 +54,9 @@ const AIAssistantPage = () => {
           Summary: {e.note}
         </p>
       </li>)}
+      <form onSubmit={handleSubmit}>
+        <Button>Submit</Button>
+      </form>
     </div>
   )
 };
