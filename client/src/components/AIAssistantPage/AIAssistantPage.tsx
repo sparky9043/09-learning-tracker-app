@@ -2,6 +2,7 @@ import entriesService from "@/service/entriesService";
 import type { SavedLearningEntry } from "@/types/types";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "../ui/button";
+import EntryItem from "./EntryItem";
 
 const AIAssistantPage = () => {
 
@@ -44,14 +45,7 @@ const AIAssistantPage = () => {
   return (
     <div>
       AI Assistant Page
-      {entryByUserQuery.data.map(e => <li key={e.id}>
-        <p>
-          Topic: {e.topic}
-        </p>
-        <p>
-          Summary: {e.note}
-        </p>
-      </li>)}
+      {entryByUserQuery.data.map(entry => <EntryItem key={entry.id} entry={entry} />)}
       <form onSubmit={handleSubmit}>
         <Button>Submit</Button>
       </form>
