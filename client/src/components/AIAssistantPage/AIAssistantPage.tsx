@@ -41,7 +41,13 @@ const AIAssistantPage = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('hello');
+
+    const entriesToSubmit = {
+      concepts: selectedEntries
+    }
+
+    console.log(entriesToSubmit);
+
   };
 
   const handleClick = (entryId: number) => {
@@ -58,8 +64,6 @@ const AIAssistantPage = () => {
     }
 
   };
-
-  console.log(selectedEntries)
   
   return (
     <div>
