@@ -45,11 +45,19 @@ const AIAssistantPage = () => {
     //   concepts: selectedEntries
     const data = Array.from((event.target as HTMLFormElement).entry) as HTMLInputElement[];
 
-    const selectedList = data.filter(entry => {
-      return entry.checked;
+    const selectedInputs = data.filter(input => {
+      return input.checked;
     });
 
-    console.log(selectedList);
+    if (!selectedInputs.length) return;
+
+    const selectedIds = selectedInputs.map(input => Number(input.id));
+
+    const selectedNoteEntries = entryByUserQuery.data
+      .filter(entry => selectedIds.includes(entry.id))
+      .map(({ id, note, topic }) => ({ id, note, topic }));
+
+    console.log(selectedNoteEntries);
 
     // for (const input of data) {
     //   const inputEntry = input as HTMLInputElement;
@@ -73,12 +81,13 @@ const AIAssistantPage = () => {
   // };
   
   return (
-    <div>
-      AI Assistant Page
+    <div className="grid grid-cols-2">
       <form onSubmit={handleSubmit}>
+        <h2>AI Assistant Page</h2>
         {entryByUserQuery.data.map(entry => <EntryItem key={entry.id} entry={entry} />)}
         <Button>Submit</Button>
       </form>
+      <p>hello</p>
     </div>
   )
 };
