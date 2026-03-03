@@ -4,9 +4,12 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from "../ui/button";
 import EntryItem from "./EntryItem";
 // import { useState } from "react";
+import axios from "axios";
+// import { useState } from "react";
 
 const AIAssistantPage = () => {
   // const [selectedEntries, setSelectedEntries] = useState<AIUserEntryInput[]>([]);
+  // const [questions, setQuestions] = useState([]);
 
   const entryByUserQuery = useQuery<SavedLearningEntry[]>({
     queryKey: ['entriesByUser'],
@@ -39,10 +42,9 @@ const AIAssistantPage = () => {
     )
   }
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // const entriesToSubmit = {
-    //   concepts: selectedEntries
+
     const data = Array.from((event.target as HTMLFormElement).entry) as HTMLInputElement[];
 
     const selectedInputs = data.filter(input => {
@@ -57,28 +59,15 @@ const AIAssistantPage = () => {
       .filter(entry => selectedIds.includes(entry.id))
       .map(({ id, note, topic }) => ({ id, note, topic }));
 
-    console.log(selectedNoteEntries);
+    const request = {
+      concepts: selectedNoteEntries,
+    };
 
-    // for (const input of data) {
-    //   const inputEntry = input as HTMLInputElement;
-    //   inputEntry.checked = false;
-    // }
+    const response = await axios.post('/api/assistant', request);
+
+    console.log(response.data);
+    // setQuestions(response.data);
   };
-
-  // const handleClick = (entryId: number) => {
-  //   const entry = entryByUserQuery.data.find(entry => Number(entry.id) === Number(entryId));
-
-  //   if (!entry || !entry.note || !entry.topic) {
-  //     throw new Error('the note you selected is not found');
-  //   }
-
-  //   const isEntrySelected = selectedEntries.map(entry => entry.note).includes(entry?.note)
-
-  //   if (entry?.note && !isEntrySelected) {
-  //     setSelectedEntries(prev => [...prev, { id: entry?.id ,note: entry?.note, topic: entry?.topic }])
-  //   }
-
-  // };
   
   return (
     <div className="grid grid-cols-2">
@@ -88,6 +77,8 @@ const AIAssistantPage = () => {
         <Button>Submit</Button>
       </form>
       <p>hello</p>
+
+      {/* {questions.map} */}
     </div>
   )
 };
