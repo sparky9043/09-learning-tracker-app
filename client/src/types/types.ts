@@ -39,6 +39,7 @@ export interface OpenaiResponse {
 }
 
 export interface AIUserEntryInput {
+  id: number;
   note: string;
   topic: string;
 };
