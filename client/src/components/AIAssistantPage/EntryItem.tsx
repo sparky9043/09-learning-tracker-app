@@ -4,6 +4,7 @@ import { useState } from "react";
 interface EntryItemProps {
   entry: SavedLearningEntry;
   // onClick: (entryId: number) => void;
+  isLoading: boolean;
 }
 
 const EntryItem = (props: EntryItemProps) => {
@@ -17,6 +18,7 @@ const EntryItem = (props: EntryItemProps) => {
         checked={isSelected}
         name="entry"
         onChange={(e) => setIsSelected(e.target.checked)}
+        disabled={props.isLoading}
       />
       <ul>
         <li>{props.entry.topic}</li>
