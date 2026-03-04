@@ -83,8 +83,6 @@ const AIAssistantPage = () => {
     }
   };
 
-  console.log(questions);
-  
   return (
     <div className="grid grid-cols-2">
       <form onSubmit={handleSubmit}>
