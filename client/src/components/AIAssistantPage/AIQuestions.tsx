@@ -5,7 +5,6 @@ interface AIQuestionsProps {
 }
 
 const AIQuestions = (props: AIQuestionsProps) => {
-  console.log(props);
   if (!props?.questions || props?.questions.length == 0) {
     return null;
   }

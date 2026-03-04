@@ -50,6 +50,7 @@ const AIAssistantPage = () => {
 
     try {
       setIsLoading(true);
+      setQuestions([]);
       const data = Array.from((event.target as HTMLFormElement).entry) as HTMLInputElement[];
       
       const selectedInputs = data.filter(input => {
@@ -96,7 +97,10 @@ const AIAssistantPage = () => {
           />)}
         <Button>Submit</Button>
       </form>
-      {questions.length > 0 && <AIQuestions questions={questions} />}
+      {isLoading
+        ? <p>Generating Questions...</p>
+        : <AIQuestions questions={questions}
+      />}
     </div>
   )
 };
