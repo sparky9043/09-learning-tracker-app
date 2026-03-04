@@ -1,11 +1,11 @@
 import type { AIGeneratedQuestionObject } from "@/types/types";
 
 interface AIQuestionsProps {
-  questions: AIGeneratedQuestionObject[];
+  questions: AIGeneratedQuestionObject[] | null;
 }
 
 const AIQuestions = (props: AIQuestionsProps) => {
-  if (!props?.questions || props?.questions.length == 0) {
+  if (!props.questions || !props?.questions || props?.questions.length == 0) {
     return null;
   }
 

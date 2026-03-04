@@ -11,7 +11,7 @@ import AIQuestions from "./AIQuestions";
 
 const AIAssistantPage = () => {
   // const [selectedEntries, setSelectedEntries] = useState<AIUserEntryInput[]>([]);
-  const [questions, setQuestions] = useState<AIGeneratedQuestionObject[]>([]);
+  const [questions, setQuestions] = useState<AIGeneratedQuestionObject[] | null>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const entryByUserQuery = useQuery<SavedLearningEntry[]>({
@@ -50,7 +50,7 @@ const AIAssistantPage = () => {
 
     try {
       setIsLoading(true);
-      setQuestions([]);
+      setQuestions(null);
       const data = Array.from((event.target as HTMLFormElement).entry) as HTMLInputElement[];
       
       const selectedInputs = data.filter(input => {
@@ -72,7 +72,6 @@ const AIAssistantPage = () => {
       const response = await axios.post('/api/assistant', request);
       
       const questions = (response.data as AIGeneratedStudyQuestions).questions;
-      // console.log(response.data);
       setQuestions(questions);
     } catch (error) {
       if (error instanceof Error) {
