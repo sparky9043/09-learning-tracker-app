@@ -43,3 +43,16 @@ export interface AIUserEntryInput {
   note: string;
   topic: string;
 };
+
+export interface Question {
+  question: string;
+};
+
+export interface AIGeneratedQuestionObject {
+  topic: string;
+  concept: Question[];
+};
+
+export interface AIGeneratedStudyQuestions {
+  questions: AIGeneratedQuestionObject[];
+};
