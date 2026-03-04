@@ -7,6 +7,7 @@ import EntryItem from "./EntryItem";
 import axios from "axios";
 import { useState } from "react";
 import AIQuestions from "./AIQuestions";
+import LoadingWheel from "../misc/LoadingWheel";
 // import { useState } from "react";
 
 const AIAssistantPage = () => {
@@ -99,7 +100,7 @@ const AIAssistantPage = () => {
         <Button>Submit</Button>
       </form>
       {isLoading
-        ? <p>Generating Questions...</p>
+        ? <LoadingWheel loadingText="please wait while we generate questions" />
         : <AIQuestions questions={questions}
       />}
     </div>
