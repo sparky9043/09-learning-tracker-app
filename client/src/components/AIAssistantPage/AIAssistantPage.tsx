@@ -1,16 +1,17 @@
 import entriesService from "@/service/entriesService";
-import { type SavedLearningEntry } from "@/types/types";
+import { type AIGeneratedQuestionObject, type AIGeneratedStudyQuestions, type SavedLearningEntry } from "@/types/types";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "../ui/button";
 import EntryItem from "./EntryItem";
 // import { useState } from "react";
 import axios from "axios";
 import { useState } from "react";
+import AIQuestions from "./AIQuestions";
 // import { useState } from "react";
 
 const AIAssistantPage = () => {
   // const [selectedEntries, setSelectedEntries] = useState<AIUserEntryInput[]>([]);
-  // const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState<AIGeneratedQuestionObject[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const entryByUserQuery = useQuery<SavedLearningEntry[]>({
@@ -69,8 +70,9 @@ const AIAssistantPage = () => {
       
       const response = await axios.post('/api/assistant', request);
       
-      console.log(response.data);
-      // setQuestions(response.data);
+      const questions = (response.data as AIGeneratedStudyQuestions).questions;
+      // console.log(response.data);
+      setQuestions(questions);
     } catch (error) {
       if (error instanceof Error) {
         throw new Error(error.message);
@@ -79,6 +81,8 @@ const AIAssistantPage = () => {
       setIsLoading(false);
     }
   };
+
+  console.log(questions);
   
   return (
     <div className="grid grid-cols-2">
@@ -92,9 +96,7 @@ const AIAssistantPage = () => {
           />)}
         <Button>Submit</Button>
       </form>
-      <p>hello</p>
-
-      {/* {questions.map} */}
+      {questions.length > 0 && <AIQuestions questions={questions} />}
     </div>
   )
 };
