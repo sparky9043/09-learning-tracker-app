@@ -57,7 +57,11 @@ const AIAssistantPage = () => {
         return input.checked;
       });
       
-      if (!selectedInputs.length) return;
+      if (!selectedInputs.length) {
+        const errorMessage = "please select at least one question!";
+        alert(errorMessage)
+        throw new Error(errorMessage);
+      }
       
       const selectedIds = selectedInputs.map(input => Number(input.id));
       
