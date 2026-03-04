@@ -15,6 +15,7 @@ export const LearningEntryOpenAIResponseSchema = z.object({
 });
 
 export const AIUserEntryInputSchema = z.object({
+  id: z.number(),
   topic: z.string(),
   note: z.string(),
 });

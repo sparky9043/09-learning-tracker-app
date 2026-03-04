@@ -39,6 +39,20 @@ export interface OpenaiResponse {
 }
 
 export interface AIUserEntryInput {
+  id: number;
   note: string;
   topic: string;
+};
+
+export interface Question {
+  question: string;
+};
+
+export interface AIGeneratedQuestionObject {
+  topic: string;
+  concept: Question[];
+};
+
+export interface AIGeneratedStudyQuestions {
+  questions: AIGeneratedQuestionObject[];
 };
