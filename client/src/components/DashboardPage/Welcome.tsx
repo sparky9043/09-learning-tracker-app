@@ -34,17 +34,17 @@ const Welcome = ({ currentUser, setCurrentUser }: WelcomeProps) => {
           <h1>Welcome {currentUser.username}</h1>
         </div>
         <div>
-          <Button onClick={handleLogout} variant="outline" className="text-stone-800 bg-stone-200 hover:bg-stone-400 hover:border-stone-400 mb-2">log out</Button>
+          <Button onClick={handleLogout} variant="outline" className="text-stone-200 bg-transparent mb-2 border-none hover:bg-transparent hover:text-stone-200 hover:font-bold">Log Out</Button>
         </div>
         <div>
-          <p className="mb-2">
+          {/* <p className="mb-2">
             Try the AI Summary!
-          </p>
+          </p> */}
           <Link
             to='summarize'
-            className="font-sm p-2 text-stone-800 bg-stone-200 hover:bg-stone-400 rounded-md ml-2"
-            >
-            Click Here
+            className="font-sm p-2 text-stone-100 hover:font-bold bg-transparent rounded-md ml-2"
+          >
+            AI Summary
           </Link>
         </div>
       </div>
