@@ -36,17 +36,21 @@ const Welcome = ({ currentUser, setCurrentUser }: WelcomeProps) => {
         <div>
           <Button onClick={handleLogout} variant="outline" className="text-stone-200 bg-transparent mb-2 border-none hover:bg-transparent hover:text-stone-200 hover:font-bold">Log Out</Button>
         </div>
-        <div>
-          {/* <p className="mb-2">
-            Try the AI Summary!
-          </p> */}
-          <Link
-            to='summarize'
-            className="font-sm p-2 text-stone-100 hover:font-bold bg-transparent rounded-md ml-2"
-          >
-            AI Summary
-          </Link>
-        </div>
+        <ul>
+          <li className="mt-4 mb-4">
+            <Link
+              to='summarize'
+              className="font-sm p-2 text-stone-100 hover:font-bold bg-transparent rounded-md ml-2"
+            >
+              AI Summary
+            </Link>
+          </li>
+          <li className="mt-4 mb-4">
+            <Link to='ai-assistant' className="font-sm p-2 text-stone-100 hover:font-bold bg-transparent rounded-md ml-2">
+              Generate Questions
+            </Link>
+          </li>
+        </ul>
       </div>
     </div>
   )
