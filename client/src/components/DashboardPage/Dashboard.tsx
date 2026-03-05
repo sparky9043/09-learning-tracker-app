@@ -1,10 +1,10 @@
 import LearningEntriesList from "./LearningEntriesList";
 import { useCurrentUserContext } from "@/hooks/useCurrentUserContext";
-import Welcome from "./Welcome";
+// import Welcome from "./Welcome";
 // import Togglelable from "../misc/Toggleable";
 
 const Dashboard = () => {
-  const { currentUser, setCurrentUser } = useCurrentUserContext();
+  const { currentUser } = useCurrentUserContext();
 
   if (!currentUser) {
     return (
@@ -16,7 +16,6 @@ const Dashboard = () => {
 
   return (
     <div className="text-center flex min-h-dvh min-w-dvh">
-      <Welcome currentUser={currentUser} setCurrentUser={setCurrentUser} />
       <LearningEntriesList />
     </div>
   )
