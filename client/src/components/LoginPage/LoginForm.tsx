@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import loginService from "../../service/loginService";
 // import { useCurrentUserContext } from "../../hooks/useCurrentUserContext";
 import { useNavigate } from "react-router";
@@ -15,6 +15,12 @@ const LoginForm = () => {
   const [password, setPassword] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate('dashboard');
+    }
+  }, [currentUser, navigate]);
 
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
