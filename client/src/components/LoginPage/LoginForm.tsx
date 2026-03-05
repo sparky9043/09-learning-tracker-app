@@ -32,7 +32,7 @@ const LoginForm = () => {
       const savedUserObject = await loginService.login({ username, password });
       setCurrentUser(savedUserObject.user);
       localStorage.setItem('lastSavedUser', JSON.stringify(savedUserObject.user));
-      navigate('/dashboard', { replace: true });
+      navigate('dashboard', { replace: true });
 
     } catch (error) {
       if (error instanceof Error) {
