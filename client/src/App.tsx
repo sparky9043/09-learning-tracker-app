@@ -6,6 +6,7 @@ import Dashboard from './components/DashboardPage/Dashboard'
 import Protected from './components/ProtectedRoute/Protected'
 import Summary from './components/SummaryPage/Summary'
 import AIAssistantPage from './components/AIAssistantPage/AIAssistantPage'
+import BoilerplateOutput from './components/misc/BoilerplateOutput'
 // import Summary from './components/SummaryPage/Summary'
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
       children: [
         {
           path: '/dashboard',
-          Component: Outlet,
+          Component: BoilerplateOutput,
           children: [
             {
               Component: Dashboard,
