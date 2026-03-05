@@ -3,12 +3,12 @@ import type { User } from "@/types/types";
 import { Link, useNavigate } from "react-router";
 import { Button } from "../ui/button";
 
-interface WelcomeProps {
+interface NavBarProps {
   currentUser: User | null;
   setCurrentUser: React.Dispatch<React.SetStateAction<User | null>>
 }
 
-const Welcome = ({ currentUser, setCurrentUser }: WelcomeProps) => {
+const NavBar = ({ currentUser, setCurrentUser }: NavBarProps) => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -56,4 +56,4 @@ const Welcome = ({ currentUser, setCurrentUser }: WelcomeProps) => {
   )
 };
 
-export default Welcome;
+export default NavBar;
