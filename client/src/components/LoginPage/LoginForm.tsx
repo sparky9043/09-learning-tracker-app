@@ -18,15 +18,15 @@ const LoginForm = () => {
 
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    localStorage.removeItem('lastSavedUser');
-    setCurrentUser(null);
     try {
-      if (!currentUser) {
-        const savedUserObject = await loginService.login({ username, password });
-        setCurrentUser(savedUserObject.user);
-        localStorage.setItem('lastSavedUser', JSON.stringify(savedUserObject.user));
-        navigate('/dashboard', { replace: true });
+      if (currentUser) {
+        localStorage.removeItem('lastSavedUser');
+        setCurrentUser(null);
       }
+      const savedUserObject = await loginService.login({ username, password });
+      setCurrentUser(savedUserObject.user);
+      localStorage.setItem('lastSavedUser', JSON.stringify(savedUserObject.user));
+      navigate('/dashboard', { replace: true });
 
     } catch (error) {
       if (error instanceof Error) {
