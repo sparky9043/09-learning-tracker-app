@@ -12,7 +12,7 @@ import LoadingWheel from "../misc/LoadingWheel";
 
 const AIAssistantPage = () => {
   // const [selectedEntries, setSelectedEntries] = useState<AIUserEntryInput[]>([]);
-  const [questions, setQuestions] = useState<AIGeneratedQuestionObject[] | null>([]);
+  const [questions, setQuestions] = useState<AIGeneratedQuestionObject[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const entryByUserQuery = useQuery<SavedLearningEntry[]>({
@@ -86,7 +86,7 @@ const AIAssistantPage = () => {
       setIsLoading(false);
     }
   };
-
+  
   return (
     <div className="grid grid-cols-2">
       <form onSubmit={handleSubmit}>
@@ -102,7 +102,7 @@ const AIAssistantPage = () => {
             3. Use the AI Generated Questions as guides to learn more about the topic
           </li>
         </ol>
-        {entryByUserQuery.data.map(entry =>
+        {Array.isArray(entryByUserQuery.data) && entryByUserQuery.data.map(entry =>
           <EntryItem
             key={entry.id}
             entry={entry}
