@@ -7,16 +7,16 @@ const Dashboard = () => {
   const { currentUser, setCurrentUser } = useCurrentUserContext();
 
   if (!currentUser) {
-    <div>
-      Please login to view this page
-    </div>
+    return (
+      <div>
+        Please login to view this page
+      </div>
+    )
   }
 
   return (
     <div className="text-center flex min-h-dvh min-w-dvh">
-      {/* <Togglelable text="expand" className="bg-neutral-900"> */}
-        <Welcome currentUser={currentUser} setCurrentUser={setCurrentUser} />
-      {/* </Togglelable> */}
+      <Welcome currentUser={currentUser} setCurrentUser={setCurrentUser} />
       <LearningEntriesList />
     </div>
   )
