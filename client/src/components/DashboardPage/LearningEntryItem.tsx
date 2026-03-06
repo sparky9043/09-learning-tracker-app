@@ -1,7 +1,7 @@
 import type { SavedLearningEntry } from "@/types/types";
 import { Card, CardContent, CardDescription, CardHeader } from "../ui/card";
 import { format } from 'date-fns';
-import Togglelable from "../misc/Toggleable";
+// import Togglelable from "../misc/Toggleable";
 import { Button } from "../ui/button";
 import entriesService from "@/service/entriesService";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -31,7 +31,7 @@ const LearningEntryItem = ({ entry }: LearningEntryItemProps) => {
 
   return (
     <li key={entry.id} className="p-2">
-      <Card className="h-full text-center text-2xl shadow-lg">
+      <Card className="h-full text-center text-2xl shadow-lg min-w-100 max-w-150">
         <CardHeader>
           <CardHeader className="margin-0 padding-0 text-shadow-md text-shadow-stone-300">{entry.topic}</CardHeader>
           <CardDescription>
@@ -44,16 +44,14 @@ const LearningEntryItem = ({ entry }: LearningEntryItemProps) => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Togglelable text="see details">
-            <CardDescription>
-              <div>
-                {entry.note}
-              </div>
+          {/* <Togglelable text="see details"> */}
+            <CardDescription className="mb-4">
+              {entry.note}
             </CardDescription>
-          </Togglelable>
+          {/* </Togglelable> */}
           <Button
             className="cursor-pointer hover:bg-red-200"
-            variant="ghost"
+            variant="default"
             onClick={() => handleDelete(entry.id)}
           >
             delete entry
