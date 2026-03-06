@@ -8,7 +8,7 @@ const SummaryHeader = () => {
 
   const handleBack = () => {
     setOpenaiResponse(null);
-    navigate(-1);
+    navigate('/dashboard');
   };
 
   return (
