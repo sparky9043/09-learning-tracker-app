@@ -49,7 +49,9 @@ const PromptForm = ({ openaiResponse, setOpenaiResponse }: PromptFormProps) => {
       <FieldSet>
         <FieldGroup>
           <Field>
-            <FieldLabel htmlFor="prompt">User Prompt</FieldLabel>
+            <FieldLabel htmlFor="prompt">
+              Enter what you learned below and the AI will summarize it for you
+            </FieldLabel>
             <Textarea
               className="resize-none min-h-40"
               id="prompt"
@@ -59,7 +61,7 @@ const PromptForm = ({ openaiResponse, setOpenaiResponse }: PromptFormProps) => {
               rows={10}
               cols={100}
             />
-            <FieldDescription>Enter what you learned. Keep it to 1-2 topics</FieldDescription>
+            <FieldDescription>For best results, limit to 1-2 topics</FieldDescription>
           </Field>
           <Field>
             <Button type="submit" disabled={isLoading}>

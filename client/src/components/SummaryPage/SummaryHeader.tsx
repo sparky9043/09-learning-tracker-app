@@ -14,7 +14,7 @@ const SummaryHeader = () => {
   return (
     <div className="flex justify-between">
       <h2 className="capitalize font-bold tracking-wider text-shadow-stone-400 text-shadow-xs">
-        generate AI summary
+        AI Summary
       </h2>
       <Button onClick={handleBack}>
         &larr; Back 

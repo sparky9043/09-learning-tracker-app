@@ -10,8 +10,8 @@ const Summary = () =>  {
   const { openaiResponse, setOpenaiResponse } = useOpenaiResponseContext();
 
   return (
-    <div className="flex justify-center p-4">
-      <div className="flex flex-col w-1/2 p-8 border-2 border-stone-200 shadow-xl rounded-md ">
+    <div className="flex justify-center p-4 w-full min-h-dvh">
+      <div className="flex flex-col w-1/2 p-8 border-2 border-stone-200 shadow-xl rounded-md h-3/4">
         <SummaryHeader />
         <PromptForm
           openaiResponse={openaiResponse}
