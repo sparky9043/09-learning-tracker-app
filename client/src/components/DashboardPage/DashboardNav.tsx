@@ -39,6 +39,14 @@ const DashboardNav = ({ currentUser, setCurrentUser }: DashboardNavProps) => {
         <ul>
           <li className="mt-4 mb-4">
             <Link
+              to='/dashboard'
+              className="font-sm p-2 text-stone-100 hover:font-bold bg-transparent rounded-md ml-2"
+            >
+              Dashboard
+            </Link>
+          </li>
+          <li className="mt-4 mb-4">
+            <Link
               to='summarize'
               className="font-sm p-2 text-stone-100 hover:font-bold bg-transparent rounded-md ml-2"
             >
