@@ -12,9 +12,9 @@ const EntryItem = (props: EntryItemProps) => {
   const [isSelected, setIsSelected] = useState<boolean>(false);
 
   return (
-    <Card className="max-w-3/4">
+    <Card className="max-w-3/4 flex">
       <CardHeader>
-        <label>
+        <label className="flex gap-4 hover:font-medium hover:cursor-pointer">
           <input
             id={String(props.entry.id)}
             type="checkbox"
