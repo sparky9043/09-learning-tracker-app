@@ -1,5 +1,7 @@
 import type { SavedLearningEntry } from "@/types/types";
 import { useState } from "react";
+import { Card } from "../ui/card";
+// import { Checkbox } from "../ui/checkbox";
 
 interface EntryItemProps {
   entry: SavedLearningEntry;
@@ -10,13 +12,13 @@ const EntryItem = (props: EntryItemProps) => {
   const [isSelected, setIsSelected] = useState<boolean>(false);
 
   return (
-    <div className="border-2 p-4 m-4">
+    <Card>
       <input
         id={String(props.entry.id)}
         type="checkbox"
         checked={isSelected}
         name="entry"
-        onChange={(e) => setIsSelected(e.target.checked)}
+        onChange={(e) => setIsSelected((e.target.checked))}
         disabled={props.isLoading}
       />
       <ul>
@@ -26,7 +28,7 @@ const EntryItem = (props: EntryItemProps) => {
           <Button onClick={() => props.onClick(props.entry.id)}>Add </Button>
         </li> */}
       </ul>
-    </div>
+    </Card>
   )
 };
 
