@@ -3,7 +3,6 @@ import { useState } from "react";
 
 interface EntryItemProps {
   entry: SavedLearningEntry;
-  // onClick: (entryId: number) => void;
   isLoading: boolean;
 }
 
