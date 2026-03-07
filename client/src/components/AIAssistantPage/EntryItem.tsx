@@ -14,7 +14,7 @@ const EntryItem = (props: EntryItemProps) => {
   return (
     <Card className="max-w-3/4 flex">
       <CardHeader>
-        <label className="flex gap-4 hover:font-medium hover:cursor-pointer">
+        <label className="flex gap-4 hover:font-medium hover:cursor-pointer items-center">
           <input
             id={String(props.entry.id)}
             type="checkbox"
