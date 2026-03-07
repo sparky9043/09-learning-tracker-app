@@ -92,13 +92,17 @@ const AIAssistantPage = () => {
     <div className="grid grid-cols-2 p-4">
       <form onSubmit={handleSubmit}>
         <AIAssistantInstructions />
-        {Array.isArray(entryByUserQuery.data) && entryByUserQuery.data.map(entry =>
-          <EntryItem
-            key={entry.id}
-            entry={entry}
-            isLoading={isLoading}
+        <div className="flex flex-col items-center mt-4 mb-4 flex-wrap gap-4">
+          {Array.isArray(entryByUserQuery.data)
+            &&
+            entryByUserQuery.data.map(entry =>
+              <EntryItem
+                key={entry.id}
+                entry={entry}
+                isLoading={isLoading}
           />)}
-        <Button>Submit</Button>
+        </div>
+        <Button type="submit">Submit</Button>
       </form>
       {isLoading
         ? <LoadingWheel loadingText="please wait while we generate questions" />
