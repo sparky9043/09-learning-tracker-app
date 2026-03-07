@@ -88,7 +88,7 @@ const AIAssistantPage = () => {
   };
   
   return (
-    <div className="grid grid-cols-2">
+    <div className="grid grid-cols-2 p-4">
       <form onSubmit={handleSubmit}>
         <h2>AI Assistant Page</h2>
         <ol>
