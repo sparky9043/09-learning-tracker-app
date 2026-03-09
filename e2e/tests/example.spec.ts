@@ -9,6 +9,14 @@ test('has title', async ({ page }) => {
   await expect(page).toHaveTitle(/client/);
 });
 
+test('login link', async ({ page }) => {
+  await page.goto(home_url);
+
+  await page.getByRole('link', { name: 'Login' }).click();
+
+  await expect(page.getByRole('button', { name: 'Login' })).toBeVisible();
+});
+
 // test('get started link', async ({ page }) => {
 //   await page.goto('https://playwright.dev/');
 
