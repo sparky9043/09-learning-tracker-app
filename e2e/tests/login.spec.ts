@@ -9,7 +9,7 @@ test('has title', async ({ page }) => {
   await expect(page).toHaveTitle(/client/);
 });
 
-test('login link', async ({ page }) => {
+test('login link displays login page', async ({ page }) => {
   await page.goto(home_url);
 
   await page.getByRole('link', { name: 'Login' }).click();
