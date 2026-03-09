@@ -17,6 +17,18 @@ test('login link displays login page', async ({ page }) => {
   await expect(page.getByRole('button', { name: 'Login' })).toBeVisible();
 });
 
+// Login using username and password
+test('login with username and password', async ({ page }) => {
+  await page.goto(`${home_url}/login`);
+
+  await page.getByLabel('Username').fill('default');
+  await page.getByLabel('Password').fill('password123');
+  
+  await page.getByRole('button', { name: 'Login' }).click();
+
+  await expect(page.getByRole('heading', { name: /Welcome/ })).toBeVisible();
+});
+
 // test('get started link', async ({ page }) => {
 //   await page.goto('https://playwright.dev/');
 
