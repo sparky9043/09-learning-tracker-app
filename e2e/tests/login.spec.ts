@@ -37,4 +37,23 @@ test.describe('Get LOGIN Page', () => {
   
     await expect(page.getByRole('heading', { name: /Welcome/ })).toBeVisible();
   });
+  
+  test('logout', async ({ page }) => {
+    await page.getByRole('link', { name: 'Login' }).click();
+  
+    await expect(page.getByRole('button', { name: 'Login' })).toBeVisible();
+    
+    await page.goto(`${home_url}/login`);
+  
+    await page.getByLabel('Username').fill('default');
+    await page.getByLabel('Password').fill('password123');
+  
+    await page.getByRole('button', { name: 'Login' }).click();
+  
+    await expect(page.getByRole('heading', { name: /Welcome/ })).toBeVisible();
+
+    await (page.getByRole('button', { name: 'Log Out'})).click();
+
+    await expect(page.getByRole('button', { name: 'Login' })).toBeVisible();
+  })
 });
