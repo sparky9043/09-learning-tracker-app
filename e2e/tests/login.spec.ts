@@ -110,6 +110,7 @@ test.describe('Dashboard Actions', () =>  {
 
   // Run this test RIGHT AFTER the previous one
   test('clicking delete entry removes entry from dashboard', async ({ page }) => {
+    await page.reload();
 
     await expect(page.getByText(/E2E Testing with Playwright/)).toBeVisible();
 
