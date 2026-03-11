@@ -70,3 +70,23 @@ test.describe('Get LOGIN Page', () => {
     await expect(page.getByRole('button', { name: 'Login' })).toBeVisible();
   })
 });
+
+test.describe('Dashboard Actions', () =>  {
+  test.beforeEach(async ({ page }) => {
+    await page.goto(`${home_url}/login`)
+    await expect(page.getByRole('button', { name: 'Login' })).toBeVisible();
+    
+    await page.getByLabel('Username').fill('default')
+    await page.getByLabel('Password').fill('password123')
+    
+    await (page.getByRole('button', { name: 'Login' })).click();
+
+    await (expect(page.getByRole('button', { name: 'add entry' }))).toBeVisible();
+  });
+
+  test('clicking add entry button shows modal', async ({ page }) => {
+    await (page.getByRole('button', { name: 'add entry' })).click();
+
+    await expect(page.getByRole('button', { name: 'create entry' })).toBeVisible();
+  });
+});
