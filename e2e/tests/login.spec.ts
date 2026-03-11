@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import test_helper from './test_helper';
 
 const home_url = 'http://localhost:5173';
 
@@ -30,8 +31,8 @@ test.describe('Get LOGIN Page', () => {
     
     await page.goto(`${home_url}/login`);
   
-    await page.getByLabel('Username').fill('default');
-    await page.getByLabel('Password').fill('password123');
+    await page.getByLabel('Username').fill(test_helper.defaultUsername.name);
+    await page.getByLabel('Password').fill(test_helper.defaultUsername.password);
   
     await page.getByRole('button', { name: 'Login' }).click();
   
@@ -58,8 +59,8 @@ test.describe('Get LOGIN Page', () => {
     
     await page.goto(`${home_url}/login`);
   
-    await page.getByLabel('Username').fill('default');
-    await page.getByLabel('Password').fill('password123');
+    await page.getByLabel('Username').fill(test_helper.defaultUsername.name);
+    await page.getByLabel('Password').fill(test_helper.defaultUsername.password);
   
     await page.getByRole('button', { name: 'Login' }).click();
   
@@ -85,6 +86,12 @@ test.describe('Dashboard Actions', () =>  {
   });
 
   test('clicking add entry button shows modal', async ({ page }) => {
+    await (page.getByRole('button', { name: 'add entry' })).click();
+
+    await expect(page.getByRole('button', { name: 'create entry' })).toBeVisible();
+  });
+
+  test('creating entry shows added entry', async ({ page }) => {
     await (page.getByRole('button', { name: 'add entry' })).click();
 
     await expect(page.getByRole('button', { name: 'create entry' })).toBeVisible();
