@@ -37,6 +37,19 @@ test.describe('Get LOGIN Page', () => {
   
     await expect(page.getByRole('heading', { name: /Welcome/ })).toBeVisible();
   });
+
+  test('login failed', async ({ page }) => {
+    await page.getByRole('link', { name: 'Login' }).click();
+  
+    await expect(page.getByRole('button', { name: 'Login' })).toBeVisible();
+
+    await page.getByLabel('Username').fill('badusername')
+    await page.getByLabel('Password').fill('badpassword123')
+
+    await page.getByRole('button', { name: 'Login' }).click();
+
+    await expect(page.getByText(/failed/)).toBeVisible();
+  });
   
   test('logout', async ({ page }) => {
     await page.getByRole('link', { name: 'Login' }).click();
