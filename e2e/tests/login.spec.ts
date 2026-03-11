@@ -95,5 +95,14 @@ test.describe('Dashboard Actions', () =>  {
     await (page.getByRole('button', { name: 'add entry' })).click();
 
     await expect(page.getByRole('button', { name: 'create entry' })).toBeVisible();
+    
+    await page.getByLabel('topic').fill(test_helper.testEntry.topic);
+    await page.getByLabel('note').fill(test_helper.testEntry.note);
+    await page.getByLabel('difficulty').fill(test_helper.testEntry.difficulty);
+    await page.getByLabel(/minutes spent/).fill(test_helper.testEntry.time_spent);
+
+    await (page.getByRole('button', { name: 'create entry' })).click();
+
+    await expect(page.getByText(/E2E Testing with Playwright/)).toBeVisible();
   });
 });
