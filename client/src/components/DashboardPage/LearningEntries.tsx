@@ -8,7 +8,7 @@ interface LearningEntriesProps {
 const LearningEntries = ({ data }: LearningEntriesProps) => {
 
   return (
-    <ul className="flex flex-col items-center justify-center">
+    <ul className="flex flex-col items-center justify-center" data-testid="LearningEntries:unorderedList">
       {data.map(entry =>
         <LearningEntryItem key={entry.id} entry={entry} />
       )}
