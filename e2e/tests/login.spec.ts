@@ -119,4 +119,11 @@ test.describe('Dashboard Actions', () =>  {
     // Check to see if something exists. If count === 0, then it's gone
     await expect(page.getByText(/E2E Testing with Playwright/)).toHaveCount(0);
   });
+
+  test('', async ({ page }) => {
+    await expect(
+      page
+        .getByTestId(/LearningEntries:unorderedList/)
+    ).toBeVisible();
+  });
 });
