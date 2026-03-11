@@ -3,6 +3,7 @@ import test_helper from './test_helper';
 
 const home_url = 'http://localhost:5173';
 
+// Get the Homepage and Login and then logout
 test.describe('Get LOGIN Page', () => {
   test.beforeEach(async ({ page }) =>  {
     await page.goto(home_url);
@@ -72,6 +73,7 @@ test.describe('Get LOGIN Page', () => {
   })
 });
 
+// After Logging In
 test.describe('Dashboard Actions', () =>  {
   test.beforeEach(async ({ page }) => {
     await page.goto(`${home_url}/login`)
@@ -104,5 +106,16 @@ test.describe('Dashboard Actions', () =>  {
     await (page.getByRole('button', { name: 'create entry' })).click();
 
     await expect(page.getByText(/E2E Testing with Playwright/)).toBeVisible();
+  });
+
+  // Run this test RIGHT AFTER the previous one
+  test('clicking delete entry removes entry from dashboard', async ({ page }) => {
+
+    await expect(page.getByText(/E2E Testing with Playwright/)).toBeVisible();
+
+    await (page.getByRole('button', { name: /delete entry/ }).first()).click();
+
+    // Check to see if something exists. If count === 0, then it's gone
+    await expect(page.getByText(/E2E Testing with Playwright/)).toHaveCount(0);
   });
 });
