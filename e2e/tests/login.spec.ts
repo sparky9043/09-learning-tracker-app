@@ -76,14 +76,16 @@ test.describe('Get LOGIN Page', () => {
 // After Logging In
 test.describe('Dashboard Actions', () =>  {
   test.beforeEach(async ({ page }) => {
+    // Go to homepage/login
     await page.goto(`${home_url}/login`)
     await expect(page.getByRole('button', { name: 'Login' })).toBeVisible();
     
-    await page.getByLabel('Username').fill('default')
-    await page.getByLabel('Password').fill('password123')
+    // Fill username and password 
+    await page.getByLabel('Username').fill(test_helper.defaultUsername.name)
+    await page.getByLabel('Password').fill(test_helper.defaultUsername.password)
     
+    // Login with filled credentials shows dashboard with add entry button
     await (page.getByRole('button', { name: 'Login' })).click();
-
     await (expect(page.getByRole('button', { name: 'add entry' }))).toBeVisible();
   });
 
