@@ -126,7 +126,10 @@ test.describe('Dashboard Actions', () =>  {
   // });
 
   test('clicking on sort order changes list order', async ({ page }) => {
+    // Get the first item in the unordered list with testid
     const firstListItemLocator = (page.getByTestId(/LearningEntries:unorderedList/)).getByRole('listitem').first();
+
+    // Get the text content of the heading of the first item in the list
     const firstListItemHeader = await firstListItemLocator.getByRole('heading').textContent();
 
     await (page.getByTestId("SelectComponent:selectElement")).selectOption({ value: 'oldest' });
@@ -135,12 +138,11 @@ test.describe('Dashboard Actions', () =>  {
       throw new Error('No text Content');
     }
 
+    // Get the last list item in the unordered list and test that it has the same heading as the first item on the list
     await expect((
       (page.getByTestId(/LearningEntries:unorderedList/))
         .getByRole('listitem')
         .last()
       ).getByRole('heading')).toHaveText(firstListItemHeader);
-
-    // await expect(page.getByRole('option', { name: 'newest' })).toBeVisible();
   });
 });
