@@ -15,6 +15,7 @@ const SelectComponent = (props: SelectComponentProps) => {
       value={props.value}
       onChange={(e) => props.onChange(e.target.value)}
       className={props.className}
+      data-testid="SelectComponent:selectElement"
     >
       {props.options.map(element => <Option key={element} value={element} />)}
     </select>
