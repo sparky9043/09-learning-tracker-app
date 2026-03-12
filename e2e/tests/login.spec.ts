@@ -125,10 +125,22 @@ test.describe('Dashboard Actions', () =>  {
     // await expect(page.getByText(/E2E Testing with Playwright/)).toHaveCount(0);
   // });
 
-  test('', async ({ page }) => {
-    await expect(
-      page
-        .getByTestId(/LearningEntries:unorderedList/)
-    ).toBeVisible();
+  test('clicking on sort order changes list order', async ({ page }) => {
+    const firstListItemLocator = (page.getByTestId(/LearningEntries:unorderedList/)).getByRole('listitem').first();
+    const firstListItemHeader = await firstListItemLocator.getByRole('heading').textContent();
+
+    await (page.getByTestId("SelectComponent:selectElement")).selectOption({ value: 'oldest' });
+
+    if (!firstListItemHeader) {
+      throw new Error('No text Content');
+    }
+
+    await expect((
+      (page.getByTestId(/LearningEntries:unorderedList/))
+        .getByRole('listitem')
+        .last()
+      ).getByRole('heading')).toHaveText(firstListItemHeader);
+
+    // await expect(page.getByRole('option', { name: 'newest' })).toBeVisible();
   });
 });
