@@ -33,7 +33,11 @@ const LearningEntryItem = ({ entry }: LearningEntryItemProps) => {
     <li key={entry.id} className="p-2">
       <Card className="h-full text-center text-2xl shadow-lg min-w-100 max-w-150">
         <CardHeader>
-          <CardHeader className="margin-0 padding-0 text-shadow-md text-shadow-stone-300">{entry.topic}</CardHeader>
+          <CardHeader className="margin-0 padding-0 text-shadow-md text-shadow-stone-300">
+            <h2>
+              {entry.topic}
+            </h2>
+          </CardHeader>
           <CardDescription>
             <p>
               time spent: {entry.minutes_spent} minutes
