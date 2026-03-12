@@ -93,7 +93,7 @@ test.describe('Dashboard Actions', () =>  {
     await expect(page.getByRole('button', { name: 'create entry' })).toBeVisible();
   });
 
-  test('creating entry shows added entry', async ({ page }) => {
+  test('creating entry shows added entry and deleting removes it from list', async ({ page }) => {
     await (page.getByRole('button', { name: 'add entry' })).click();
 
     await expect(page.getByRole('button', { name: 'create entry' })).toBeVisible();
@@ -106,19 +106,24 @@ test.describe('Dashboard Actions', () =>  {
     await (page.getByRole('button', { name: 'create entry' })).click();
 
     await expect(page.getByText(/E2E Testing with Playwright/)).toBeVisible();
-  });
-
-  // Run this test RIGHT AFTER the previous one
-  test('clicking delete entry removes entry from dashboard', async ({ page }) => {
-    await page.reload();
-
-    await expect(page.getByText(/E2E Testing with Playwright/)).toBeVisible();
 
     await (page.getByRole('button', { name: /delete entry/ }).first()).click();
 
     // Check to see if something exists. If count === 0, then it's gone
     await expect(page.getByText(/E2E Testing with Playwright/)).toHaveCount(0);
   });
+
+  // Run this test RIGHT AFTER the previous one
+  // test('clicking delete entry removes entry from dashboard', async ({ page }) => {
+  //   await page.reload();
+
+  //   await expect(page.getByText(/E2E Testing with Playwright/)).toBeVisible();
+
+    // await (page.getByRole('button', { name: /delete entry/ }).first()).click();
+
+    // // Check to see if something exists. If count === 0, then it's gone
+    // await expect(page.getByText(/E2E Testing with Playwright/)).toHaveCount(0);
+  // });
 
   test('', async ({ page }) => {
     await expect(
