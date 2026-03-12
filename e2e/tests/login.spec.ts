@@ -98,15 +98,17 @@ test.describe('Dashboard Actions', () =>  {
 
     await expect(page.getByRole('button', { name: 'create entry' })).toBeVisible();
     
+    // Fill learning entry form
     await page.getByLabel('topic').fill(test_helper.testEntry.topic);
     await page.getByLabel('note').fill(test_helper.testEntry.note);
     await page.getByLabel('difficulty').fill(test_helper.testEntry.difficulty);
     await page.getByLabel(/minutes spent/).fill(test_helper.testEntry.time_spent);
 
+    // Create entry and check the entry's been added
     await (page.getByRole('button', { name: 'create entry' })).click();
+    await expect(page.getByText(test_helper.testEntry.topic)).toBeVisible();
 
-    await expect(page.getByText(/E2E Testing with Playwright/)).toBeVisible();
-
+    // Click on delete button
     await (page.getByRole('button', { name: /delete entry/ }).first()).click();
 
     // Check to see if something exists. If count === 0, then it's gone
