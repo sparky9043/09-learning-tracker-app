@@ -155,4 +155,10 @@ test.describe('Dashboard Actions', () =>  {
 
     await expect(page.getByRole('button', { name: 'filter by topic' })).toBeVisible();
   });
+
+  test('entering text into input filters entry', async ({ page }) => {
+    await (page.getByRole('button', { name: 'show filter' })).click();
+
+    await expect(page.getByLabel(/filter by description/)).toBeVisible();
+  });
 });
