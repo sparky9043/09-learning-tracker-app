@@ -159,6 +159,8 @@ test.describe('Dashboard Actions', () =>  {
   test('entering text into input filters entry', async ({ page }) => {
     await (page.getByRole('button', { name: 'show filter' })).click();
 
-    await expect(page.getByLabel(/filter by description/)).toBeVisible();
+    await (page.getByLabel(/filter by description/)).fill('Finally understood how psql connects to the running Postgres service in WSL');
+
+    await expect(page.getByRole('button', { name: 'delete entry' })).toHaveCount(1);
   });
 });
