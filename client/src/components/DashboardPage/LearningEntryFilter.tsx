@@ -26,17 +26,17 @@ const LearningEntryFilter = ({ filterBy, setFilterBy, topicFilter, setTopicFilte
       <Field>
         <FieldGroup>
           {filterBy === 'topic' ? <FieldSet>
-            <FieldLabel>
+            <FieldLabel className="w-full p-4">
               filter by topic title
+              <Input value={topicFilter} onChange={(e) => setTopicFilter(e.target.value)} className="w-3/4" />
             </FieldLabel>
-            <Input value={topicFilter} onChange={(e) => setTopicFilter(e.target.value)} />
             <FieldDescription>type a word to filter by topic</FieldDescription>
           </FieldSet>
           : filterBy === 'note' ? <FieldSet>
-            <FieldLabel>
+            <FieldLabel className="w-full p-4">
               filter by description
+              <Input value={noteFilter} onChange={(e) => setNoteFilter(e.target.value)} className="w-3/4" />
             </FieldLabel>
-            <Input value={noteFilter} onChange={(e) => setNoteFilter(e.target.value)} />
             <FieldDescription>type a word to filter by description</FieldDescription>
           </FieldSet> : null}
           <FieldSet>
