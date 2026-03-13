@@ -149,4 +149,10 @@ test.describe('Dashboard Actions', () =>  {
         .last()
       ).getByRole('heading')).toHaveText(firstListItemHeader);
   });
+
+  test('show fliter by clicking on button', async ({ page }) => {
+    await (page.getByRole('button', { name: 'show filter' })).click();
+
+    await expect(page.getByRole('button', { name: 'filter by topic' })).toBeVisible();
+  });
 });
