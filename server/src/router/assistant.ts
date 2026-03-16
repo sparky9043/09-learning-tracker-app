@@ -24,7 +24,7 @@ assistant.post('/', async (req: Request<unknown, unknown, AIGenerateStudyQuestio
     }
 
     const generatedQuestions = await openaiQuery.getAIGeneratedQuestions(concepts);
-    res.send(201).json(generatedQuestions);
+    res.status(201).json(generatedQuestions);
   } catch (error) {
     next(error);
   }

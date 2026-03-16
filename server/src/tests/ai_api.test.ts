@@ -21,11 +21,17 @@ void describe('POST Request to AI', () => {
       .expect(201);
   });
 
-  void test('/', async () => {
+  void test('requests to /api/assistant returns status 201', async () => {
     const response = await agent
       .post(baseUrl)
       .send({
-        concepts: "I learned how to send messages to AI"
+        concepts: [
+          {
+            id: 20,
+            note: "python methods",
+            topic: "I learned how to use .zip() method to tie several lists together",
+          }
+        ]
       })
       .expect(201);
 
