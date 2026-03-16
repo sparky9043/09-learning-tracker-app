@@ -7,6 +7,7 @@ import pool from '../../db/pool';
 // const api = supertest(app);
 
 const loginUrl = '/api/login';
+const baseUrl = '/api/assistant';
 
 void describe('POST Request to AI', () => {
   const agent = supertest.agent(app);
@@ -20,7 +21,16 @@ void describe('POST Request to AI', () => {
       .expect(201);
   });
 
-  void test('', () => {
+  void test('/', async () => {
+    const response = await agent
+      .post(baseUrl)
+      .send({
+        concepts: "I learned how to send messages to AI"
+      })
+      .expect(201);
+
+    console.log(response.body);
+
     assert.strictEqual(1, 1);
   });
 });
