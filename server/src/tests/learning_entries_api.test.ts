@@ -1,10 +1,10 @@
-import { test, after, beforeEach, describe } from 'node:test';
+import { test, after, before, beforeEach, describe } from 'node:test';
 import assert from 'node:assert';
 import supertest from 'supertest';
 import app from '../app';
 import pool from '../../db/pool';
 import test_helper from './test_helper';
-import { LearningEntry, NewLearningEntry } from '../types/types';
+import { LearningEntry } from '../types/types';
 
 const api = supertest(app);
 // const server = supertest.agent('http://localhost:3000');
@@ -12,14 +12,14 @@ const api = supertest(app);
 const loginUrl = '/api/login';
 const entriesUrl = '/api/entries';
 
-beforeEach(async () => {
+before(async () => {
   await test_helper.clearUsers();
   await test_helper.clearEntries();
   for (const user of test_helper.defaultUsers) {
     await test_helper.insertUserToDb(user.username, user.password);
   }
   for (const entry of test_helper.defaultEntries) {
-    await test_helper.insertEntriesIntoDb(entry as NewLearningEntry);
+    await test_helper.insertEntriesIntoDb(entry);
   }
 });
 
@@ -80,10 +80,10 @@ void describe('AFTER User Logs In', () => {
     
     const newEntryObject = {
       user_id: 1,
-      topic: "authentication",
-      note: "learned how to make authentication using passport js",
-      difficulty: 3,
-      minutes_spent: 120
+      topic: "string methods",
+      note: "learned how to use .find and .rfind methods",
+      difficulty: 2,
+      minutes_spent: 30
     };
 
     const entriesAtStart = await test_helper.getEntriesInDb(newEntryObject.user_id);
@@ -105,7 +105,7 @@ void describe('AFTER User Logs In', () => {
   void test('DELETE /api/entries/loggedin/:id returns 200 and status success', async () => {
     const userId = 1;
     const entriesAtStart = await test_helper.getEntriesInDb(userId);
-    const entryId = 5;
+    const entryId = 1;
 
     await agent
       .delete(`${entriesUrl}/loggedin/${entryId}`)
@@ -117,8 +117,8 @@ void describe('AFTER User Logs In', () => {
   });
 
   void test('PUT /api/entries/loggedin/:id returns 200 and status success', async () => {
+    const entryId = 3;
     const user_id = 1;
-    const entryId = 1;
 
     // updatedEntry doesn't have note and difficulty
     const updatedEntry = {
@@ -139,13 +139,13 @@ void describe('AFTER User Logs In', () => {
 });
 
 after(async () => {
-  await test_helper.clearUsers();
-  await test_helper.clearEntries();
-  for (const user of test_helper.defaultUsers) {
-    await test_helper.insertUserToDb(user.username, user.password);
-  }
-  for (const entry of test_helper.defaultEntries) {
-    await test_helper.insertEntriesIntoDb(entry as NewLearningEntry);
-  }
+  // await test_helper.clearUsers();
+  // await test_helper.clearEntries();
+  // for (const user of test_helper.defaultUsers) {
+  //   await test_helper.insertUserToDb(user.username, user.password);
+  // }
+  // for (const entry of test_helper.defaultEntries) {
+  //   await test_helper.insertEntriesIntoDb(entry);
+  // }
   await pool.end();
 });
