@@ -24,7 +24,17 @@ const Dashboard = () => {
 
   // const isDataLoaded = Array.isArray(entryByUser.data);
 
-  console.log(entryByUser.data);
+  if (entryByUser.isError || !entryByUser.data) {
+    return (
+      <div>
+        There wasn an error loading data
+      </div>
+    )
+  }
+
+  const extractDates = entryByUser.data.map(({ created_at, minutes_spent }) => ({ created_at, minutes_spent }));
+
+  console.log(extractDates)
 
   return (
     <div className="flex flex-col min-h-dvh w-full">
