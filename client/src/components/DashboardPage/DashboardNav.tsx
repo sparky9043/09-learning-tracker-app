@@ -42,7 +42,12 @@ const DashboardNav = ({ currentUser, setCurrentUser }: DashboardNavProps) => {
               to='/dashboard'
               className="font-sm p-2 text-stone-100 hover:font-bold bg-transparent rounded-md ml-2"
             >
-              Dashboard
+              Home
+            </Link>
+          </li>
+          <li className="mt-4 mb-4">
+            <Link to='entries' className="font-sm p-2 text-stone-100 hover:font-bold bg-transparent rounded-md ml-2">
+              Learning Entries
             </Link>
           </li>
           <li className="mt-4 mb-4">
