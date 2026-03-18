@@ -16,7 +16,8 @@ const Dashboard = () => {
 
   return (
     <div className="text-center flex min-h-dvh w-full">
-      <LearningEntriesList />
+      {/* <LearningEntriesList /> */}
+      <p>Main Menu</p>
     </div>
   )
 }
