@@ -77,25 +77,27 @@ const LearningEntriesList = () => {
   const filteredData = filterData(sortedData);
 
   return (
-    <div className="p-8 relative w-full">
-      <AddEntryModal />
-      <LearningEntryFilter
-        filterBy={filterBy}
-        setFilterBy={setFilterBy}
-        topicFilter={topicFilter}
-        setTopicFilter={setTopicFilter}
-        noteFilter={noteFilter}
-        setNoteFilter={setNoteFilter}
-      />
-      <LearningStats totalTimeSpent={totalTimeSpent} />
-      <SelectComponent
-        value={sortBy}
-        onChange={setSortBy}
-        options={['newest', 'oldest', 'longest time', 'shortest time']}
-        className="text-center border-2 border-stone-200 rounded-md"
-      />
+    <div className="text-center flex min-h-dvh w-full">
+      <div className="p-8 relative w-full">
+        <AddEntryModal />
+        <LearningEntryFilter
+          filterBy={filterBy}
+          setFilterBy={setFilterBy}
+          topicFilter={topicFilter}
+          setTopicFilter={setTopicFilter}
+          noteFilter={noteFilter}
+          setNoteFilter={setNoteFilter}
+        />
+        <LearningStats totalTimeSpent={totalTimeSpent} />
+        <SelectComponent
+          value={sortBy}
+          onChange={setSortBy}
+          options={['newest', 'oldest', 'longest time', 'shortest time']}
+          className="text-center border-2 border-stone-200 rounded-md"
+        />
 
-      {isDataLoaded && <LearningEntries data={filteredData} />}
+        {isDataLoaded && <LearningEntries data={filteredData} />}
+      </div>
     </div>
   )
 }
