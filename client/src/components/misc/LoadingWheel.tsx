@@ -8,7 +8,7 @@ const LoadingWheel = ({ loadingText = 'Loading...' }: LoadingWheelProps) => {
   return (
     <div className="flex flex-col items-center">
       <p>{loadingText}</p>
-      <div className="grid w-full place-items-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible">
+      <div className="grid w-full place-items-center rounded-lg p-6 lg:overflow-visible">
         <svg className="text-gray-300 animate-spin" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"
           width="100" height="100">
           <path
