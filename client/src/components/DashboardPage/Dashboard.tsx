@@ -52,7 +52,7 @@ const Dashboard = () => {
     // .sort((a, b) => a.month - b.month)
     // .sort((a, b) => a.day - b.year);
 
-  // console.log(convertToMonth);
+  console.log(convertToMonth);
 
   return (
     <div className="flex flex-col min-h-dvh w-full">
