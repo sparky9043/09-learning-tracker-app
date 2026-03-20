@@ -23,9 +23,9 @@ const Dashboard = () => {
     )
   }
 
-  // const isDataLoaded = Array.isArray(entryByUser.data);
+  const isDataLoaded = Array.isArray(entryByUser.data);
 
-  if (entryByUser.isError || !entryByUser.data) {
+  if (entryByUser.isError || !entryByUser.data || !isDataLoaded) {
     return (
       <div>
         There wasn an error loading data
@@ -52,7 +52,7 @@ const Dashboard = () => {
     // .sort((a, b) => a.month - b.month)
     // .sort((a, b) => a.day - b.year);
 
-  console.log(convertToMonth);
+  // console.log(convertToMonth);
 
   return (
     <div className="flex flex-col min-h-dvh w-full">
