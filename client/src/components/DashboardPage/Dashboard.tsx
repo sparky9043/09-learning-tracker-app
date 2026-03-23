@@ -5,6 +5,7 @@ import type { SavedLearningEntry } from "@/types/types";
 import { useQuery } from "@tanstack/react-query";
 import LoadingWheel from "../misc/LoadingWheel";
 import { compareAsc, format } from "date-fns";
+import BarCharts from "./BarCharts";
 // import Welcome from "./Welcome";
 // import Togglelable from "../misc/Toggleable";
 
@@ -62,6 +63,7 @@ const Dashboard = () => {
           <LoadingWheel />
         </div>
       }
+      <BarCharts />
     </div>
   )
 }
