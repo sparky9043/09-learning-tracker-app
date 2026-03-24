@@ -61,10 +61,11 @@ const Dashboard = () => {
     const matchingEntry = monthlyTotal.find(data => data.month === entry.month && data.year === entry.year);
 
     if (!matchingEntry) {
-      monthlyTotal.push(entry)
+      monthlyTotal.push({...entry})
     } else {
       matchingEntry.minutes_spent += entry.minutes_spent;
     }
+
   });
 
   console.log(monthlyTotal);
