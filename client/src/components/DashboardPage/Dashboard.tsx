@@ -6,14 +6,9 @@ import { useQuery } from "@tanstack/react-query";
 import LoadingWheel from "../misc/LoadingWheel";
 import { compareAsc, format } from "date-fns";
 import BarCharts from "./BarCharts";
+import type { MonthlyData } from "@/types/types";
 // import Welcome from "./Welcome";
 // import Togglelable from "../misc/Toggleable";
-
-interface MonthlyData {
-  month: number;
-  year: number;
-  minutes_spent: number;
-};
 
 const Dashboard = () => {
   const { currentUser } = useCurrentUserContext();

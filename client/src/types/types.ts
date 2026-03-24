@@ -29,6 +29,12 @@ export interface SavedLearningEntry extends NewLearningEntry {
   created_at: string;
 }
 
+export interface MonthlyData {
+  month: number;
+  year: number;
+  minutes_spent: number;
+}
+
 export interface UserPrompt {
   prompt: string;
 }
