@@ -9,6 +9,12 @@ import BarCharts from "./BarCharts";
 // import Welcome from "./Welcome";
 // import Togglelable from "../misc/Toggleable";
 
+interface MonthlyData {
+  month: number;
+  year: number;
+  minutes_spent: number;
+};
+
 const Dashboard = () => {
   const { currentUser } = useCurrentUserContext();
   const entryByUser = useQuery<SavedLearningEntry[]>({
@@ -47,13 +53,21 @@ const Dashboard = () => {
     minutes_spent: entry.minutes_spent,
   }));
 
-  // // Sort each entry By Year first and then Month
-  // const sortByYearAndMonth = [...convertToMonth]
-  //   .sort((a, b) => compareAsc(new Date(a.year, a.month, a.day), new Date(b.year, b.month, b.day)))
-    // .sort((a, b) => a.month - b.month)
-    // .sort((a, b) => a.day - b.year);
-
   console.log(convertToMonth);
+
+  const monthlyTotal: MonthlyData[] = []
+
+  convertToMonth.forEach(entry => {
+    const matchingEntry = monthlyTotal.find(data => data.month === entry.month && data.year === entry.year);
+
+    if (!matchingEntry) {
+      monthlyTotal.push(entry)
+    } else {
+      matchingEntry.minutes_spent += entry.minutes_spent;
+    }
+  });
+
+  console.log(monthlyTotal);
 
   return (
     <div className="flex flex-col min-h-dvh w-full">
