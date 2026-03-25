@@ -35,7 +35,7 @@ const BarCharts = ({ dates }: BarChartsProps) => {
   const chartData = [...dates.slice(-6)]
 
   return (
-    <Card>
+    <Card className="w-1/2">
       <CardHeader>
         <CardTitle>Hours Tracker</CardTitle>
         <CardDescription>Progress: Last 6 Months</CardDescription>

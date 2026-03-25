@@ -61,9 +61,9 @@ const Dashboard = () => {
   });
 
   return (
-    <div className="flex flex-col min-h-dvh w-full">
+    <div className="flex flex-col min-h-dvh w-full p-4">
       {/* <LearningEntriesList /> */}
-      <p>Main Menu</p>
+      <h1 className="uppercase font-bold text-shadow-xs text-shadow-stone-200 text-2xl mb-4">Dashboard</h1>
       {entryByUser.isLoading && <div>
           <LoadingWheel />
         </div>
