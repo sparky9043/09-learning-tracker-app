@@ -22,7 +22,7 @@ export const description = "A bar chart";
 const chartConfig = {
   desktop: {
     label: "Desktop",
-    color: "var(--chart-1)",
+    color: "var(--chart-3)",
   },
 } satisfies ChartConfig;
 
@@ -47,7 +47,7 @@ const BarCharts = ({ dates }: BarChartsProps) => {
       <CardContent>
         <ChartContainer config={chartConfig}>
           <BarChart accessibilityLayer data={chartData}>
-            <CartesianGrid vertical={false} />
+            <CartesianGrid vertical={true} />
             <XAxis
               dataKey="month"
               tickLine={false}
@@ -56,7 +56,7 @@ const BarCharts = ({ dates }: BarChartsProps) => {
               // tickFormatter={(value) => value.slice(0, 3)}
             />
             <ChartTooltip
-              cursor={false}
+              cursor={true}
               content={<ChartTooltipContent hideLabel />}
             />
             <Bar dataKey="minutes_spent" fill="var(--color-desktop)" radius={8} />
