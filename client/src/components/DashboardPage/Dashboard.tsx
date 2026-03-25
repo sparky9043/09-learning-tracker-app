@@ -43,12 +43,10 @@ const Dashboard = () => {
 
   // Convert each entry into month, year, and time spent. Convert month and year to numbers
   const convertToMonth = extractedDatesSorted.map(entry => ({
-    month: format(entry.created_at, 'MMM'),
+    month: format(entry.created_at, 'MMM yyyy'),
     year: Number(format(entry.created_at, 'yyyy')),
     minutes_spent: entry.minutes_spent,
   }));
-
-  console.log(convertToMonth);
 
   const monthlyTotal: MonthlyData[] = []
 
@@ -60,10 +58,7 @@ const Dashboard = () => {
     } else {
       matchingEntry.minutes_spent += entry.minutes_spent;
     }
-
   });
-
-  console.log(monthlyTotal);
 
   return (
     <div className="flex flex-col min-h-dvh w-full">
@@ -73,7 +68,7 @@ const Dashboard = () => {
           <LoadingWheel />
         </div>
       }
-      <BarCharts />
+      <BarCharts dates={monthlyTotal} />
     </div>
   )
 }
