@@ -31,11 +31,15 @@ interface BarChartsProps {
 }
 
 const BarCharts = ({ dates }: BarChartsProps) => {
+  const chartData = [...dates.slice(-6)];
 
-  const chartData = [...dates.slice(-6)]
+  const totalTimeSpent = dates.reduce((prev, curr) => prev + curr.minutes_spent, 0);
+
+  const totalHours = Math.floor(totalTimeSpent / 60);
+  const totalMinutes = totalTimeSpent % 60;
 
   return (
-    <Card className="w-1/2">
+    <Card className="w-3/4">
       <CardHeader>
         <CardTitle>Hours Tracker</CardTitle>
         <CardDescription>Progress: Last 6 Months</CardDescription>
@@ -60,11 +64,14 @@ const BarCharts = ({ dates }: BarChartsProps) => {
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 leading-none font-medium">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
+        {totalTimeSpent > 0 &&
+          <div className="flex gap-2 leading-none font-medium">
+            <TrendingUp className="h-4 w-4" />
+            Total Time: {totalHours} hours {totalMinutes} minutes
+          </div>
+        }
         <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
+          Showing hours spent learning for the last 6 months
         </div>
       </CardFooter>
     </Card>
