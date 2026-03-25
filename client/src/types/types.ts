@@ -30,7 +30,7 @@ export interface SavedLearningEntry extends NewLearningEntry {
 }
 
 export interface MonthlyData {
-  month: number;
+  month: string;
   year: number;
   minutes_spent: number;
 }

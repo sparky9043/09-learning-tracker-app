@@ -43,7 +43,7 @@ const Dashboard = () => {
 
   // Convert each entry into month, year, and time spent. Convert month and year to numbers
   const convertToMonth = extractedDatesSorted.map(entry => ({
-    month: Number(format(entry.created_at, 'MM')),
+    month: format(entry.created_at, 'MMM'),
     year: Number(format(entry.created_at, 'yyyy')),
     minutes_spent: entry.minutes_spent,
   }));
