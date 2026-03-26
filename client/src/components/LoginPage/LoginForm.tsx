@@ -3,9 +3,9 @@ import loginService from "../../service/loginService";
 // import { useCurrentUserContext } from "../../hooks/useCurrentUserContext";
 import { useNavigate } from "react-router";
 // import { useCurrentUserContext } from "../../hooks/useCurrentUserContext";
-import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSet } from "../ui/field";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+// import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSet } from "../ui/field";
+// import { Input } from "../ui/input";
+// import { Button } from "../ui/button";
 // import { useCurrentUserStore } from "@/stores/currentUserStore";
 import { useCurrentUserContext } from "@/hooks/useCurrentUserContext";
 
@@ -48,11 +48,9 @@ const LoginForm = () => {
     <form
       onSubmit={handleLogin}
     >
-      <FieldSet>
-        <FieldGroup>
-          <Field>
-            <FieldLabel htmlFor="username" className="font-medium text-lg tracking-wider">Username</FieldLabel>
-            <Input
+
+            <label htmlFor="username" className="font-medium text-lg tracking-wider">Username</label>
+            <input
               id="username"
               value={username}
               onChange={(e) => setUsername(e.currentTarget.value)}
@@ -60,11 +58,10 @@ const LoginForm = () => {
               className="hover:cursor-pointer"
               placeholder="Enter your username"
             />
-            <FieldDescription className="text-sm">Must be at least 3 characters</FieldDescription>
-          </Field>
-          <Field>
-            <FieldLabel htmlFor="password" className="font-medium text-lg tracking-wider">Password</FieldLabel>
-            <Input
+            {/* <FieldDescription className="text-sm">Must be at least 3 characters</FieldDescription> */}
+          
+            <label htmlFor="password" className="font-medium text-lg tracking-wider">Password</label>
+            <input
               id="password"
               value={password}
               onChange={(e) => setPassword(e.currentTarget.value)}
@@ -72,14 +69,11 @@ const LoginForm = () => {
               className="hover:cursor-pointer"
               placeholder="********"
             />
-            <FieldDescription className="text-sm">Must be at least 6 characters</FieldDescription>
-          </Field>
+            {/* <FieldDescription className="text-sm">Must be at least 6 characters</FieldDescription> */}
           <div className="flex gap-2">
-            <Button type="submit" variant="default" className="hover:bg-stone-600 hover:cursor-pointer">Login</Button>
-            <Button type="button" variant="outline" className="hover:cursor-pointer" onClick={() => navigate('/')}>Back</Button>
+            <button type="submit" className="hover:bg-stone-600 hover:cursor-pointer">Login</button>
+            <button type="button" className="hover:cursor-pointer" onClick={() => navigate('/')}>Back</button>
           </div>
-        </FieldGroup>
-      </FieldSet>
       <div className="absolute text-red-500">{errorMessage}</div>
     </form>
   )
