@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router";
 import { Button } from "../ui/button";
 
-interface HomeHeaderProps {
+interface HomeHeroProps {
   children: string;
 }
 
-const HomeHeader = (props: HomeHeaderProps) => {
+const HomeHero = (props: HomeHeroProps) => {
   const navigate = useNavigate();
 
   return (
@@ -19,4 +19,4 @@ const HomeHeader = (props: HomeHeaderProps) => {
   )
 }
 
-export default HomeHeader;
+export default HomeHero;
