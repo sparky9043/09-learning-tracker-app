@@ -5,7 +5,7 @@ import NavBar from "./NavBar";
 const Homepage = () => {
 
   return (
-    <div className="flex flex-col h-dvh">
+    <div className="bg-background text-on-background selection:bg-primary/30 selection:text-primary">
       <NavBar />
       <HomeHeader>
         Learning Tracker
