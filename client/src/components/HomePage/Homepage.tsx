@@ -1,4 +1,5 @@
 // import { NavLink } from "react-router";
+import HomeFooter from "./HomeFooter";
 import HomeHero from "./HomeHero";
 import HomeMain from "./HomeMain";
 import NavBar from "./NavBar";
@@ -11,9 +12,10 @@ const Homepage = () => {
       <HomeMain>
         <HomeHero />
       </HomeMain>
-      <footer className="bg-stone-900 text-stone-200 p-8 font-geist">
+      {/* <footer className="bg-stone-900 text-stone-200 p-8 font-geist">
         by sparky9043
-      </footer>
+      </footer> */}
+      <HomeFooter />
     </div>
   )
 }
