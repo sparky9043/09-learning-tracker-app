@@ -33,14 +33,6 @@ const NavBar = () => {
           </NavLink>
         }
       </div>
-      {/* <ul className="flex justify-between">
-        <li>
-          {currentUser
-            ? 
-            : 
-          }
-        </li>
-      </ul> */}
     </nav>
   )
 }
