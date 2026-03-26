@@ -8,10 +8,8 @@ const Login = () => {
   void useCheckAuth(currentUser);
 
   return (
-    <div className="flex flex-col justify-center items-center h-dvh text-shadow-sm text-shadow-stone-200">
-      <div className="border-2 border-stone-200 w-90 p-8 rounded-2xl">
-        <LoginForm />
-      </div>
+    <div className="bg-background text-on-surface font-body selection:bg-primary/30">
+      <LoginForm />
     </div>
   )
 }
