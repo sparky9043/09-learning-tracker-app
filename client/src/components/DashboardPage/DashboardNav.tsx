@@ -25,47 +25,6 @@ const DashboardNav = ({ currentUser, setCurrentUser }: DashboardNavProps) => {
 
   if (!currentUser || !currentUser?.username) return null;
 
-
-  // return (
-  //   <div className="bg-stone-900 text-stone-200 p-2 min-w-50">
-  //     <div>
-  //       <div>
-  //         <h1>Welcome {currentUser.username}</h1>
-  //       </div>
-  //       <div>
-  //         <Button onClick={handleLogout} variant="outline" className="text-stone-200 bg-transparent mb-2 border-none hover:bg-transparent hover:text-stone-200 hover:font-bold">Log Out</Button>
-  //       </div>
-  //       <ul>
-  //         <li className="mt-4 mb-4">
-  //           <Link
-  //             to='/dashboard'
-  //             className="font-sm p-2 text-stone-100 hover:font-bold bg-transparent rounded-md ml-2"
-  //           >
-  //             Home
-  //           </Link>
-  //         </li>
-  //         <li className="mt-4 mb-4">
-  //           <Link to='entries' className="font-sm p-2 text-stone-100 hover:font-bold bg-transparent rounded-md ml-2">
-  //             Learning Entries
-  //           </Link>
-  //         </li>
-  //         <li className="mt-4 mb-4">
-  //           <Link
-  //             to='summarize'
-  //             className="font-sm p-2 text-stone-100 hover:font-bold bg-transparent rounded-md ml-2"
-  //           >
-  //             AI Summary
-  //           </Link>
-  //         </li>
-  //         <li className="mt-4 mb-4">
-  //           <Link to='ai-assistant' className="font-sm p-2 text-stone-100 hover:font-bold bg-transparent rounded-md ml-2">
-  //             Generate Questions
-  //           </Link>
-  //         </li>
-  //       </ul>
-  //     </div>
-  //   </div>
-  // )
   return (
     <nav className="fixed top-0 w-full z-50 bg-[#0e0e0e]/80 backdrop-blur-xl shadow-[0_0_40px_rgba(163,166,255,0.08)]">
     <div className="flex justify-between items-center px-8 h-16 w-full max-w-none">
