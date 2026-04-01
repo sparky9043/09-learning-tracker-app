@@ -80,7 +80,7 @@ const Dashboard = () => {
       <header className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div className="max-w-2xl">
           <h1 className="font-headline font-extrabold text-5xl md:text-6xl tracking-tighter mb-4">
-            Welcome back, <span className="text-primary">Alex</span>
+            Welcome back, <span className="text-primary">{currentUser.username}</span>
           </h1>
           <p className="text-on-surface-variant text-lg font-body leading-relaxed">
             Your focus is your greatest asset. You've completed 85% of your weekly goals. Ready to curate today's
