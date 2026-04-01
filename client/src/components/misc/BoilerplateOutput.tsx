@@ -14,7 +14,7 @@ const BoilerplateOutput = () => {
   }
 
   return (
-    <div className="flex">
+    <div className="bg-background text-on-surface selection:bg-primary-container selection:text-on-primary-container">
       <DashboardNav currentUser={currentUser} setCurrentUser={setCurrentUser} />
       <Outlet />
     </div>

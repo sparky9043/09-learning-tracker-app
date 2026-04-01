@@ -27,45 +27,68 @@ const DashboardNav = ({ currentUser, setCurrentUser }: DashboardNavProps) => {
   if (!currentUser || !currentUser?.username) return null;
 
 
+  // return (
+  //   <div className="bg-stone-900 text-stone-200 p-2 min-w-50">
+  //     <div>
+  //       <div>
+  //         <h1>Welcome {currentUser.username}</h1>
+  //       </div>
+  //       <div>
+  //         <Button onClick={handleLogout} variant="outline" className="text-stone-200 bg-transparent mb-2 border-none hover:bg-transparent hover:text-stone-200 hover:font-bold">Log Out</Button>
+  //       </div>
+  //       <ul>
+  //         <li className="mt-4 mb-4">
+  //           <Link
+  //             to='/dashboard'
+  //             className="font-sm p-2 text-stone-100 hover:font-bold bg-transparent rounded-md ml-2"
+  //           >
+  //             Home
+  //           </Link>
+  //         </li>
+  //         <li className="mt-4 mb-4">
+  //           <Link to='entries' className="font-sm p-2 text-stone-100 hover:font-bold bg-transparent rounded-md ml-2">
+  //             Learning Entries
+  //           </Link>
+  //         </li>
+  //         <li className="mt-4 mb-4">
+  //           <Link
+  //             to='summarize'
+  //             className="font-sm p-2 text-stone-100 hover:font-bold bg-transparent rounded-md ml-2"
+  //           >
+  //             AI Summary
+  //           </Link>
+  //         </li>
+  //         <li className="mt-4 mb-4">
+  //           <Link to='ai-assistant' className="font-sm p-2 text-stone-100 hover:font-bold bg-transparent rounded-md ml-2">
+  //             Generate Questions
+  //           </Link>
+  //         </li>
+  //       </ul>
+  //     </div>
+  //   </div>
+  // )
   return (
-    <div className="bg-stone-900 text-stone-200 p-2 min-w-50">
-      <div>
-        <div>
-          <h1>Welcome {currentUser.username}</h1>
-        </div>
-        <div>
-          <Button onClick={handleLogout} variant="outline" className="text-stone-200 bg-transparent mb-2 border-none hover:bg-transparent hover:text-stone-200 hover:font-bold">Log Out</Button>
-        </div>
-        <ul>
-          <li className="mt-4 mb-4">
-            <Link
-              to='/dashboard'
-              className="font-sm p-2 text-stone-100 hover:font-bold bg-transparent rounded-md ml-2"
-            >
-              Home
-            </Link>
-          </li>
-          <li className="mt-4 mb-4">
-            <Link to='entries' className="font-sm p-2 text-stone-100 hover:font-bold bg-transparent rounded-md ml-2">
-              Learning Entries
-            </Link>
-          </li>
-          <li className="mt-4 mb-4">
-            <Link
-              to='summarize'
-              className="font-sm p-2 text-stone-100 hover:font-bold bg-transparent rounded-md ml-2"
-            >
-              AI Summary
-            </Link>
-          </li>
-          <li className="mt-4 mb-4">
-            <Link to='ai-assistant' className="font-sm p-2 text-stone-100 hover:font-bold bg-transparent rounded-md ml-2">
-              Generate Questions
-            </Link>
-          </li>
-        </ul>
+    <nav className="fixed top-0 w-full z-50 bg-[#0e0e0e]/80 backdrop-blur-xl shadow-[0_0_40px_rgba(163,166,255,0.08)]">
+    <div className="flex justify-between items-center px-8 h-16 w-full max-w-none">
+      <div className="text-xl font-extrabold tracking-tighter text-[#a3a6ff] font-headline">
+        My Learning Tracker
+      </div>
+      <div className="hidden md:flex items-center gap-8">
+        <a className="text-[#a3a6ff] font-semibold font-headline text-lg tracking-tight" href="#">Dashboard</a>
+        <a className="text-on-surface-variant hover:text-[#a3a6ff] transition-colors font-headline text-lg tracking-tight"
+          href="#">Courses</a>
+        <a className="text-on-surface-variant hover:text-[#a3a6ff] transition-colors font-headline text-lg tracking-tight"
+          href="#">Resources</a>
+      </div>
+      <div className="flex items-center gap-4">
+        <button
+          className="px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-all duration-300 font-label text-sm">Login</button>
+        <button
+          className="px-5 py-2 rounded-xl bg-linear-to-br from-primary to-primary-dim text-on-primary font-bold transition-transform scale-95 active:scale-90 font-label text-sm shadow-lg shadow-primary/10">Sign
+          Up</button>
       </div>
     </div>
+  </nav>
   )
 };
 
