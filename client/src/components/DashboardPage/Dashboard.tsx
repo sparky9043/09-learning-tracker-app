@@ -7,6 +7,7 @@ import LoadingWheel from "../misc/LoadingWheel";
 import { compareAsc, format } from "date-fns";
 import BarCharts from "./BarCharts";
 import type { MonthlyData } from "@/types/types";
+import PreviewEntryItem from "./PreviewEntryItem";
 // import Welcome from "./Welcome";
 // import Togglelable from "../misc/Toggleable";
 
@@ -71,6 +72,8 @@ const Dashboard = () => {
   //     {/* <BarCharts dates={monthlyTotal} /> */}
   //   </div>
   // )
+
+  console.log(entryByUser.data)
 
   return (
     <main className="pt-24 pb-20 px-6 md:px-12 max-w-7xl mx-auto">
@@ -158,87 +161,11 @@ const Dashboard = () => {
               ACTIVE</span>
           </div>
           {/* First Card */}
-          <div
-            className="bg-surface-container p-6 rounded-xl hover:bg-surface-container-high transition-colors cursor-pointer group">
-            <div className="flex justify-between items-start mb-4">
-              <div className="flex gap-4">
-                <div
-                  className="w-12 h-12 bg-surface-container-highest rounded-lg flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-                  <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL'" }}>architecture</span>
-                </div>
-                <div>
-                  <h3 className="font-headline font-bold text-xl text-on-surface">Advanced UI Components</h3>
-                  <p className="text-sm text-on-surface-variant font-body">Module 4: Accessible Navigation Patterns</p>
-                </div>
-              </div>
-              <span
-                className="material-symbols-outlined text-outline group-hover:text-primary transition-colors">more_vert</span>
-            </div>
-            <div className="space-y-2">
-              <div className="flex justify-between text-xs font-label text-on-surface-variant">
-                <span>PROGRESS</span>
-                <span>72%</span>
-              </div>
-              <div className="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
-                <div className="h-full bg-tertiary" style={{ width: '72%' }}></div>
-              </div>
-            </div>
-          </div>
+          <PreviewEntryItem />
           {/* Second Card */}
-          <div
-            className="bg-surface-container p-6 rounded-xl hover:bg-surface-container-high transition-colors cursor-pointer group">
-            <div className="flex justify-between items-start mb-4">
-              <div className="flex gap-4">
-                <div
-                  className="w-12 h-12 bg-surface-container-highest rounded-lg flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
-                  <span className="material-symbols-outlined"
-                    style={{ fontVariationSettings: 'FILL 1' }}>data_thresholding</span>
-                </div>
-                <div>
-                  <h3 className="font-headline font-bold text-xl text-on-surface">Data Structures &amp; Algos</h3>
-                  <p className="text-sm text-on-surface-variant font-body">Heap Sort and Priority Queues</p>
-                </div>
-              </div>
-              <span
-                className="material-symbols-outlined text-outline group-hover:text-secondary transition-colors">more_vert</span>
-            </div>
-            <div className="space-y-2">
-              <div className="flex justify-between text-xs font-label text-on-surface-variant">
-                <span>PROGRESS</span>
-                <span>15%</span>
-              </div>
-              <div className="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
-                <div className="h-full bg-secondary" style={{ width: '15%' }}></div>
-              </div>
-            </div>
-          </div>
+          <PreviewEntryItem />
           {/* Third Card */}
-          <div
-            className="bg-surface-container p-6 rounded-xl hover:bg-surface-container-high transition-colors cursor-pointer group">
-            <div className="flex justify-between items-start mb-4">
-              <div className="flex gap-4">
-                <div
-                  className="w-12 h-12 bg-surface-container-highest rounded-lg flex items-center justify-center text-tertiary-dim group-hover:scale-110 transition-transform">
-                  <span className="material-symbols-outlined" style={{ fontVariationSettings: 'FILL 1' }}>movie_edit</span>
-                </div>
-                <div>
-                  <h3 className="font-headline font-bold text-xl text-on-surface">Motion Design Fundamentals</h3>
-                  <p className="text-sm text-on-surface-variant font-body">Timing and Easing Principles</p>
-                </div>
-              </div>
-              <span
-                className="material-symbols-outlined text-outline group-hover:text-tertiary-dim transition-colors">more_vert</span>
-            </div>
-            <div className="space-y-2">
-              <div className="flex justify-between text-xs font-label text-on-surface-variant">
-                <span>PROGRESS</span>
-                <span>45%</span>
-              </div>
-              <div className="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
-                <div className="h-full bg-primary" style={{ width: '45%' }}></div>
-              </div>
-            </div>
-          </div>
+          <PreviewEntryItem />
           {/* <div className="mt-8 rounded-xl overflow-hidden relative h-48 group shadow-2xl">
             <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60"
               data-alt="Abstract 3D digital art featuring smooth floating dark glass spheres and iridescent liquid textures with deep indigo backlighting"
