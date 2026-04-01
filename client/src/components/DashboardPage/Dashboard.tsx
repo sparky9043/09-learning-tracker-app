@@ -101,11 +101,11 @@ const Dashboard = () => {
             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
               <span className="material-symbols-outlined text-9xl" style={{ fontVariationSettings: 'FILL 1' }}>add_circle</span>
             </div>
-            <h2 className="font-headline font-bold text-2xl mb-6 flex items-center gap-2">
-              <span className="material-symbols-outlined text-primary">edit_note</span>
-              New Focus Task
-            </h2>
             <form className="space-y-6 relative z-10">
+              <h2 className="font-headline font-bold text-2xl mb-6 flex items-center gap-2">
+                <span className="material-symbols-outlined text-primary">edit_note</span>
+                New Learning Entry
+              </h2>
               <div>
                 <label className="block text-xs font-label text-on-surface-variant uppercase tracking-widest mb-2">Task
                   Title</label>
@@ -142,7 +142,8 @@ const Dashboard = () => {
               </button>
             </form>
           </div>
-          <div className="bg-surface-container-low p-8 rounded-xl flex items-center justify-between">
+          {/* Time Invested Card */}
+          {/* <div className="bg-surface-container-low p-8 rounded-xl flex items-center justify-between">
             <div>
               <div className="text-on-surface-variant text-sm font-label mb-1">Time Invested Today</div>
               <div className="text-3xl font-headline font-bold">4h 22m</div>
@@ -152,7 +153,7 @@ const Dashboard = () => {
               </div>
               <span className="material-symbols-outlined text-primary">timer</span>
             </div>
-          </div>
+          </div> */}
         </section>
         <section className="md:col-span-7 space-y-6">
           <div className="flex items-center justify-between mb-2">
@@ -160,7 +161,7 @@ const Dashboard = () => {
             <span className="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold">
               Today: {format(new Date(), "MMM do yyyy")}
             </span>
-        </div>
+          </div>
           {
             sortedDatedDescending
               .slice(0, 4)
