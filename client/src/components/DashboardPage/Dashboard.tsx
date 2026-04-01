@@ -157,6 +157,7 @@ const Dashboard = () => {
             <span className="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold">4
               ACTIVE</span>
           </div>
+          {/* First Card */}
           <div
             className="bg-surface-container p-6 rounded-xl hover:bg-surface-container-high transition-colors cursor-pointer group">
             <div className="flex justify-between items-start mb-4">
@@ -183,6 +184,7 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
+          {/* Second Card */}
           <div
             className="bg-surface-container p-6 rounded-xl hover:bg-surface-container-high transition-colors cursor-pointer group">
             <div className="flex justify-between items-start mb-4">
@@ -210,6 +212,7 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
+          {/* Third Card */}
           <div
             className="bg-surface-container p-6 rounded-xl hover:bg-surface-container-high transition-colors cursor-pointer group">
             <div className="flex justify-between items-start mb-4">
@@ -236,7 +239,7 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-          <div className="mt-8 rounded-xl overflow-hidden relative h-48 group shadow-2xl">
+          {/* <div className="mt-8 rounded-xl overflow-hidden relative h-48 group shadow-2xl">
             <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60"
               data-alt="Abstract 3D digital art featuring smooth floating dark glass spheres and iridescent liquid textures with deep indigo backlighting"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQNOGV5I7zEqmtiZ06NLTs4IKeShcgkx3ohDSfWYFLl-LMKKZMHxQln1MPMoQKkvzMGKUb-QTZk6DZb-_ouJ2GWrfZ_ABsqyKF813dItSHpiRfHzk_JdqZfSMBikNtqZwV_ApCDuHaWA8XRqus9kClA1EPD_ShTVqetj1g5KnTAjUw3IltgqOnTA11e4Ol8i47aVdKsHPnl4Y3-O748JxW2IHVSALD-3uvAE6LH9dU9lZegXR2VtQN0STr48GHvhQ-3EEoQU2WbRw" />
@@ -248,7 +251,7 @@ const Dashboard = () => {
                 <h4 className="font-headline font-bold text-2xl">The Psychology of Focus</h4>
               </div>
             </div>
-          </div>
+          </div> */}
         </section>
       </div>
     </main>
