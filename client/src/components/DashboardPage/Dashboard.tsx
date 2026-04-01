@@ -3,10 +3,10 @@ import { useCurrentUserContext } from "@/hooks/useCurrentUserContext";
 import entriesService from "@/service/entriesService";
 import type { SavedLearningEntry } from "@/types/types";
 import { useQuery } from "@tanstack/react-query";
-import LoadingWheel from "../misc/LoadingWheel";
+// import LoadingWheel from "../misc/LoadingWheel";
 import { compareAsc, format } from "date-fns";
-import BarCharts from "./BarCharts";
-import type { MonthlyData } from "@/types/types";
+// import BarCharts from "./BarCharts";
+// import type { MonthlyData } from "@/types/types";
 import PreviewEntryItem from "./PreviewEntryItem";
 // import Welcome from "./Welcome";
 // import Togglelable from "../misc/Toggleable";
@@ -37,29 +37,29 @@ const Dashboard = () => {
   }
 
   // Extract timestamp and time spent from entries
-  const extractDates = entryByUser.data.map(({ created_at, minutes_spent }) => ({ created_at, minutes_spent }));
+  // const extractDates = entryByUser.data.map(({ created_at, minutes_spent }) => ({ created_at, minutes_spent }));
 
-  const extractedDatesSorted = [...extractDates].sort((a, b) => compareAsc(a.created_at, b.created_at));
+  // const extractedDatesSorted = [...extractDates].sort((a, b) => compareAsc(a.created_at, b.created_at));
 
 
-  // Convert each entry into month, year, and time spent. Convert month and year to numbers
-  const convertToMonth = extractedDatesSorted.map(entry => ({
-    month: format(entry.created_at, 'MMM yyyy'),
-    year: Number(format(entry.created_at, 'yyyy')),
-    minutes_spent: entry.minutes_spent,
-  }));
+  // // Convert each entry into month, year, and time spent. Convert month and year to numbers
+  // const convertToMonth = extractedDatesSorted.map(entry => ({
+  //   month: format(entry.created_at, 'MMM yyyy'),
+  //   year: Number(format(entry.created_at, 'yyyy')),
+  //   minutes_spent: entry.minutes_spent,
+  // }));
 
-  const monthlyTotal: MonthlyData[] = []
+  // const monthlyTotal: MonthlyData[] = []
 
-  convertToMonth.forEach(entry => {
-    const matchingEntry = monthlyTotal.find(data => data.month === entry.month && data.year === entry.year);
+  // convertToMonth.forEach(entry => {
+  //   const matchingEntry = monthlyTotal.find(data => data.month === entry.month && data.year === entry.year);
 
-    if (!matchingEntry) {
-      monthlyTotal.push({ ...entry })
-    } else {
-      matchingEntry.minutes_spent += entry.minutes_spent;
-    }
-  });
+  //   if (!matchingEntry) {
+  //     monthlyTotal.push({ ...entry })
+  //   } else {
+  //     matchingEntry.minutes_spent += entry.minutes_spent;
+  //   }
+  // });
 
   // return (
   //   <div className="flex flex-col min-h-dvh w-full p-4">
@@ -73,7 +73,7 @@ const Dashboard = () => {
   //   </div>
   // )
 
-  console.log(entryByUser.data)
+  const sortedDatedDescending = [...entryByUser.data].sort((a, b) => compareAsc(b.created_at, a.created_at));
 
   return (
     <main className="pt-24 pb-20 px-6 md:px-12 max-w-7xl mx-auto">
@@ -99,7 +99,7 @@ const Dashboard = () => {
         <section className="md:col-span-5 flex flex-col gap-8">
           <div className="bg-surface-container p-8 rounded-xl shadow-xl relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-              <span className="material-symbols-outlined text-9xl" style={{ fontVariationSettings: 'FILL 1'}}>add_circle</span>
+              <span className="material-symbols-outlined text-9xl" style={{ fontVariationSettings: 'FILL 1' }}>add_circle</span>
             </div>
             <h2 className="font-headline font-bold text-2xl mb-6 flex items-center gap-2">
               <span className="material-symbols-outlined text-primary">edit_note</span>
@@ -156,17 +156,33 @@ const Dashboard = () => {
         </section>
         <section className="md:col-span-7 space-y-6">
           <div className="flex items-center justify-between mb-2">
+            <h2 className="font-headline font-bold text-2xl">Latest Entry</h2>
+            <span className="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold">
+              Today: {format(new Date(), "MMM do yyyy")}
+            </span>
+        </div>
+          {
+            sortedDatedDescending
+              .slice(0, 4)
+              .map(entry =>
+                <PreviewEntryItem
+                  key={entry.id}
+                  entry={entry}
+                />)
+          }
+        </section>
+        {/* <div className="flex items-center justify-between mb-2">
             <h2 className="font-headline font-bold text-2xl">Learning Backlog</h2>
             <span className="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold">4
               ACTIVE</span>
-          </div>
-          {/* First Card */}
-          <PreviewEntryItem />
-          {/* Second Card */}
-          <PreviewEntryItem />
-          {/* Third Card */}
-          <PreviewEntryItem />
-          {/* <div className="mt-8 rounded-xl overflow-hidden relative h-48 group shadow-2xl">
+          </div> */}
+        {/* First Card */}
+        {/* <PreviewEntryItem /> */}
+        {/* Second Card */}
+        {/* <PreviewEntryItem /> */}
+        {/* Third Card */}
+        {/* <PreviewEntryItem /> */}
+        {/* <div className="mt-8 rounded-xl overflow-hidden relative h-48 group shadow-2xl">
             <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60"
               data-alt="Abstract 3D digital art featuring smooth floating dark glass spheres and iridescent liquid textures with deep indigo backlighting"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQNOGV5I7zEqmtiZ06NLTs4IKeShcgkx3ohDSfWYFLl-LMKKZMHxQln1MPMoQKkvzMGKUb-QTZk6DZb-_ouJ2GWrfZ_ABsqyKF813dItSHpiRfHzk_JdqZfSMBikNtqZwV_ApCDuHaWA8XRqus9kClA1EPD_ShTVqetj1g5KnTAjUw3IltgqOnTA11e4Ol8i47aVdKsHPnl4Y3-O748JxW2IHVSALD-3uvAE6LH9dU9lZegXR2VtQN0STr48GHvhQ-3EEoQU2WbRw" />
@@ -179,7 +195,6 @@ const Dashboard = () => {
               </div>
             </div>
           </div> */}
-        </section>
       </div>
     </main>
   )

@@ -1,4 +1,12 @@
-const PreviewEntryItem = () => {
+import type { SavedLearningEntry } from "@/types/types";
+import { format } from "date-fns";
+
+interface PreviewEntryItemProps {
+  entry: SavedLearningEntry;
+}
+
+const PreviewEntryItem = ({ entry }: PreviewEntryItemProps) => {
+
   return (
     <div
       className="bg-surface-container p-6 rounded-xl hover:bg-surface-container-high transition-colors cursor-pointer group">
@@ -9,8 +17,8 @@ const PreviewEntryItem = () => {
             <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL'" }}>architecture</span>
           </div>
           <div>
-            <h3 className="font-headline font-bold text-xl text-on-surface">Advanced UI Components</h3>
-            <p className="text-sm text-on-surface-variant font-body">Module 4: Accessible Navigation Patterns</p>
+            <h3 className="font-headline font-bold text-xl text-on-surface">{entry.topic}</h3>
+            <p className="text-sm text-on-surface-variant font-body">{entry.note}</p>
           </div>
         </div>
         <span
@@ -18,11 +26,11 @@ const PreviewEntryItem = () => {
       </div>
       <div className="space-y-2">
         <div className="flex justify-between text-xs font-label text-on-surface-variant">
-          <span>PROGRESS</span>
-          <span>72%</span>
+          <span>Date: {format(entry.created_at, 'MMM do yyyy')}</span>
+          <span>Level: {entry.difficulty} / 5</span>
         </div>
         <div className="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
-          <div className="h-full bg-tertiary" style={{ width: '72%' }}></div>
+          <div className="h-full bg-tertiary" style={{ width: `${(entry.difficulty / 5) * 100}%` }}></div>
         </div>
       </div>
     </div>
