@@ -14,7 +14,7 @@ const PreviewEntryItem = ({ entry }: PreviewEntryItemProps) => {
         <div className="flex gap-4">
           <div
             className="w-12 h-12 bg-surface-container-highest rounded-lg flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL'" }}>architecture</span>
+            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>architecture</span>
           </div>
           <div>
             <h3 className="font-headline font-bold text-xl text-on-surface">{entry.topic}</h3>
@@ -27,7 +27,24 @@ const PreviewEntryItem = ({ entry }: PreviewEntryItemProps) => {
       <div className="space-y-2">
         <div className="flex justify-between text-xs font-label text-on-surface-variant">
           <span>Date: {format(entry.created_at, 'MMM do yyyy')}</span>
-          <span>Level: {entry.difficulty} / 5</span>
+          <span>Difficulty</span>
+        </div>
+        <div className="space-y-2">
+          <div className="flex justify-between items-center text-xs font-label text-on-surface-variant">
+            <span>DIFFICULTY</span>
+            <div className="flex items-center gap-1"><span className="text-tertiary font-bold mr-1">{entry.difficulty}/5</span>
+              <div className="flex text-tertiary"><span className="material-symbols-outlined text-sm!"
+                 style={{ fontVariationSettings: "'FILL' 1" }}>star</span><span
+                  className="material-symbols-outlined text-sm!"
+                  style={{ fontVariationSettings: "'FILL' 1" }}>star</span><span
+                    className="material-symbols-outlined text-sm!"
+                    style={{ fontVariationSettings: "'FILL' 1" }}>star</span><span
+                      className="material-symbols-outlined text-sm!"
+                      style={{ fontVariationSettings: "'FILL' 1" }}>star</span><span
+                        className="material-symbols-outlined text-sm!" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
           <div className="h-full bg-tertiary" style={{ width: `${(entry.difficulty / 5) * 100}%` }}></div>
