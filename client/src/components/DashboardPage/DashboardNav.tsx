@@ -1,7 +1,6 @@
 import loginService from "@/service/loginService";
 import type { User } from "@/types/types";
-import { Link, useNavigate } from "react-router";
-import { Button } from "../ui/button";
+import { NavLink, useNavigate } from "react-router";
 
 interface DashboardNavProps {
   currentUser: User | null;
@@ -74,11 +73,16 @@ const DashboardNav = ({ currentUser, setCurrentUser }: DashboardNavProps) => {
         My Learning Tracker
       </div>
       <div className="hidden md:flex items-center gap-8">
-        <a className="text-[#a3a6ff] font-semibold font-headline text-lg tracking-tight" href="#">Dashboard</a>
-        <a className="text-on-surface-variant hover:text-[#a3a6ff] transition-colors font-headline text-lg tracking-tight"
+        <NavLink
+          to='/dashboard'
+          className="text-[#a3a6ff] font-semibold font-headline text-lg tracking-tight"
+        >
+          Dashboard
+        </NavLink>
+        {/* <a className="text-on-surface-variant hover:text-[#a3a6ff] transition-colors font-headline text-lg tracking-tight"
           href="#">Courses</a>
         <a className="text-on-surface-variant hover:text-[#a3a6ff] transition-colors font-headline text-lg tracking-tight"
-          href="#">Resources</a>
+          href="#">Resources</a> */}
       </div>
       <div className="flex items-center gap-4">
         {/* <button
