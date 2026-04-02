@@ -116,7 +116,7 @@ const Dashboard = () => {
         </section>
         <section className="md:col-span-7 space-y-6">
           <div className="flex items-center justify-between mb-2">
-            <h2 className="font-headline font-bold text-2xl">Latest Entry</h2>
+            <h2 className="font-headline font-bold text-2xl">Latest Entries</h2>
             <span className="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold">
               Today: {format(new Date(), "MMM do yyyy")}
             </span>
