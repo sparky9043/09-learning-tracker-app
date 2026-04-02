@@ -14,8 +14,8 @@ const EntryItemCardItem = ({ entry }: EntryItemCardItemProps) => {
       <div className="flex justify-between items-start mb-4">
         <div className="flex gap-4">
           <div
-            className="w-12 h-12 bg-surface-container-highest rounded-lg flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 0" }}>check</span>
+            className="w-12 h-12 bg-surface-container-highest rounded-lg flex items-center justify-center text-tertiary group-hover:scale-110 transition-transform">
+            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>bolt</span>
           </div>
           <div>
             <h3 className="font-headline font-bold text-xl text-on-surface">{entry.topic}</h3>
