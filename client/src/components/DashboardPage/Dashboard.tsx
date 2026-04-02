@@ -89,13 +89,14 @@ const Dashboard = () => {
             knowledge?
           </p> */}
         </div>
-        <div className="bg-surface-container-low p-6 rounded-xl border-l-4 border-tertiary">
+        {/* Streak Card */}
+        {/* <div className="bg-surface-container-low p-6 rounded-xl border-l-4 border-tertiary">
           <div className="flex items-center gap-3 mb-2">
             <span className="material-symbols-outlined text-tertiary">bolt</span>
             <span className="font-headline font-bold text-sm uppercase tracking-widest text-tertiary">Current Streak</span>
           </div>
           <div className="text-4xl font-headline font-extrabold tracking-tighter">14 Days</div>
-        </div>
+        </div> */}
       </header>
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
         <section className="md:col-span-5 flex flex-col gap-8">
