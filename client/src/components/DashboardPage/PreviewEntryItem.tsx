@@ -15,7 +15,7 @@ const PreviewEntryItem = ({ entry }: PreviewEntryItemProps) => {
         <div className="flex gap-4">
           <div
             className="w-12 h-12 bg-surface-container-highest rounded-lg flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>architecture</span>
+            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>check</span>
           </div>
           <div>
             <h3 className="font-headline font-bold text-xl text-on-surface">{entry.topic}</h3>
@@ -28,7 +28,6 @@ const PreviewEntryItem = ({ entry }: PreviewEntryItemProps) => {
       <div className="space-y-2">
         <div className="flex justify-between text-xs font-label text-on-surface-variant">
           <span>Date: {format(entry.created_at, 'MMM do yyyy')}</span>
-          <span>Difficulty</span>
         </div>
         <div className="space-y-2">
           <div className="flex justify-between items-center text-xs font-label text-on-surface-variant">
