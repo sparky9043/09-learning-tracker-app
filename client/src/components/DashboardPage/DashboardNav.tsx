@@ -38,6 +38,13 @@ const DashboardNav = ({ currentUser, setCurrentUser }: DashboardNavProps) => {
         >
           Dashboard
         </NavLink>
+        <NavLink
+          to='history'
+          className="font-semibold font-headline text-lg tracking-tight"
+        >
+          History
+        </NavLink>
+        {/* <NavLink></NavLink> */}
         {/* <a className="text-on-surface-variant hover:text-[#a3a6ff] transition-colors font-headline text-lg tracking-tight"
           href="#">Courses</a>
         <a className="text-on-surface-variant hover:text-[#a3a6ff] transition-colors font-headline text-lg tracking-tight"

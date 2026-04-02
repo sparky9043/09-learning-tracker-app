@@ -40,7 +40,7 @@ function App() {
             },
             {
               Component: LearningEntriesList,
-              path: 'entries'
+              path: 'history'
             }
           ]
         },
