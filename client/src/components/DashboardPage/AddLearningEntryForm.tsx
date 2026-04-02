@@ -144,7 +144,7 @@ const AddLearningEntryForm = () => {
         </div>
         <div>
           <button
-            className="w-full bg-linear-to-br from-primary to-primary-dim text-on-primary font-extrabold py-4 rounded-xl transition-all hover:shadow-[0_0_30px_rgba(163,166,255,0.3)] active:scale-[0.98]"
+            className="w-full bg-linear-to-br from-primary to-primary-dim text-on-primary font-extrabold py-4 rounded-xl transition-all hover:shadow-[0_0_30px_rgba(163,166,255,0.3)] active:scale-[0.98] hover:cursor-pointer"
             type="submit"
           >Create Entry</button>
         </div>
