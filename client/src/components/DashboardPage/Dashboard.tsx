@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { compareAsc, format } from "date-fns";
 // import BarCharts from "./BarCharts";
 // import type { MonthlyData } from "@/types/types";
-import PreviewEntryItem from "./PreviewEntryItem";
+import EntryItemCard from "./EntryItemCard";
 // import Welcome from "./Welcome";
 // import Togglelable from "../misc/Toggleable";
 
@@ -166,7 +166,7 @@ const Dashboard = () => {
             sortedDatedDescending
               .slice(0, 4)
               .map(entry =>
-                <PreviewEntryItem
+                <EntryItemCard
                   key={entry.id}
                   entry={entry}
                 />)

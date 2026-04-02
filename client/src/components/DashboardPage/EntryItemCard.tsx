@@ -2,11 +2,11 @@ import type { SavedLearningEntry } from "@/types/types";
 import { format } from "date-fns";
 import Stars from "../misc/Stars";
 
-interface PreviewEntryItemProps {
+interface EntryItemCardItemProps {
   entry: SavedLearningEntry;
 }
 
-const PreviewEntryItem = ({ entry }: PreviewEntryItemProps) => {
+const EntryItemCardItem = ({ entry }: EntryItemCardItemProps) => {
 
   return (
     <div
@@ -44,4 +44,4 @@ const PreviewEntryItem = ({ entry }: PreviewEntryItemProps) => {
   )
 };
 
-export default PreviewEntryItem;
+export default EntryItemCardItem;
