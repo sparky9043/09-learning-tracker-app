@@ -8,6 +8,8 @@ import { compareAsc, format } from "date-fns";
 // import BarCharts from "./BarCharts";
 // import type { MonthlyData } from "@/types/types";
 import EntryItemCard from "./EntryItemCard";
+import AddLearningEntryForm from "./AddLearningEntryForm";
+// import AddLearningEntryForm from "./AddLearningEntryForm";
 // import Welcome from "./Welcome";
 // import Togglelable from "../misc/Toggleable";
 
@@ -97,51 +99,7 @@ const Dashboard = () => {
       </header>
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
         <section className="md:col-span-5 flex flex-col gap-8">
-          <div className="bg-surface-container p-8 rounded-xl shadow-xl relative overflow-hidden group">
-            <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-              <span className="material-symbols-outlined text-9xl" style={{ fontVariationSettings: 'FILL 1' }}>add_circle</span>
-            </div>
-            <form className="space-y-6 relative z-10">
-              <h2 className="font-headline font-bold text-2xl mb-6 flex items-center gap-2">
-                <span className="material-symbols-outlined text-primary">edit_note</span>
-                New Learning Entry
-              </h2>
-              <div>
-                <label className="block text-xs font-label text-on-surface-variant uppercase tracking-widest mb-2">Task
-                  Title</label>
-                <input
-                  className="w-full bg-surface-container-lowest border-none ring-2 ring-transparent focus:ring-primary rounded-lg p-4 text-on-surface placeholder:text-outline transition-all"
-                  placeholder="e.g., Master Tailwind Gradients" type="text" />
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label
-                    className="block text-xs font-label text-on-surface-variant uppercase tracking-widest mb-2">Category</label>
-                  <select
-                    className="w-full bg-surface-container-lowest border-none ring-2 ring-transparent focus:ring-primary rounded-lg p-4 text-on-surface appearance-none">
-                    <option>Development</option>
-                    <option>Design</option>
-                    <option>Theory</option>
-                  </select>
-                </div>
-                <div>
-                  <label
-                    className="block text-xs font-label text-on-surface-variant uppercase tracking-widest mb-2">Priority</label>
-                  <select
-                    className="w-full bg-surface-container-lowest border-none ring-2 ring-transparent focus:ring-primary rounded-lg p-4 text-on-surface appearance-none">
-                    <option>High</option>
-                    <option>Medium</option>
-                    <option>Low</option>
-                  </select>
-                </div>
-              </div>
-              <button
-                className="w-full bg-linear-to-br from-primary to-primary-dim text-on-primary font-extrabold py-4 rounded-xl transition-all hover:shadow-[0_0_30px_rgba(163,166,255,0.3)] active:scale-[0.98]"
-                type="button">
-                Generate Task
-              </button>
-            </form>
-          </div>
+          <AddLearningEntryForm />
           {/* Time Invested Card */}
           {/* <div className="bg-surface-container-low p-8 rounded-xl flex items-center justify-between">
             <div>

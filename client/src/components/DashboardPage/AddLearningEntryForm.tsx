@@ -1,21 +1,21 @@
-import { useState, type SetStateAction } from "react";
+import { useState } from "react";
 // import { useCurrentUserContext } from "../../hooks/useCurrentUserContext";
 import entriesService from "../../service/entriesService";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useCurrentUserContext } from "../../hooks/useCurrentUserContext";
-import { Textarea } from "../ui/textarea";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
-import { Input } from "../ui/input";
-// import { FieldLabel } from "../ui/FieldLabel";
-import { Button } from "../ui/button";
-import { FieldLabel } from "../ui/field";
-// import { FieldFieldLabel } from "../ui/field";
+// import { Textarea } from "../ui/textarea";
+// import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
+// import { Input } from "../ui/input";
+// import { label } from "../ui/label";
+// import { Button } from "../ui/button";
+// import { FieldLabel } from "../ui/field";
+// import { Fieldlabel } from "../ui/field";
 
-interface AddLearningEntryFormProps {
-  setShowModal: React.Dispatch<SetStateAction<boolean>>
-}
+// interface AddLearningEntryFormProps {
+//   setShowModal: React.Dispatch<SetStateAction<boolean>>
+// }
 
-const AddLearningEntryForm = ({ setShowModal }: AddLearningEntryFormProps) => {
+const AddLearningEntryForm = () => {
   const { currentUser } = useCurrentUserContext();
   const [topic, setTopic] = useState<string>('');
   const [note, setNote] = useState<string>('');
@@ -59,73 +59,97 @@ const AddLearningEntryForm = ({ setShowModal }: AddLearningEntryFormProps) => {
       setNote('');
       setDifficulty(1);
       setMinutes(1);
-      setShowModal(false);
-    
+      // setShowModal(false);
+
     } catch (error) {
       console.error(error);
     }
   }
 
   return (
-      <Card className="p-4 text-left border-none">
-        <CardHeader>
-          <CardTitle>Enter today's learning below</CardTitle>
-          <CardDescription>Write the topic and make note of what you learned today</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="flex justify-center p-4">
-            <div>
-              <div>
-                <FieldLabel htmlFor="topic">topic</FieldLabel>
-                <Input
-                  type="text"
-                  id="topic"
-                  name="topic"
-                  value={topic}
-                  onChange={(e) => setTopic(e.target.value)}
-                />
-              </div>
-              <div>
-                <FieldLabel htmlFor="note">note</FieldLabel>
-                <Textarea
-                  id="note"
-                  name="note"
-                  value={note}
-                  onChange={(e) => setNote(e.target.value)}
-                  rows={5}
-                  cols={30}
-                />
-              </div>
-              <div>
-                <FieldLabel htmlFor="difficulty">difficulty</FieldLabel>
-                <Input
-                  type="number"
-                  id="difficulty"
-                  name="difficulty"
-                  min="1"
-                  max="5"
-                  value={difficulty}
-                  onChange={(e) => setDifficulty(Number(e.target.value))}
-                  />
-              </div>
-              <div>
-                <FieldLabel htmlFor="minutes">minutes spent</FieldLabel>
-                <Input
-                  min="1"
-                  type="number"
-                  id="minutes"
-                  name="minutes"
-                  value={minutes}
-                  onChange={(e) => setMinutes(Number(e.target.value))}
-                  />
-              </div>
-              <div>
-                <Button type="submit">create entry</Button>
-              </div>
-            </div>
-          </form>
-        </CardContent>
-      </Card>
+    <div className="bg-surface-container p-8 rounded-xl shadow-xl relative overflow-hidden group">
+      <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+        <span className="material-symbols-outlined text-9xl" style={{ fontVariationSettings: 'FILL 1' }}>add_circle</span>
+      </div>
+      <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+        <h2 className="font-headline font-bold text-2xl mb-6 flex items-center gap-2">
+          <span className="material-symbols-outlined text-primary">edit_note</span>
+          New Learning Entry
+        </h2>
+        <div>
+          <label
+            htmlFor="topic"
+            className="block text-xs font-label text-on-surface-variant uppercase tracking-widest mb-2"
+          >
+            Topic
+          </label>
+          <input
+            className="w-full bg-surface-container-lowest border-none ring-2 ring-transparent focus:ring-primary rounded-lg p-4 text-on-surface placeholder:text-outline transition-all"
+            type="text"
+            placeholder="e.g., Master Tailwind Gradients"
+            id="topic"
+            name="topic"
+            value={topic}
+            onChange={(e) => setTopic(e.target.value)}
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="note"
+            className="block text-xs font-label text-on-surface-variant uppercase tracking-widest mb-2"
+          >
+            note
+          </label>
+          <textarea
+            className="w-full bg-surface-container-lowest border-none ring-2 ring-transparent focus:ring-primary rounded-lg p-4 text-on-surface placeholder:text-outline transition-all resize-none"
+            id="note"
+            name="note"
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+            rows={3}
+            cols={20}
+            placeholder="Write what you learned here"
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="difficulty"
+            className="block text-xs font-label text-on-surface-variant uppercase tracking-widest mb-2"
+          >difficulty</label>
+          <input
+            className="w-full bg-surface-container-lowest border-none ring-2 ring-transparent focus:ring-primary rounded-lg p-4 text-on-surface placeholder:text-outline transition-all"
+            type="number"
+            id="difficulty"
+            name="difficulty"
+            min="1"
+            max="5"
+            value={difficulty}
+            onChange={(e) => setDifficulty(Number(e.target.value))}
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="minutes"
+            className="block text-xs font-label text-on-surface-variant uppercase tracking-widest mb-2"
+          >Time Spent (minutes)</label>
+          <input
+            className="w-full bg-surface-container-lowest border-none ring-2 ring-transparent focus:ring-primary rounded-lg p-4 text-on-surface placeholder:text-outline transition-all"
+            min="1"
+            type="number"
+            id="minutes"
+            name="minutes"
+            value={minutes}
+            onChange={(e) => setMinutes(Number(e.target.value))}
+          />
+        </div>
+        <div>
+          <button
+            className="w-full bg-linear-to-br from-primary to-primary-dim text-on-primary font-extrabold py-4 rounded-xl transition-all hover:shadow-[0_0_30px_rgba(163,166,255,0.3)] active:scale-[0.98]"
+            type="submit"
+          >Create Entry</button>
+        </div>
+      </form>
+    </div>
   )
 }
 
