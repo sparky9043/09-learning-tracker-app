@@ -14,9 +14,21 @@ const Stars = ({ difficulty }: StarsProps) => {
             star
         </span>
     )
+  
+  const convertDifficultyToText = (difficulty: number): string => {
+    if (difficulty < 3) {
+      return "Easy"
+    } else if (difficulty == 3) {
+      return "Medium"
+    } else if (difficulty > 3) {
+      return "Hard"
+    } else {
+      return 'invalid'
+    }
+  }
 
   return (
-    <div className="flex items-center gap-1"><span className="text-tertiary font-bold mr-1">{difficulty}/5</span>
+    <div className="flex items-center gap-1"><span className="text-tertiary font-bold mr-1">{convertDifficultyToText(difficulty)}</span>
       <div className="flex text-tertiary">
         {difficultyArray()}
       </div>
