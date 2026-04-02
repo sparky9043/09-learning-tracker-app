@@ -82,10 +82,10 @@ const Dashboard = () => {
           <h1 className="font-headline font-extrabold text-5xl md:text-6xl tracking-tighter mb-4">
             Welcome back, <span className="text-primary">{currentUser.username}</span>
           </h1>
-          <p className="text-on-surface-variant text-lg font-body leading-relaxed">
+          {/* <p className="text-on-surface-variant text-lg font-body leading-relaxed">
             Your focus is your greatest asset. You've completed 85% of your weekly goals. Ready to curate today's
             knowledge?
-          </p>
+          </p> */}
         </div>
         <div className="bg-surface-container-low p-6 rounded-xl border-l-4 border-tertiary">
           <div className="flex items-center gap-3 mb-2">
