@@ -39,7 +39,7 @@ const EntryItemCard = ({ entry }: EntryItemCardItemProps) => {
             className="w-10 h-10 rounded-lg flex items-center justify-center text-primary group-hover:text-error-container transition-colors hover:cursor-pointer"
             onClick={() => handleDelete(entry.id)}  
           >
-            <span className="material-symbols-outlined text-xl" data-icon="code">delete</span>
+            <span className="material-symbols-outlined text-xl" data-icon="delete">delete</span>
           </button>
         </div>
         <Stars difficulty={entry.difficulty} />

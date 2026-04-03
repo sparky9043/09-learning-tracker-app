@@ -44,6 +44,12 @@ const DashboardNav = ({ currentUser, setCurrentUser }: DashboardNavProps) => {
         >
           History
         </NavLink>
+        <NavLink
+          to='summarize'
+          className="flex items-center"
+        >
+          <span className="material-symbols-outlined text-xl" data-icon="smart_toy">smart_toy</span>
+        </NavLink>
         {/* <NavLink></NavLink> */}
         {/* <a className="text-on-surface-variant hover:text-[#a3a6ff] transition-colors font-headline text-lg tracking-tight"
           href="#">Courses</a>

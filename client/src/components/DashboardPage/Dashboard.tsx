@@ -9,6 +9,7 @@ import { compareAsc, format } from "date-fns";
 // import type { MonthlyData } from "@/types/types";
 import EntryItemCard from "./EntryItemCard";
 import AddLearningEntryForm from "./AddLearningEntryForm";
+import { NavLink } from "react-router";
 // import AddLearningEntryForm from "./AddLearningEntryForm";
 // import Welcome from "./Welcome";
 // import Togglelable from "../misc/Toggleable";
@@ -84,10 +85,18 @@ const Dashboard = () => {
           <h1 className="font-headline font-extrabold text-5xl md:text-6xl tracking-tighter mb-4">
             Welcome back, <span className="text-primary">{currentUser.username}</span>
           </h1>
-          {/* <p className="text-on-surface-variant text-lg font-body leading-relaxed">
-            Your focus is your greatest asset. You've completed 85% of your weekly goals. Ready to curate today's
-            knowledge?
-          </p> */}
+          <p className="text-on-surface-variant text-lg font-body leading-relaxed">
+            Your focus is your greatest asset. Use the New Learning Entry below to log your progress.
+          </p>
+          <div className="text-on-surface-variant text-sm font-body leading-relaxed flex flex-col items-start">
+            You can also try our AI Assistant to summarize your learning journey. Click on the button below to try!
+            <NavLink
+              to="summarize"
+              className="px-5 py-2 rounded-xl bg-linear-to-br from-primary to-primary-dim text-on-primary font-bold transition-transform scale-95 active:scale-90 font-label text-sm shadow-lg shadow-primary/10 flex items-center justify-between"
+            >
+              Summary
+            </NavLink>
+          </div>
         </div>
         {/* Streak Card */}
         {/* <div className="bg-surface-container-low p-6 rounded-xl border-l-4 border-tertiary">
