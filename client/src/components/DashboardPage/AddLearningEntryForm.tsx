@@ -3,6 +3,7 @@ import { useState } from "react";
 import entriesService from "../../service/entriesService";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useCurrentUserContext } from "../../hooks/useCurrentUserContext";
+import Stars from "../misc/Stars";
 // import { Textarea } from "../ui/textarea";
 // import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 // import { Input } from "../ui/input";
@@ -30,6 +31,26 @@ const AddLearningEntryForm = () => {
     }
   });
 
+  const updateDifficulty = (rating: number) => {
+    setDifficulty(rating);
+  }
+
+  // const MAX_STARS = 5;
+
+  // const difficultyArray = () => Array
+  //   .from({ length: MAX_STARS },
+  //       (_, i) =>
+  //         <span
+  //           key={i}
+  //           className="material-symbols-outlined text-xl hover:cursor-pointer"
+  //           style={{ fontVariationSettings: `'FILL' ${i < difficulty ? 1 : 0}` }}
+  //           id={String(i)}
+  //           onClick={() => setDifficulty(i + 1)}
+  //         >
+  //           star
+  //       </span>
+  //   )
+  
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
@@ -114,9 +135,9 @@ const AddLearningEntryForm = () => {
         <div>
           <label
             htmlFor="difficulty"
-            className="block text-xs font-label text-on-surface-variant uppercase tracking-widest mb-2"
-          >difficulty</label>
-          <input
+            className="block text-xs font-label text-on-surface-variant uppercase tracking-wide mb-2"
+          >difficulty (maximum 5 stars)</label>
+          {/* <input
             className="w-full bg-surface-container-lowest border-none ring-2 ring-transparent focus:ring-primary rounded-lg p-4 text-on-surface placeholder:text-outline transition-all"
             type="number"
             id="difficulty"
@@ -125,7 +146,8 @@ const AddLearningEntryForm = () => {
             max="5"
             value={difficulty}
             onChange={(e) => setDifficulty(Number(e.target.value))}
-          />
+          /> */}
+          <Stars difficulty={difficulty} onChange={updateDifficulty} />
         </div>
         <div>
           <label

@@ -45,7 +45,7 @@ const EntryItemCard = ({ entry }: EntryItemCardItemProps) => {
         <Stars difficulty={entry.difficulty} />
       </div>
       <h3 className="text-xl font-headline font-bold text-on-surface mb-2 group-hover:text-primary transition-colors">
-        {entry.note}</h3>
+        {entry.topic}</h3>
       <p className="text-on-surface-variant text-sm mb-6 leading-relaxed">{entry.note}</p>
       <div className="flex items-center justify-between pt-5 border-t border-white/5">
         <div className="flex items-center gap-2 text-on-surface-variant text-xs font-medium">
