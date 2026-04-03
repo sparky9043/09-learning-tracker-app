@@ -6,21 +6,22 @@ import useOpenaiResponseContext from "../../hooks/useOpenaiResponseContext";
 import SummaryHeader from "./SummaryHeader";
 import OpenAITopicAndSummary from "./OpenAITopicAndSummary";
 
-const Summary = () =>  {
+const Summary = () => {
   const { openaiResponse, setOpenaiResponse } = useOpenaiResponseContext();
 
   return (
-    <div className="flex justify-center p-4 w-full min-h-dvh">
-      <div className="flex flex-col w-1/2 p-8 border-2 border-stone-200 shadow-xl rounded-md h-3/4">
-        <SummaryHeader />
-        <PromptForm
-          openaiResponse={openaiResponse}
-          setOpenaiResponse={setOpenaiResponse}
-        />
-        <OpenAITopicAndSummary openaiResponse={openaiResponse} />
-        {
-          openaiResponse
-            ? 
+    <main className="pt-24 pb-20 px-6 md:px-12 max-w-7xl mx-auto">
+      <header className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="flex flex-col w-1/2 p-8 border-2 border-stone-200 shadow-xl rounded-md h-3/4">
+          <SummaryHeader />
+          <PromptForm
+            openaiResponse={openaiResponse}
+            setOpenaiResponse={setOpenaiResponse}
+          />
+          <OpenAITopicAndSummary openaiResponse={openaiResponse} />
+          {
+            openaiResponse
+              ?
               <div>
                 <p>
                   To use the AI summary, click the button below
@@ -29,10 +30,11 @@ const Summary = () =>  {
                   <AddAiSummaryForm />
                 </Togglelable>
               </div>
-            : null
-        }
-      </div>
-    </div>
+              : null
+          }
+        </div>
+      </header>
+    </main>
   )
 };
 
