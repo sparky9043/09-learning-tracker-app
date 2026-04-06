@@ -8,6 +8,7 @@ import OpenAITopicAndSummary from "./OpenAITopicAndSummary";
 
 const Summary = () => {
   const { openaiResponse, setOpenaiResponse } = useOpenaiResponseContext();
+  
 
   return (
     <main className="max-w-4xl mx-auto px-6 pt-32 pb-12">
@@ -22,7 +23,7 @@ const Summary = () => {
         </p>
       </header>
       <section className="mb-16">
-        <div
+        <form
           className="bg-surface-container-low p-8 rounded-xl shadow-2xl transition-all hover:bg-surface-container duration-500">
           <label className="block font-headline font-bold text-sm uppercase tracking-widest text-primary mb-4"
             htmlFor="learning-input">Intellectual Input</label>
@@ -44,7 +45,7 @@ const Summary = () => {
               <span>Generate Summary</span>
             </button>
           </div>
-        </div>
+        </form>
       </section>
       {/* AI Summary section */}
       {openaiResponse && <section className="mb-16">
