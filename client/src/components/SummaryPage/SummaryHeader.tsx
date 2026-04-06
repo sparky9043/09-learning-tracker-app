@@ -12,21 +12,16 @@ const SummaryHeader = () => {
   };
 
   return (
-    <div className="flex justify-between">
-      <h2 className="font-headline font-bold text-2xl mb-6 flex items-center gap-2">
-        <span className="material-symbols-outlined text-primary" data-icon="smart_toy">smart_toy</span>
-        Summary
-      </h2>
-      <button
-        className="px-5 py-2 rounded-xl bg-linear-to-br from-primary to-primary-dim text-on-primary font-bold transition-transform scale-95 active:scale-90 font-label text-sm shadow-lg shadow-primary/10 flex items-center justify-between"
-        onClick={handleBack}
-      >
-        <span className="material-symbols-outlined text-sm!">
-          arrow_back
-        </span>
-        Back
-      </button>
-    </div>
+    <header className="mb-12">
+      <h1
+        className="font-headline text-5xl font-extrabold tracking-tight mb-4 bg-clip-text text-transparent bg-linear-to-r from-primary to-tertiary">
+        Generate AI Summary
+      </h1>
+      <p className="text-on-surface-variant font-body text-lg max-w-2xl leading-relaxed">
+        Transform your raw notes and chaotic thoughts into a structured intellectual blueprint. Our AI curator
+        distills your daily learning into actionable insights.
+      </p>
+    </header>
   )
 };
 

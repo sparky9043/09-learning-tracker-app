@@ -13,16 +13,7 @@ const Summary = () => {
 
   return (
     <main className="max-w-4xl mx-auto px-6 pt-32 pb-12">
-      <header className="mb-12">
-        <h1
-          className="font-headline text-5xl font-extrabold tracking-tight mb-4 bg-clip-text text-transparent bg-linear-to-r from-primary to-tertiary">
-          Generate AI Summary
-        </h1>
-        <p className="text-on-surface-variant font-body text-lg max-w-2xl leading-relaxed">
-          Transform your raw notes and chaotic thoughts into a structured intellectual blueprint. Our AI curator
-          distills your daily learning into actionable insights.
-        </p>
-      </header>
+      <SummaryHeader />
       <section className="mb-16">
         <PromptForm
           openaiResponse={openaiResponse}
@@ -30,7 +21,50 @@ const Summary = () => {
         />
       </section>
       {/* AI Summary section */}
-      {openaiResponse && <OpenAITopicAndSummary openaiResponse={openaiResponse} />}
+      {openaiResponse
+        ?
+        <>
+          <OpenAITopicAndSummary openaiResponse={openaiResponse} />
+          <section>
+            <div className="bg-surface-container-low p-8 rounded-xl">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div>
+                  <label
+                    className="block font-label text-xs font-bold text-zinc-500 uppercase tracking-widest mb-3">Project
+                    Title</label>
+                  <input
+                    className="w-full bg-surface-container-lowest border-none rounded-xl p-4 text-on-surface focus:ring-2 focus:ring-primary font-body"
+                    type="text" />
+                </div>
+                <div>
+                  <label
+                    className="block font-label text-xs font-bold text-zinc-500 uppercase tracking-widest mb-3">Category</label>
+                  <select
+                    className="w-full bg-surface-container-lowest border-none rounded-xl p-4 text-on-surface focus:ring-2 focus:ring-primary font-body appearance-none cursor-pointer">
+                    <option>Machine Learning</option>
+                    <option>Philosophy</option>
+                    <option>Linguistics</option>
+                    <option>Personal Growth</option>
+                  </select>
+                </div>
+              </div>
+              <div
+                className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 border-t border-outline-variant/10">
+                <p className="text-on-surface-variant font-label text-sm flex items-center space-x-2">
+                  <span className="material-symbols-outlined text-lg" data-icon="info">info</span>
+                  <span>Click the retry button if you want to generate another summary</span>
+                </p>
+                <button
+                  className="w-full sm:w-auto px-10 py-4 bg-surface-container-highest hover:bg-surface-bright text-primary font-headline font-bold rounded-xl transition-all active:scale-95">
+                  Save to History
+                </button>
+              </div>
+            </div>
+          </section>
+        </>
+        : null
+      }
+
     </main>
   )
 
