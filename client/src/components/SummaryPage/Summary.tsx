@@ -14,12 +14,10 @@ const Summary = () => {
   return (
     <main className="max-w-4xl mx-auto px-6 pt-32 pb-12">
       <SummaryHeader />
-      <section className="mb-16">
-        <PromptForm
-          openaiResponse={openaiResponse}
-          setOpenaiResponse={setOpenaiResponse}
-        />
-      </section>
+      <PromptForm
+        openaiResponse={openaiResponse}
+        setOpenaiResponse={setOpenaiResponse}
+      />
       {/* AI Summary section */}
       {openaiResponse
         ?
