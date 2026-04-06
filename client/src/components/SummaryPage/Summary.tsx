@@ -8,7 +8,7 @@ import OpenAITopicAndSummary from "./OpenAITopicAndSummary";
 
 const Summary = () => {
   const { openaiResponse, setOpenaiResponse } = useOpenaiResponseContext();
-  
+
 
   return (
     <main className="max-w-4xl mx-auto px-6 pt-32 pb-12">
@@ -23,29 +23,10 @@ const Summary = () => {
         </p>
       </header>
       <section className="mb-16">
-        <form
-          className="bg-surface-container-low p-8 rounded-xl shadow-2xl transition-all hover:bg-surface-container duration-500">
-          <label className="block font-headline font-bold text-sm uppercase tracking-widest text-primary mb-4"
-            htmlFor="learning-input">Intellectual Input</label>
-          <div className="relative group">
-            <textarea
-              className="w-full h-64 bg-surface-container-lowest text-on-surface font-body p-6 rounded-xl border-none focus:ring-2 focus:ring-primary transition-all resize-none placeholder:text-zinc-600"
-              id="learning-input"
-              placeholder="Enter what you learned today... Use bullet points, half-baked ideas, or full paragraphs." />
-            <div className="absolute bottom-4 right-4 flex items-center space-x-2 text-zinc-600 text-xs font-label">
-              <span className="material-symbols-outlined text-sm" data-icon="edit_note">edit_note</span>
-              {/* <span>Autosaving to local cache</span> */}
-            </div>
-          </div>
-          <div className="mt-8 flex justify-end">
-            <button
-              className="flex items-center space-x-3 px-8 py-4 bg-linear-to-br from-primary to-primary-dim text-on-primary font-headline font-bold rounded-xl transition-all hover:scale-[1.02] active:scale-95 shadow-[0_0_40px_rgba(163,166,255,0.08)]">
-              <span className="material-symbols-outlined" data-icon="auto_awesome"
-                style={{ fontVariationSettings: 'FILL 1' }}>auto_awesome</span>
-              <span>Generate Summary</span>
-            </button>
-          </div>
-        </form>
+        <PromptForm
+          openaiResponse={openaiResponse}
+          setOpenaiResponse={setOpenaiResponse}
+        />
       </section>
       {/* AI Summary section */}
       {openaiResponse && <section className="mb-16">
