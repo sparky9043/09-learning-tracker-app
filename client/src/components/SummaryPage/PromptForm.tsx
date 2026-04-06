@@ -72,7 +72,7 @@ const PromptForm = ({ openaiResponse, setOpenaiResponse }: PromptFormProps) => {
         <div className="mt-8 flex justify-end">
 
           <button
-            className="flex items-center space-x-3 px-8 py-4 bg-linear-to-br from-primary to-primary-dim text-on-primary font-headline font-bold rounded-xl transition-all hover:scale-[1.02] active:scale-95 shadow-[0_0_40px_rgba(163,166,255,0.08)] disabled:hover:scale-[1]"
+            className="flex items-center space-x-3 px-8 py-4 bg-linear-to-br from-primary to-primary-dim text-on-primary font-headline font-bold rounded-xl transition-all hover:scale-[1.02] hover:cursor-pointer active:scale-95 shadow-[0_0_40px_rgba(163,166,255,0.08)] disabled:hover:scale-[1] disabled:bg-linear-to-br disabled:from-outline disabled:to-outline disabled:text-black disabled:hover:cursor-default"
             type="submit" disabled={isLoading}
           >
             {openaiResponse
