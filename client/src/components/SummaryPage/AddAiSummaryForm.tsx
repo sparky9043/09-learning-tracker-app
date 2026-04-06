@@ -72,59 +72,50 @@ const AddAiSummaryForm = () => {
 
   return (
     <div>
-      <Button type="button" onClick={handleUseAiSummary}>use ai summary</Button>
+      <button type="button" onClick={handleUseAiSummary}>use ai summary</button>
       <form
         className="rounded-md p-4 shadow-lg shadow-stone-300"
         onSubmit={handleAddAiSummaryEntry}
       >
-        <FieldSet>
-          <FieldGroup>
-            <Field>
-              <FieldLabel htmlFor="topic">topic</FieldLabel>
-              <Input
-                type="text"
-                id="topic"
-                name="topic"
-                value={topic}
-                onChange={(e) => setTopic(e.target.value)}
-              />
-              <FieldDescription className="text-xs">Enter the name of the topic</FieldDescription>
-              <FieldLabel htmlFor="note">note</FieldLabel>
-              <Textarea
-                className="resize-none"
-                id="note"
-                name="note"
-                value={note}
-                onChange={(e) => setNote(e.target.value)}
-                rows={5}
-                cols={30}
-              />
-              <FieldDescription className="text-xs">Write a brief summary of what you learned</FieldDescription>
-              <FieldLabel htmlFor="difficulty">difficulty</FieldLabel>
-              <Input
-                type="number"
-                id="difficulty"
-                name="difficulty"
-                min="1"
-                max="5"
-                value={difficulty}
-                onChange={(e) => setDifficulty(Number(e.target.value))}
-              />
-              <FieldDescription className="text-xs">Only numbers between 1 to 5</FieldDescription>
-              <FieldLabel htmlFor="minutes">minutes spent</FieldLabel>
-              <Input
-                min="1"
-                type="number"
-                id="minutes"
-                name="minutes"
-                value={minutes}
-                onChange={(e) => setMinutes(Number(e.target.value))}
-              />
-              <FieldDescription className="text-xs">At least 1 minute</FieldDescription>
-              <Button type="submit">create entry</Button>
-            </Field>
-          </FieldGroup>
-        </FieldSet>
+
+        <label htmlFor="topic">topic</label>
+        <input
+          type="text"
+          id="topic"
+          name="topic"
+          value={topic}
+          onChange={(e) => setTopic(e.target.value)}
+        />
+        <label htmlFor="note">note</label>
+        <textarea
+          className="resize-none"
+          id="note"
+          name="note"
+          value={note}
+          onChange={(e) => setNote(e.target.value)}
+          rows={5}
+          cols={30}
+        />
+        <label htmlFor="difficulty">difficulty</label>
+        <input
+          type="number"
+          id="difficulty"
+          name="difficulty"
+          min="1"
+          max="5"
+          value={difficulty}
+          onChange={(e) => setDifficulty(Number(e.target.value))}
+        />
+        <label htmlFor="minutes">minutes spent</label>
+        <input
+          min="1"
+          type="number"
+          id="minutes"
+          name="minutes"
+          value={minutes}
+          onChange={(e) => setMinutes(Number(e.target.value))}
+        />
+        <button type="submit">create entry</button>
       </form>
     </div>
   )
