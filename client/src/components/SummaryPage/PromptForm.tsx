@@ -79,7 +79,7 @@ const PromptForm = ({ openaiResponse, setOpenaiResponse }: PromptFormProps) => {
             <span className="flex justify-center">
               <span
                 className="material-symbols-outlined text-9xl"
-                data-icon="repaly"
+                data-icon="replay"
                 style={{ fontVariationSettings: 'FILL 1' }}
               >
                 replay
