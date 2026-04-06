@@ -24,38 +24,58 @@ const Summary = () => {
         <>
           <OpenAITopicAndSummary openaiResponse={openaiResponse} />
           <section>
-            <div className="bg-surface-container-low p-8 rounded-xl">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                <div>
-                  <label
-                    className="block font-label text-xs font-bold text-zinc-500 uppercase tracking-widest mb-3">Project
-                    Title</label>
-                  <input
-                    className="w-full bg-surface-container-lowest border-none rounded-xl p-4 text-on-surface focus:ring-2 focus:ring-primary font-body"
-                    type="text" />
+            <div className="mb-4">
+              <h2 className="font-headline font-bold text-zinc-500 uppercase tracking-widest text-xs ml-2 mb-2">use ai
+                summary</h2>
+              <div className="bg-[#050505] border border-white/5 rounded-xl p-8 shadow-2xl">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-6">
+                  <div className="flex flex-col">
+                    <label className="font-label text-xs text-zinc-500 uppercase tracking-wider mb-2">topic</label>
+                    <div className="text-on-surface font-body text-sm leading-relaxed">Mastery of Neural
+                      Topographies</div>
+                  </div>
+                  <div className="flex flex-col">
+                    <label className="font-label text-xs text-zinc-500 uppercase tracking-wider mb-2">note</label>
+                    <div className="text-on-surface-variant font-body text-sm leading-relaxed line-clamp-3">
+                      Explored neural shifts from static weights to dynamic attention. Transformer efficiency
+                      in high-dim spaces. Key concepts: RNN bottlenecks, attention spans.
+                    </div>
+                  </div>
+                  <div className="flex flex-col">
+                    <label
+                      className="font-label text-xs text-zinc-500 uppercase tracking-wider mb-2">difficulty</label>
+                    <div className="flex items-center space-x-1 text-primary">
+                      <span className="material-symbols-outlined text-sm" data-icon="star"
+                        style={{ fontVariationSettings: 'FILL 1' }}>star</span>
+                      <span className="material-symbols-outlined text-sm" data-icon="star"
+                        style={{ fontVariationSettings: 'FILL 1' }}>star</span>
+                      <span className="material-symbols-outlined text-sm" data-icon="star"
+                        style={{ fontVariationSettings: 'FILL 1' }}>star</span>
+                      <span className="material-symbols-outlined text-sm" data-icon="star"
+                        style={{ fontVariationSettings: 'FILL 1' }}>star</span>
+                      <span className="material-symbols-outlined text-sm" data-icon="star"
+                        style={{ fontVariationSettings: 'FILL 1' }}>star</span>
+                    </div>
+                  </div>
+                  <div className="flex flex-col">
+                    <label className="font-label text-xs text-zinc-500 uppercase tracking-wider mb-2">minutes
+                      spent</label>
+                    <input
+                      className="bg-transparent border-b border-white/10 focus:border-primary transition-colors text-sm py-1 outline-none text-on-surface font-body w-full"
+                      placeholder="e.g. 45" type="text" />
+                  </div>
                 </div>
-                <div>
-                  <label
-                    className="block font-label text-xs font-bold text-zinc-500 uppercase tracking-widest mb-3">Category</label>
-                  <select
-                    className="w-full bg-surface-container-lowest border-none rounded-xl p-4 text-on-surface focus:ring-2 focus:ring-primary font-body appearance-none cursor-pointer">
-                    <option>Machine Learning</option>
-                    <option>Philosophy</option>
-                    <option>Linguistics</option>
-                    <option>Personal Growth</option>
-                  </select>
+                <div
+                  className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-10 mt-6 border-t border-white/5">
+                  <p className="text-zinc-500 font-label text-xs flex items-center space-x-2 italic">
+                    <span className="material-symbols-outlined text-sm" data-icon="info">info</span>
+                    <span>This will be added to your 'Insights' timeline.</span>
+                  </p>
+                  <button
+                    className="w-full sm:w-auto px-10 py-3.5 bg-surface-container-highest hover:bg-zinc-800 text-primary font-headline font-bold rounded-xl transition-all active:scale-95 border border-white/5">
+                    Save to History
+                  </button>
                 </div>
-              </div>
-              <div
-                className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 border-t border-outline-variant/10">
-                <p className="text-on-surface-variant font-label text-sm flex items-center space-x-2">
-                  <span className="material-symbols-outlined text-lg" data-icon="info">info</span>
-                  <span>Click the retry button if you want to generate another summary</span>
-                </p>
-                <button
-                  className="w-full sm:w-auto px-10 py-4 bg-surface-container-highest hover:bg-surface-bright text-primary font-headline font-bold rounded-xl transition-all active:scale-95">
-                  Save to History
-                </button>
               </div>
             </div>
           </section>
