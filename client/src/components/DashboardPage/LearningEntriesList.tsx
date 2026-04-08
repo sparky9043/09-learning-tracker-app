@@ -19,6 +19,7 @@ const LearningEntriesList = () => {
   const [filterBy, setFilterBy] = useState<FilterBy>('note');
   const [topicFilter, setTopicFilter] = useState<string>('');
   const [noteFilter, setNoteFilter] = useState<string>('');
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const entryByUserQuery = useQuery<SavedLearningEntry[]>({
     queryKey: ['entriesByUser'],
@@ -79,10 +80,12 @@ const LearningEntriesList = () => {
 
   const totalEntries = entryByUserQuery.data.length;
 
-  const totalPages = totalEntries % 9;
+  const maxPages = Math.ceil(totalEntries / 9);
+
+  console.log(totalEntries)
 
   const paginationButtons = () =>
-    Array.from({ length: totalPages }, (_, i) => {
+    Array.from({ length: maxPages }, (_, i) => {
       const pageNumber = i + 1;
 
       return (
@@ -93,7 +96,23 @@ const LearningEntriesList = () => {
         </button>
       )
     }
-    );
+  );
+
+  const nineEntries = sortedData.slice(currentPage - 1, currentPage + 8);
+
+  const handlePrevious = () => {
+    if (currentPage > 1) {
+      setCurrentPage(prev => prev - 1);
+    }
+  }
+
+  const handleNext = () => {
+    if (currentPage <= maxPages) {
+      setCurrentPage(prev => prev + 1);
+    }
+  }
+
+  console.log(maxPages)
 
   return (
     <main className="pt-32 pb-20 px-8 max-w-7xl mx-auto">
@@ -113,7 +132,7 @@ const LearningEntriesList = () => {
         </button>
       </header>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-        {sortedData.map(entry => <EntryItemCard key={entry.id} entry={entry} />)}
+        {nineEntries.map(entry => <EntryItemCard key={entry.id} entry={entry} />)}
         {/* <div
           className="group bg-surface-container-low p-6 rounded-xl hover:bg-surface-container transition-all duration-300 refined-border">
           <div className="flex justify-between items-start mb-6">
@@ -160,6 +179,7 @@ const LearningEntriesList = () => {
       <nav aria-label="Pagination" className="flex items-center justify-center gap-2">
         <button
           className="flex items-center gap-1 px-4 py-2 text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors disabled:opacity-30 disabled:pointer-events-none"
+          onClick={handlePrevious}
         >
           <span className="material-symbols-outlined text-lg" data-icon="chevron_left">chevron_left</span>
           Previous
@@ -177,9 +197,15 @@ const LearningEntriesList = () => {
             className="w-10 h-10 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors font-semibold text-sm">5</button> */}
         </div>
         <button
-          className="flex items-center gap-1 px-4 py-2 text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">
+          className="flex items-center gap-1 px-4 py-2 text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors"
+          onClick={handleNext}
+        >
           Next
-          <span className="material-symbols-outlined text-lg" data-icon="chevron_right">chevron_right</span>
+          <span
+            className="material-symbols-outlined text-lg" data-icon="chevron_right"
+          >
+            chevron_right
+          </span>
         </button>
       </nav>
     </main>
