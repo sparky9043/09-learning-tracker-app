@@ -53,7 +53,7 @@ const LearningEntriesList = () => {
     )
   }
 
-  const totalTimeSpent = entryByUserQuery.data.map(entry => entry.minutes_spent).reduce((prev, curr) => prev + curr, 0);
+  // const totalTimeSpent = entryByUserQuery.data.map(entry => entry.minutes_spent).reduce((prev, curr) => prev + curr, 0);
 
   const sortData = (data: SavedLearningEntry[]) => {
     const copy = [...data];
@@ -66,16 +66,34 @@ const LearningEntriesList = () => {
     return sortedData;
   }
 
-  const filterData = (data: SavedLearningEntry[]) => {
-    const filteredData = filterBy === 'topic'
-      ? data.filter(entry => entry.topic.toLowerCase().includes(topicFilter.toLowerCase()))
-      : data.filter(entry => entry.note.toLowerCase().includes(noteFilter.toLowerCase()))
-    return filteredData;
-  }
+  // const filterData = (data: SavedLearningEntry[]) => {
+  //   const filteredData = filterBy === 'topic'
+  //     ? data.filter(entry => entry.topic.toLowerCase().includes(topicFilter.toLowerCase()))
+  //     : data.filter(entry => entry.note.toLowerCase().includes(noteFilter.toLowerCase()))
+  //   return filteredData;
+  // }
 
   const sortedData = sortData(entryByUserQuery.data);
 
-  const filteredData = filterData(sortedData);
+  // const filteredData = filterData(sortedData);
+
+  const totalEntries = entryByUserQuery.data.length;
+
+  const totalPages = totalEntries % 9;
+
+  const paginationButtons = () =>
+    Array.from({ length: totalPages }, (_, i) => {
+      const pageNumber = i + 1;
+
+      return (
+        <button
+          key={pageNumber}
+          className="w-10 h-10 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors font-semibold text-sm">
+          {pageNumber}
+        </button>
+      )
+    }
+    );
 
   return (
     <main className="pt-32 pb-20 px-8 max-w-7xl mx-auto">
@@ -139,7 +157,31 @@ const LearningEntriesList = () => {
 
       {/* {isDataLoaded && <LearningEntries data={filteredData} />}
          */}
-
+      <nav aria-label="Pagination" className="flex items-center justify-center gap-2">
+        <button
+          className="flex items-center gap-1 px-4 py-2 text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors disabled:opacity-30 disabled:pointer-events-none"
+        >
+          <span className="material-symbols-outlined text-lg" data-icon="chevron_left">chevron_left</span>
+          Previous
+        </button>
+        <div className="flex items-center gap-1 mx-4">
+          {paginationButtons()}
+          {/* <button className="w-10 h-10 rounded-lg bg-primary text-on-primary font-bold text-sm shadow-md">1</button>
+          <button
+            className="w-10 h-10 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors font-semibold text-sm">2</button>
+          <button
+            className="w-10 h-10 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors font-semibold text-sm">3</button>
+          <button
+            className="w-10 h-10 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors font-semibold text-sm">4</button>
+          <button
+            className="w-10 h-10 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors font-semibold text-sm">5</button> */}
+        </div>
+        <button
+          className="flex items-center gap-1 px-4 py-2 text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">
+          Next
+          <span className="material-symbols-outlined text-lg" data-icon="chevron_right">chevron_right</span>
+        </button>
+      </nav>
     </main>
   )
 }
