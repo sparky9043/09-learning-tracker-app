@@ -1,14 +1,14 @@
-import useOpenaiResponseContext from "@/hooks/useOpenaiResponseContext";
-import { useNavigate } from "react-router";
+// import useOpenaiResponseContext from "@/hooks/useOpenaiResponseContext";
+// import { useNavigate } from "react-router";
 
 const SummaryHeader = () => {
-  const { setOpenaiResponse } = useOpenaiResponseContext();
-  const navigate = useNavigate();
+  // const { setOpenaiResponse } = useOpenaiResponseContext();
+  // const navigate = useNavigate();
 
-  const handleBack = () => {
-    setOpenaiResponse(null);
-    navigate('/dashboard');
-  };
+  // const handleBack = () => {
+  //   setOpenaiResponse(null);
+  //   navigate('/dashboard');
+  // };
 
   return (
     <header className="mb-12">
