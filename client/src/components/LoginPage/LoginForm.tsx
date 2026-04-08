@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
 import loginService from "../../service/loginService";
-// import { useCurrentUserContext } from "../../hooks/useCurrentUserContext";
 import { useNavigate } from "react-router";
-// import { useCurrentUserContext } from "../../hooks/useCurrentUserContext";
-// import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSet } from "../ui/field";
-// import { Input } from "../ui/input";
-// import { Button } from "../ui/button";
-// import { useCurrentUserStore } from "@/stores/currentUserStore";
 import { useCurrentUserContext } from "@/hooks/useCurrentUserContext";
 
 const LoginForm = () => {

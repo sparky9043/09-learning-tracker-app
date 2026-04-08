@@ -1,14 +1,8 @@
 import { useState } from "react";
-// import { useCurrentUserContext } from "../../hooks/useCurrentUserContext";
 import entriesService from "../../service/entriesService";
 import { useNavigate } from "react-router";
 import { useCurrentUserContext } from "../../hooks/useCurrentUserContext";
-// import useOpenaiResponseContext from "../../hooks/useOpenaiResponseContext";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-// import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSet } from "../ui/field";
-// import { Input } from "../ui/input";
-// import { Textarea } from "../ui/textarea";
-// import { Button } from "../ui/button";
 import type { OpenaiResponse } from "@/types/types";
 import Stars from "../misc/Stars";
 
@@ -20,9 +14,6 @@ interface AddAiSummaryFormProps {
 const AddAiSummaryForm = ({ openaiResponse }: AddAiSummaryFormProps) => {
 
   const { currentUser } = useCurrentUserContext();
-  // const { openaiResponse, setOpenaiResponse } = useOpenaiResponseContext();
-  // const [topic, setTopic] = useState<string>('');
-  // const [note, setNote] = useState<string>('');
   const [difficulty, setDifficulty] = useState<number>(1);
   const [minutes, setMinutes] = useState<number>(1);
   const navigate = useNavigate();
@@ -68,7 +59,6 @@ const AddAiSummaryForm = ({ openaiResponse }: AddAiSummaryFormProps) => {
       }
 
       learningEntriesMutation.mutate(newLearningEntryObject);
-      // setOpenaiResponse(null);
       navigate('/dashboard');
     } catch (error) {
       console.error(error);
@@ -80,7 +70,6 @@ const AddAiSummaryForm = ({ openaiResponse }: AddAiSummaryFormProps) => {
       <div className="mb-4">
         <h2 className="font-headline font-bold text-zinc-500 uppercase tracking-widest text-xs ml-2 mb-2">use ai
           summary</h2>
-        {/* <button type="button" onClick={handleUseAiSummary}>use ai summary</button> */}
         <form className="bg-[#050505] border border-white/5 rounded-xl p-8 
         shadow-2xl"
           onSubmit={handleAddAiSummaryEntry}
@@ -107,15 +96,6 @@ const AddAiSummaryForm = ({ openaiResponse }: AddAiSummaryFormProps) => {
                 className="font-label text-xs text-zinc-500 uppercase tracking-wider mb-2">difficulty</label>
               <Stars difficulty={difficulty} onChange={updateDifficulty} />
             </div>
-            {/* <input
-              type="number"
-              id="difficulty"
-              name="difficulty"
-              min="1"
-              max="5"
-              value={difficulty}
-              onChange={(e) => setDifficulty(Number(e.target.value))}
-            /> */}
             <div className="flex flex-col">
               <label className="font-label text-xs text-zinc-500 uppercase tracking-wider mb-2">minutes
                 spent</label>

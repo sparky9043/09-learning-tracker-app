@@ -50,15 +50,8 @@ const DashboardNav = ({ currentUser, setCurrentUser }: DashboardNavProps) => {
         >
           <span className="material-symbols-outlined text-xl" data-icon="smart_toy">smart_toy</span>
         </NavLink>
-        {/* <NavLink></NavLink> */}
-        {/* <a className="text-on-surface-variant hover:text-[#a3a6ff] transition-colors font-headline text-lg tracking-tight"
-          href="#">Courses</a>
-        <a className="text-on-surface-variant hover:text-[#a3a6ff] transition-colors font-headline text-lg tracking-tight"
-          href="#">Resources</a> */}
       </div>
       <div className="flex items-center gap-4">
-        {/* <button
-          className="px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-all duration-300 font-label text-sm">Logout</button> */}
         <button
           className="px-5 py-2 rounded-xl bg-linear-to-br from-primary to-primary-dim text-on-primary font-bold transition-transform scale-95 active:scale-90 font-label text-sm shadow-lg shadow-primary/10"
           onClick={handleLogout}

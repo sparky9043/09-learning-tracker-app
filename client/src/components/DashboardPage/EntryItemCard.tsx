@@ -57,7 +57,6 @@ const EntryItemCard = ({ entry }: EntryItemCardItemProps) => {
           {entry.minutes_spent}m
         </div>
       </div>
-      {/* <button onClick={() => handleDelete(entry.id)}>delete</button> */}
     </div>
   )
 };

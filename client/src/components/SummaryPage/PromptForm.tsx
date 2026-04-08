@@ -1,8 +1,5 @@
 import { useState, type Dispatch, type SetStateAction } from "react"
 import entriesService from "../../service/entriesService";
-// import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSet } from "../ui/field";
-// import { Textarea } from "../ui/textarea";
-// import { Button } from "../ui/button";
 import type { OpenaiResponse } from "@/types/types";
 
 interface PromptFormProps {

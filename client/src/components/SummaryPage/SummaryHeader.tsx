@@ -1,6 +1,5 @@
 import useOpenaiResponseContext from "@/hooks/useOpenaiResponseContext";
 import { useNavigate } from "react-router";
-// import { Button } from "../ui/button";
 
 const SummaryHeader = () => {
   const { setOpenaiResponse } = useOpenaiResponseContext();
