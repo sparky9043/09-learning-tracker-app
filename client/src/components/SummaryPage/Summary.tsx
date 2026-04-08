@@ -23,7 +23,8 @@ const Summary = () => {
         ?
         <>
           <OpenAITopicAndSummary openaiResponse={openaiResponse} />
-          <section>
+          <AddAiSummaryForm openaiResponse={openaiResponse} />
+          {/* <section>
             <div className="mb-4">
               <h2 className="font-headline font-bold text-zinc-500 uppercase tracking-widest text-xs ml-2 mb-2">use ai
                 summary</h2>
@@ -78,7 +79,7 @@ const Summary = () => {
                 </div>
               </div>
             </div>
-          </section>
+          </section> */}
         </>
         : null
       }

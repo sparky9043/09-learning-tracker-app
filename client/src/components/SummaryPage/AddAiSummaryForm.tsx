@@ -3,18 +3,26 @@ import { useState } from "react";
 import entriesService from "../../service/entriesService";
 import { useNavigate } from "react-router";
 import { useCurrentUserContext } from "../../hooks/useCurrentUserContext";
-import useOpenaiResponseContext from "../../hooks/useOpenaiResponseContext";
+// import useOpenaiResponseContext from "../../hooks/useOpenaiResponseContext";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSet } from "../ui/field";
-import { Input } from "../ui/input";
-import { Textarea } from "../ui/textarea";
-import { Button } from "../ui/button";
+// import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSet } from "../ui/field";
+// import { Input } from "../ui/input";
+// import { Textarea } from "../ui/textarea";
+// import { Button } from "../ui/button";
+import type { OpenaiResponse } from "@/types/types";
+import Stars from "../misc/Stars";
 
-const AddAiSummaryForm = () => {
+interface AddAiSummaryFormProps {
+  openaiResponse: OpenaiResponse | null;
+}
+
+
+const AddAiSummaryForm = ({ openaiResponse }: AddAiSummaryFormProps) => {
+
   const { currentUser } = useCurrentUserContext();
-  const { openaiResponse, setOpenaiResponse } = useOpenaiResponseContext();
-  const [topic, setTopic] = useState<string>('');
-  const [note, setNote] = useState<string>('');
+  // const { openaiResponse, setOpenaiResponse } = useOpenaiResponseContext();
+  // const [topic, setTopic] = useState<string>('');
+  // const [note, setNote] = useState<string>('');
   const [difficulty, setDifficulty] = useState<number>(1);
   const [minutes, setMinutes] = useState<number>(1);
   const navigate = useNavigate();
@@ -30,9 +38,14 @@ const AddAiSummaryForm = () => {
     },
   });
 
+  const updateDifficulty = (rating: number) => {
+    setDifficulty(rating);
+  }
 
   const handleAddAiSummaryEntry = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const { note, topic } = openaiResponse!;
+
     try {
       if (!topic || !note) {
         throw new Error('please fill out the topic and note!');
@@ -55,69 +68,84 @@ const AddAiSummaryForm = () => {
       }
 
       learningEntriesMutation.mutate(newLearningEntryObject);
-      setOpenaiResponse(null);
+      // setOpenaiResponse(null);
       navigate('/dashboard');
     } catch (error) {
       console.error(error);
     }
   }
 
-  const handleUseAiSummary = () => {
-    if (!openaiResponse) {
-      return;
-    }
-    setTopic(openaiResponse?.topic);
-    setNote(openaiResponse?.note);
-  }
-
   return (
-    <div>
-      <button type="button" onClick={handleUseAiSummary}>use ai summary</button>
-      <form
-        className="rounded-md p-4 shadow-lg shadow-stone-300"
-        onSubmit={handleAddAiSummaryEntry}
-      >
-
-        <label htmlFor="topic">topic</label>
-        <input
-          type="text"
-          id="topic"
-          name="topic"
-          value={topic}
-          onChange={(e) => setTopic(e.target.value)}
-        />
-        <label htmlFor="note">note</label>
-        <textarea
-          className="resize-none"
-          id="note"
-          name="note"
-          value={note}
-          onChange={(e) => setNote(e.target.value)}
-          rows={5}
-          cols={30}
-        />
-        <label htmlFor="difficulty">difficulty</label>
-        <input
-          type="number"
-          id="difficulty"
-          name="difficulty"
-          min="1"
-          max="5"
-          value={difficulty}
-          onChange={(e) => setDifficulty(Number(e.target.value))}
-        />
-        <label htmlFor="minutes">minutes spent</label>
-        <input
-          min="1"
-          type="number"
-          id="minutes"
-          name="minutes"
-          value={minutes}
-          onChange={(e) => setMinutes(Number(e.target.value))}
-        />
-        <button type="submit">create entry</button>
-      </form>
-    </div>
+    <section>
+      <div className="mb-4">
+        <h2 className="font-headline font-bold text-zinc-500 uppercase tracking-widest text-xs ml-2 mb-2">use ai
+          summary</h2>
+        {/* <button type="button" onClick={handleUseAiSummary}>use ai summary</button> */}
+        <form className="bg-[#050505] border border-white/5 rounded-xl p-8 
+        shadow-2xl"
+          onSubmit={handleAddAiSummaryEntry}
+        >
+          <div
+            className="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-6"
+          >
+            <div className="flex flex-col">
+              <label
+                className="font-label text-xs text-zinc-500 uppercase tracking-wider mb-2"
+              >topic</label>
+              <div className="text-on-surface font-body text-sm leading-relaxed">
+                {openaiResponse?.topic}
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <label className="font-label text-xs text-zinc-500 uppercase tracking-wider mb-2">note</label>
+              <div className="text-on-surface-variant font-body text-sm leading-relaxed line-clamp-3">
+                {openaiResponse?.note}
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <label
+                className="font-label text-xs text-zinc-500 uppercase tracking-wider mb-2">difficulty</label>
+              <Stars difficulty={difficulty} onChange={updateDifficulty} />
+            </div>
+            {/* <input
+              type="number"
+              id="difficulty"
+              name="difficulty"
+              min="1"
+              max="5"
+              value={difficulty}
+              onChange={(e) => setDifficulty(Number(e.target.value))}
+            /> */}
+            <div className="flex flex-col">
+              <label className="font-label text-xs text-zinc-500 uppercase tracking-wider mb-2">minutes
+                spent</label>
+              <input
+                className="bg-transparent border-b border-white/10 focus:border-primary transition-colors text-sm py-1 outline-none text-on-surface font-body w-full"
+                min="1"
+                type="number"
+                id="minutes"
+                name="minutes"
+                value={minutes}
+                onChange={(e) => setMinutes(Number(e.target.value))}
+              />
+            </div>
+          </div>
+          <div
+            className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-10 mt-6 border-t border-white/5">
+            <p className="text-zinc-500 font-label text-xs flex items-center space-x-2 italic">
+              <span className="material-symbols-outlined text-sm" data-icon="info">info</span>
+              <span>This will be added to your 'Insights' timeline.</span>
+            </p>
+            <button
+              className="w-full sm:w-auto px-10 py-3.5 bg-surface-container-highest hover:bg-zinc-800 text-primary font-headline font-bold rounded-xl transition-all active:scale-95 border border-white/5"
+              type="submit"
+            >
+              Save to History
+            </button>
+          </div>
+        </form>
+      </div>
+    </section >
   )
 };
 
