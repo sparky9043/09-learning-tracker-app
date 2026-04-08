@@ -1,6 +1,6 @@
 import loginService from "@/service/loginService";
 import type { User } from "@/types/types";
-import { NavLink, useNavigate } from "react-router";
+import { NavLink, useNavigate, type NavLinkRenderProps } from "react-router";
 
 interface DashboardNavProps {
   currentUser: User | null;
@@ -25,6 +25,12 @@ const DashboardNav = ({ currentUser, setCurrentUser }: DashboardNavProps) => {
 
   if (!currentUser || !currentUser?.username) return null;
 
+  const inactiveStyle = "font-semibold font-headline text-lg tracking-tight flex items-center";
+
+  const activeStyle = `${inactiveStyle} + text-tertiary`;
+
+  const getActiveStyle = ({ isActive }: NavLinkRenderProps): string => isActive ? activeStyle : inactiveStyle;
+
   return (
     <nav className="fixed top-0 w-full z-50 bg-[#0e0e0e]/80 backdrop-blur-xl shadow-[0_0_40px_rgba(163,166,255,0.08)]">
     <div className="flex justify-between items-center px-8 h-16 w-full max-w-none">
@@ -40,13 +46,14 @@ const DashboardNav = ({ currentUser, setCurrentUser }: DashboardNavProps) => {
         </NavLink>
         <NavLink
           to='history'
-          className="font-semibold font-headline text-lg tracking-tight"
+          // className="font-semibold font-headline text-lg tracking-tight"
+          className={getActiveStyle}
         >
           History
         </NavLink>
         <NavLink
           to='summarize'
-          className="flex items-center"
+          className={getActiveStyle}
         >
           <span className="material-symbols-outlined text-xl" data-icon="smart_toy">smart_toy</span>
         </NavLink>
