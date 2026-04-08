@@ -25,7 +25,7 @@ const DashboardNav = ({ currentUser, setCurrentUser }: DashboardNavProps) => {
 
   if (!currentUser || !currentUser?.username) return null;
 
-  const inactiveStyle = "font-semibold font-headline text-lg tracking-tight flex items-center";
+  const inactiveStyle = "font-semibold font-headline text-lg tracking-tight flex items-center hover:animate-pulse";
 
   const activeStyle = `${inactiveStyle} + text-tertiary`;
 
@@ -40,7 +40,7 @@ const DashboardNav = ({ currentUser, setCurrentUser }: DashboardNavProps) => {
       <div className="hidden md:flex items-center gap-8">
         <NavLink
           to='/dashboard'
-          className="text-[#a3a6ff] font-semibold font-headline text-lg tracking-tight"
+          className="text-[#a3a6ff] font-semibold font-headline text-lg tracking-tight hover:animate-pulse"
         >
           Dashboard
         </NavLink>
