@@ -10,14 +10,15 @@ import LearningStats from "./LearningStats";
 import LearningEntryFilter from "./LearningEntryFilter";
 import AddEntryModal from "./AddEntryModal";
 import EntryItemCard from "./EntryItemCard";
+import EntryPaginationNav from "./EntryPaginationNav";
 
 export type FilterBy = 'topic' | 'note';
 
 const LearningHistory = () => {
   const { currentUser } = useCurrentUserContext();
   const [sortBy, setSortBy] = useState<string>('newest');
-  const [filterBy, setFilterBy] = useState<FilterBy>('topic');
-  const [topicFilter, setTopicFilter] = useState<string>('');
+  // const [filterBy, setFilterBy] = useState<FilterBy>('topic');
+  const [entryFilter, setEntryFilter] = useState<string>('');
   const [noteFilter, setNoteFilter] = useState<string>('');
   const [pageIndex, setPageIndex] = useState<number>(0);
 
@@ -67,12 +68,11 @@ const LearningHistory = () => {
     return sortedData;
   }
 
-  const filterData = (data: SavedLearningEntry[]) => {
-    const filteredData = filterBy === 'topic'
-      ? data.filter(entry => entry.topic.toLowerCase().includes(topicFilter.toLowerCase()))
-      : data.filter(entry => entry.note.toLowerCase().includes(noteFilter.toLowerCase()))
-    return filteredData;
-  }
+  const filterData = (data: SavedLearningEntry[]) => 
+      data.filter(entry => 
+        entry.topic.toLowerCase().includes(entryFilter.toLowerCase()) ||
+        entry.note.toLowerCase().includes(entryFilter.toLowerCase())
+      )
 
   const sortedData = sortData(entryByUserQuery.data);
 
@@ -82,43 +82,7 @@ const LearningHistory = () => {
 
   const maxPages = Math.ceil(totalEntries / 9);
 
-  const paginationButtons = (maxPages: number) =>
-    Array.from({ length: maxPages }, (_, i) => {
-      const pageNumber = i + 1;
-
-      let buttonStyles: string;
-
-      if (i == pageIndex) {
-        buttonStyles = "w-10 h-10 rounded-lg bg-primary text-on-primary font-bold text-sm shadow-md hover:cursor-pointer"
-      } else {
-        buttonStyles = "w-10 h-10 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors font-semibold text-sm hover:cursor-pointer"
-      }
-
-      return (
-        <button
-          key={pageNumber}
-          className={buttonStyles}
-          onClick={() => setPageIndex(i)}
-        >
-          {pageNumber}
-        </button>
-      )
-    }
-    );
-
   const nineEntries = filteredData.slice(pageIndex * 9, (1 + pageIndex) * 9);
-
-  const handlePrevious = (pageIndex: number) => {
-    if (pageIndex > 0) {
-      setPageIndex(prev => prev - 1);
-    }
-  }
-
-  const handleNext = (pageIndex: number) => {
-    if (pageIndex + 1 < maxPages) {
-      setPageIndex(prev => prev + 1);
-    }
-  }
 
   return (
     <main className="pt-32 pb-20 px-8 max-w-7xl mx-auto">
@@ -139,12 +103,12 @@ const LearningHistory = () => {
       </header>
       {/* Filter & Sort Bar */}
       <LearningEntryFilter
-        filterBy={filterBy}
-        setFilterBy={setFilterBy}
-        topicFilter={topicFilter}
-        setTopicFilter={setTopicFilter}
-        noteFilter={noteFilter}
-        setNoteFilter={setNoteFilter}
+        // filterBy={filterBy}
+        // setFilterBy={setFilterBy}
+        // noteFilter={noteFilter}
+        // setNoteFilter={setNoteFilter}
+        entryFilter={entryFilter}
+        setEntryFilter={setEntryFilter}
       />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
         {nineEntries.map(entry => <EntryItemCard key={entry.id} entry={entry} />)}
@@ -168,29 +132,7 @@ const LearningHistory = () => {
 
       {/* {isDataLoaded && <LearningEntries data={filteredData} />}
          */}
-      <nav aria-label="Pagination" className="flex items-center justify-center gap-2">
-        <button
-          className="flex items-center gap-1 px-4 py-2 text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors disabled:opacity-30 disabled:pointer-events-none"
-          onClick={() => handlePrevious(pageIndex)}
-        >
-          <span className="material-symbols-outlined text-lg" data-icon="chevron_left">chevron_left</span>
-          Previous
-        </button>
-        <div className="flex items-center gap-1 mx-4">
-          {paginationButtons(maxPages)}
-        </div>
-        <button
-          className="flex items-center gap-1 px-4 py-2 text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors"
-          onClick={() => handleNext(pageIndex)}
-        >
-          Next
-          <span
-            className="material-symbols-outlined text-lg" data-icon="chevron_right"
-          >
-            chevron_right
-          </span>
-        </button>
-      </nav>
+        <EntryPaginationNav pageIndex={pageIndex} maxPages={maxPages} setPageIndex={setPageIndex} />
     </main>
   )
 }

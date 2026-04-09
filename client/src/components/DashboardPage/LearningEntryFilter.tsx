@@ -2,24 +2,24 @@
 // import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSet } from "../ui/field";
 // import { Button } from "../ui/button";
 // import Togglelable from "../misc/Toggleable";
-import type { FilterBy } from "./LearningHistory";
+// import type { FilterBy } from "./LearningHistory";
 
 interface LearningEntryFilterProps {
-  filterBy: FilterBy;
-  topicFilter: string;
-  noteFilter: string;
-  setFilterBy: React.Dispatch<React.SetStateAction<FilterBy>>
-  setTopicFilter: React.Dispatch<React.SetStateAction<string>>
-  setNoteFilter: React.Dispatch<React.SetStateAction<string>>
+  // filterBy: FilterBy;
+  entryFilter: string;
+  // noteFilter: string;
+  // setFilterBy: React.Dispatch<React.SetStateAction<FilterBy>>
+  setEntryFilter: React.Dispatch<React.SetStateAction<string>>
+  // setNoteFilter: React.Dispatch<React.SetStateAction<string>>
 };
 
 const LearningEntryFilter = ({
-      filterBy,
-      setFilterBy,
-      topicFilter,
-      setTopicFilter,
-      noteFilter,
-      setNoteFilter
+      // filterBy,
+      // setFilterBy,
+      entryFilter,
+      setEntryFilter,
+      // noteFilter,
+      // setNoteFilter
     }: LearningEntryFilterProps
   ) => {
 
@@ -47,10 +47,10 @@ const LearningEntryFilter = ({
           data-icon="search">search</span>
         <input
           className="bg-surface-container-lowest border border-white/5 focus:ring-1 focus:ring-primary/50 focus:border-primary/50 rounded-lg pl-10 pr-4 py-2 w-full md:w-64 text-on-surface text-sm placeholder:text-outline/50 transition-all"
-          placeholder="Filter entries by topic..."
+          placeholder="Filter entries..."
           type="text"
-          value={topicFilter}
-          onChange={(e) => setTopicFilter(e.target.value)}
+          value={entryFilter}
+          onChange={(e) => setEntryFilter(e.target.value)}
         />
       </div>
     </div>
