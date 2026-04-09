@@ -54,7 +54,9 @@ const LearningHistory = () => {
     )
   }
 
-  // const totalTimeSpent = entryByUserQuery.data.map(entry => entry.minutes_spent).reduce((prev, curr) => prev + curr, 0);
+  const totalTimeSpent = entryByUserQuery.data.map(entry => entry.minutes_spent).reduce((prev, curr) => prev + curr, 0);
+
+  const totalTimeInHours = Math.floor(totalTimeSpent / 60);
 
   const sortData = (data: SavedLearningEntry[]) => {
     const copy = [...data];
@@ -97,14 +99,20 @@ const LearningHistory = () => {
   return (
     <main className="pt-32 pb-20 px-8 max-w-7xl mx-auto">
       <header className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
-        <div className="space-y-3">
+      <div className="space-y-3">
+        <div className="flex items-center gap-4 flex-wrap">
           <h1 className="text-5xl md:text-6xl font-headline font-bold tracking-tight text-on-surface">
             Learning History
           </h1>
-          <p className="text-on-surface-variant text-base max-w-md">
-            A curated archive of your intellectual progress and deep-work sessions.
-          </p>
+          {totalTimeInHours > 0 && <div className="px-3 py-1.5 bg-primary/5 border border-primary/20 rounded-full flex items-center gap-2">
+            <span className="material-symbols-outlined text-primary text-sm">analytics</span>
+            <span className="text-primary font-bold text-xs uppercase tracking-widest">{totalTimeInHours} Hours Logged</span>
+          </div>}
         </div>
+        <p className="text-on-surface-variant text-base max-w-md">
+          A curated archive of your intellectual progress and deep-work sessions.
+        </p>
+      </div>
         <button
           className="flex items-center gap-2 px-6 py-3 bg-linear-to-br from-primary to-primary-dim text-on-primary rounded-xl font-headline font-bold transition-all shadow-sm">
           <span className="material-symbols-outlined text-[20px]" data-icon="add">add</span>
