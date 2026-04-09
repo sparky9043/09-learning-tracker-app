@@ -2,14 +2,14 @@ interface LearningEntryFilterProps {
   entryFilter: string;
   updateEntryFilter: (event: React.ChangeEvent<HTMLInputElement>) => void;
   sortBy: string;
-  setSortBy: React.Dispatch<React.SetStateAction<string>>;
+  updateSort: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
 const EntrySortAndFilter = ({
   entryFilter,
   updateEntryFilter,
   sortBy,
-  setSortBy,
+  updateSort,
 }: LearningEntryFilterProps
 ) => {
 
@@ -31,7 +31,7 @@ const EntrySortAndFilter = ({
           <select
             className="w-full pl-16 pr-10 py-2.5 bg-surface-container-high text-on-surface font-medium rounded-lg border border-white/5 hover:bg-surface-container-highest transition-all text-sm cursor-pointer focus:ring-1 focus:ring-primary/50 focus:outline-none appearance-none"
             value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
+            onChange={updateSort}
           >
             <option value="newest">Newest First</option>
             <option value="oldest">Oldest First</option>

@@ -82,6 +82,12 @@ const LearningHistory = () => {
 
   const nineEntries = filteredData.slice(pageIndex * 9, (1 + pageIndex) * 9);
 
+  const updateSort = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setPageIndex(0);
+    setEntryFilter('');
+    setSortBy(event.target.value);
+  }
+
   const updateEntryFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPageIndex(0);
     setEntryFilter(event.target.value);
@@ -107,7 +113,7 @@ const LearningHistory = () => {
       {/* Filter & Sort Bar */}
       <EntrySortAndFilter
         sortBy={sortBy}
-        setSortBy={setSortBy}
+        updateSort={updateSort}
         entryFilter={entryFilter}
         updateEntryFilter={updateEntryFilter}
       />
