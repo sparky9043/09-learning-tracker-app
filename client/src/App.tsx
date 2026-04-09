@@ -7,7 +7,7 @@ import Protected from './components/ProtectedRoute/Protected'
 import Summary from './components/SummaryPage/Summary'
 import AIAssistantPage from './components/AIAssistantPage/AIAssistantPage'
 import BoilerplateOutput from './components/misc/BoilerplateOutput'
-import LearningEntriesList from './components/DashboardPage/LearningEntriesList'
+import LearningHistory from './components/DashboardPage/LearningHistory'
 // import Summary from './components/SummaryPage/Summary'
 
 function App() {
@@ -39,7 +39,7 @@ function App() {
               path: 'ai-assistant',
             },
             {
-              Component: LearningEntriesList,
+              Component: LearningHistory,
               path: 'history'
             }
           ]

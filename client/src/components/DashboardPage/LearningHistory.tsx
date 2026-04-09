@@ -13,7 +13,7 @@ import EntryItemCard from "./EntryItemCard";
 
 export type FilterBy = 'topic' | 'note';
 
-const LearningEntriesList = () => {
+const LearningHistory = () => {
   const { currentUser } = useCurrentUserContext();
   const [sortBy, setSortBy] = useState<string>('newest');
   const [filterBy, setFilterBy] = useState<FilterBy>('note');
@@ -212,4 +212,4 @@ const LearningEntriesList = () => {
   )
 }
 
-export default LearningEntriesList;
+export default LearningHistory;

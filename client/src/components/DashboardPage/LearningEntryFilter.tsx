@@ -2,7 +2,7 @@ import { Input } from "../ui/input";
 import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSet } from "../ui/field";
 import { Button } from "../ui/button";
 import Togglelable from "../misc/Toggleable";
-import type { FilterBy } from "./LearningEntriesList";
+import type { FilterBy } from "./LearningHistory";
 
 interface LearningEntryFilterProps {
   filterBy: FilterBy;
