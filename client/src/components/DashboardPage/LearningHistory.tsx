@@ -103,10 +103,6 @@ const LearningHistory = () => {
       </header>
       {/* Filter & Sort Bar */}
       <LearningEntryFilter
-        // filterBy={filterBy}
-        // setFilterBy={setFilterBy}
-        // noteFilter={noteFilter}
-        // setNoteFilter={setNoteFilter}
         entryFilter={entryFilter}
         setEntryFilter={setEntryFilter}
       />
@@ -132,7 +128,11 @@ const LearningHistory = () => {
 
       {/* {isDataLoaded && <LearningEntries data={filteredData} />}
          */}
-        <EntryPaginationNav pageIndex={pageIndex} maxPages={maxPages} setPageIndex={setPageIndex} />
+        {maxPages > 1 && <EntryPaginationNav
+          pageIndex={pageIndex}
+          maxPages={maxPages}
+          setPageIndex={setPageIndex}
+        />}
     </main>
   )
 }
