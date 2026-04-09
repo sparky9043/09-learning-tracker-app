@@ -1,13 +1,17 @@
 interface LearningEntryFilterProps {
   entryFilter: string;
   updateEntryFilter: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  sortBy: string;
+  setSortBy: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const LearningEntryFilter = ({
-      entryFilter,
-      updateEntryFilter,
-    }: LearningEntryFilterProps
-  ) => {
+const EntrySortAndFilter = ({
+  entryFilter,
+  updateEntryFilter,
+  sortBy,
+  setSortBy,
+}: LearningEntryFilterProps
+) => {
 
   return (
     <div className="flex flex-wrap items-center justify-between gap-6 mb-12 py-6 border-y border-white/5">
@@ -20,6 +24,26 @@ const LearningEntryFilter = ({
           <span className="material-symbols-outlined text-lg text-on-surface-variant"
             data-icon="expand_more">expand_more</span>
         </button> */}
+        <div className="custom-select-wrapper group relative min-w-55">
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none flex items-center gap-2">
+            <span className="text-on-surface-variant font-bold uppercase tracking-wider text-[10px]">Sort:</span>
+          </div>
+          <select
+            className="w-full pl-16 pr-10 py-2.5 bg-surface-container-high text-on-surface font-medium rounded-lg border border-white/5 hover:bg-surface-container-highest transition-all text-sm cursor-pointer focus:ring-1 focus:ring-primary/50 focus:outline-none appearance-none"
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+          >
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="longest">Longest Duration</option>
+            <option value="shortest">Shortest Duration</option>
+          </select>
+          <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+            <span
+              className="material-symbols-outlined text-lg text-on-surface-variant group-hover:text-on-surface transition-colors"
+              data-icon="expand_more">expand_more</span>
+          </div>
+        </div>
       </div>
       <div className="relative group">
         <span
@@ -37,4 +61,4 @@ const LearningEntryFilter = ({
   );
 }
 
-export default LearningEntryFilter;
+export default EntrySortAndFilter;

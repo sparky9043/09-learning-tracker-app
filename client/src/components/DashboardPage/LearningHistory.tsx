@@ -7,7 +7,7 @@ import { useCurrentUserContext } from "@/hooks/useCurrentUserContext";
 import LearningEntries from "./LearningEntries";
 import SelectComponent from "../misc/SelectComponent";
 import LearningStats from "./LearningStats";
-import LearningEntryFilter from "./LearningEntryFilter";
+import EntrySortAndFilter from "./EntrySortAndFilter";
 import AddEntryModal from "./AddEntryModal";
 import EntryItemCard from "./EntryItemCard";
 import EntryPaginationNav from "./EntryPaginationNav";
@@ -17,7 +17,6 @@ export type FilterBy = 'topic' | 'note';
 const LearningHistory = () => {
   const { currentUser } = useCurrentUserContext();
   const [sortBy, setSortBy] = useState<string>('newest');
-  // const [filterBy, setFilterBy] = useState<FilterBy>('topic');
   const [entryFilter, setEntryFilter] = useState<string>('');
   const [noteFilter, setNoteFilter] = useState<string>('');
   const [pageIndex, setPageIndex] = useState<number>(0);
@@ -62,8 +61,8 @@ const LearningHistory = () => {
     const sortedData = sortBy === 'oldest'
       ? copy.sort((a, b) => isBefore(a.created_at, b.created_at) ? -1 : 1)
       : sortBy === 'newest' ? copy.sort((a, b) => isBefore(a.created_at, b.created_at) ? 1 : -1)
-        : sortBy === 'longest time' ? copy.sort((a, b) => a.minutes_spent - b.minutes_spent < 0 ? 1 : -1)
-          : sortBy === 'shortest time' ? copy.sort((a, b) => a.minutes_spent - b.minutes_spent > 0 ? 1 : -1)
+        : sortBy === 'longest' ? copy.sort((a, b) => a.minutes_spent - b.minutes_spent < 0 ? 1 : -1)
+          : sortBy === 'shortest' ? copy.sort((a, b) => a.minutes_spent - b.minutes_spent > 0 ? 1 : -1)
             : copy;
     return sortedData;
   }
@@ -89,6 +88,8 @@ const LearningHistory = () => {
     setEntryFilter(event.target.value);
   }
 
+  console.log(sortBy);
+
   return (
     <main className="pt-32 pb-20 px-8 max-w-7xl mx-auto">
       <header className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
@@ -107,7 +108,9 @@ const LearningHistory = () => {
         </button>
       </header>
       {/* Filter & Sort Bar */}
-      <LearningEntryFilter
+      <EntrySortAndFilter
+        sortBy={sortBy}
+        setSortBy={setSortBy}
         entryFilter={entryFilter}
         updateEntryFilter={updateEntryFilter}
       />
