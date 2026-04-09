@@ -4,11 +4,11 @@ import type { SavedLearningEntry } from "../../types/types";
 import { useState } from "react";
 import { isBefore } from 'date-fns';
 import { useCurrentUserContext } from "@/hooks/useCurrentUserContext";
-import LearningEntries from "./LearningEntries";
-import SelectComponent from "../misc/SelectComponent";
-import LearningStats from "./LearningStats";
+// import LearningEntries from "./LearningEntries";
+// import SelectComponent from "../misc/SelectComponent";
+// import LearningStats from "./LearningStats";
 import EntrySortAndFilter from "./EntrySortAndFilter";
-import AddEntryModal from "./AddEntryModal";
+// import AddEntryModal from "./AddEntryModal";
 import EntryItemCard from "./EntryItemCard";
 import EntryPaginationNav from "./EntryPaginationNav";
 
@@ -18,7 +18,6 @@ const LearningHistory = () => {
   const { currentUser } = useCurrentUserContext();
   const [sortBy, setSortBy] = useState<string>('newest');
   const [entryFilter, setEntryFilter] = useState<string>('');
-  const [noteFilter, setNoteFilter] = useState<string>('');
   const [pageIndex, setPageIndex] = useState<number>(0);
 
   const entryByUserQuery = useQuery<SavedLearningEntry[]>({
@@ -87,8 +86,6 @@ const LearningHistory = () => {
     setPageIndex(0);
     setEntryFilter(event.target.value);
   }
-
-  console.log(sortBy);
 
   return (
     <main className="pt-32 pb-20 px-8 max-w-7xl mx-auto">
