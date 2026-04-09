@@ -108,7 +108,7 @@ const AddLearningEntryForm = () => {
             htmlFor="difficulty"
             className="block text-xs font-label text-on-surface-variant uppercase tracking-wide mb-2"
           >difficulty (maximum 5 stars)</label>
-          <Stars difficulty={difficulty} onChange={updateDifficulty} />
+          <Stars difficulty={difficulty} onChange={updateDifficulty} showText={true} />
         </div>
         <div>
           <label
