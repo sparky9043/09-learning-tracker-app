@@ -86,10 +86,18 @@ const LearningHistory = () => {
     Array.from({ length: maxPages }, (_, i) => {
       const pageNumber = i + 1;
 
+      let buttonStyles = ""
+
+      if (i == pageIndex) {
+        buttonStyles = "w-10 h-10 rounded-lg bg-primary text-on-primary font-bold text-sm shadow-md"
+      } else {
+        buttonStyles = "w-10 h-10 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors font-semibold text-sm"
+      }
+
       return (
         <button
           key={pageNumber}
-          className="w-10 h-10 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors font-semibold text-sm">
+          className={buttonStyles}>
           {pageNumber}
         </button>
       )
