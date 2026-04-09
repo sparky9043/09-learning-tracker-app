@@ -84,6 +84,11 @@ const LearningHistory = () => {
 
   const nineEntries = filteredData.slice(pageIndex * 9, (1 + pageIndex) * 9);
 
+  const updateEntryFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPageIndex(0);
+    setEntryFilter(event.target.value);
+  }
+
   return (
     <main className="pt-32 pb-20 px-8 max-w-7xl mx-auto">
       <header className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
@@ -104,7 +109,7 @@ const LearningHistory = () => {
       {/* Filter & Sort Bar */}
       <LearningEntryFilter
         entryFilter={entryFilter}
-        setEntryFilter={setEntryFilter}
+        updateEntryFilter={updateEntryFilter}
       />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
         {nineEntries.map(entry => <EntryItemCard key={entry.id} entry={entry} />)}

@@ -1,24 +1,11 @@
-// import { Input } from "../ui/input";
-// import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSet } from "../ui/field";
-// import { Button } from "../ui/button";
-// import Togglelable from "../misc/Toggleable";
-// import type { FilterBy } from "./LearningHistory";
-
 interface LearningEntryFilterProps {
-  // filterBy: FilterBy;
   entryFilter: string;
-  // noteFilter: string;
-  // setFilterBy: React.Dispatch<React.SetStateAction<FilterBy>>
-  setEntryFilter: React.Dispatch<React.SetStateAction<string>>
-  // setNoteFilter: React.Dispatch<React.SetStateAction<string>>
+  updateEntryFilter: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const LearningEntryFilter = ({
-      // filterBy,
-      // setFilterBy,
       entryFilter,
-      setEntryFilter,
-
+      updateEntryFilter,
     }: LearningEntryFilterProps
   ) => {
 
@@ -43,7 +30,7 @@ const LearningEntryFilter = ({
           placeholder="Filter entries..."
           type="text"
           value={entryFilter}
-          onChange={(e) => setEntryFilter(e.target.value)}
+          onChange={updateEntryFilter}
         />
       </div>
     </div>
