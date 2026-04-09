@@ -19,7 +19,7 @@ const LearningHistory = () => {
   const [filterBy, setFilterBy] = useState<FilterBy>('note');
   const [topicFilter, setTopicFilter] = useState<string>('');
   const [noteFilter, setNoteFilter] = useState<string>('');
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [pageIndex, setPageIndex] = useState<number>(0);
 
   const entryByUserQuery = useQuery<SavedLearningEntry[]>({
     queryKey: ['entriesByUser'],
@@ -82,8 +82,6 @@ const LearningHistory = () => {
 
   const maxPages = Math.ceil(totalEntries / 9);
 
-  console.log(totalEntries)
-
   const paginationButtons = () =>
     Array.from({ length: maxPages }, (_, i) => {
       const pageNumber = i + 1;
@@ -98,21 +96,19 @@ const LearningHistory = () => {
     }
   );
 
-  const nineEntries = sortedData.slice(currentPage - 1, currentPage + 8);
+  const nineEntries = sortedData.slice(pageIndex * 9, (1 + pageIndex) * 9);
 
   const handlePrevious = () => {
-    if (currentPage > 1) {
-      setCurrentPage(prev => prev - 1);
+    if (pageIndex > 0) {
+      setPageIndex(prev => prev - 1);
     }
   }
 
   const handleNext = () => {
-    if (currentPage <= maxPages) {
-      setCurrentPage(prev => prev + 1);
+    if (pageIndex + 1 < maxPages) {
+      setPageIndex(prev => prev + 1);
     }
   }
-
-  console.log(maxPages)
 
   return (
     <main className="pt-32 pb-20 px-8 max-w-7xl mx-auto">
