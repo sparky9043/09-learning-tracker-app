@@ -11,6 +11,7 @@ import EntrySortAndFilter from "./EntrySortAndFilter";
 // import AddEntryModal from "./AddEntryModal";
 import EntryItemCard from "./EntryItemCard";
 import EntryPaginationNav from "./EntryPaginationNav";
+import DisplayPageNumber from "./DisplayPageNumber";
 
 export type FilterBy = 'topic' | 'note';
 
@@ -66,11 +67,11 @@ const LearningHistory = () => {
     return sortedData;
   }
 
-  const filterData = (data: SavedLearningEntry[]) => 
-      data.filter(entry => 
-        entry.topic.toLowerCase().includes(entryFilter.toLowerCase()) ||
-        entry.note.toLowerCase().includes(entryFilter.toLowerCase())
-      )
+  const filterData = (data: SavedLearningEntry[]) =>
+    data.filter(entry =>
+      entry.topic.toLowerCase().includes(entryFilter.toLowerCase()) ||
+      entry.note.toLowerCase().includes(entryFilter.toLowerCase())
+    )
 
   const sortedData = sortData(entryByUserQuery.data);
 
@@ -117,6 +118,7 @@ const LearningHistory = () => {
         entryFilter={entryFilter}
         updateEntryFilter={updateEntryFilter}
       />
+      <DisplayPageNumber pageIndex={pageIndex} maxPages={maxPages} />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
         {nineEntries.map(entry => <EntryItemCard key={entry.id} entry={entry} />)}
       </div>
@@ -139,11 +141,11 @@ const LearningHistory = () => {
 
       {/* {isDataLoaded && <LearningEntries data={filteredData} />}
          */}
-        {maxPages > 1 && <EntryPaginationNav
-          pageIndex={pageIndex}
-          maxPages={maxPages}
-          setPageIndex={setPageIndex}
-        />}
+      {maxPages > 1 && <EntryPaginationNav
+        pageIndex={pageIndex}
+        maxPages={maxPages}
+        setPageIndex={setPageIndex}
+      />}
     </main>
   )
 }
