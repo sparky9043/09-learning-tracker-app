@@ -16,7 +16,7 @@ export type FilterBy = 'topic' | 'note';
 const LearningHistory = () => {
   const { currentUser } = useCurrentUserContext();
   const [sortBy, setSortBy] = useState<string>('newest');
-  const [filterBy, setFilterBy] = useState<FilterBy>('note');
+  const [filterBy, setFilterBy] = useState<FilterBy>('topic');
   const [topicFilter, setTopicFilter] = useState<string>('');
   const [noteFilter, setNoteFilter] = useState<string>('');
   const [pageIndex, setPageIndex] = useState<number>(0);
@@ -67,22 +67,22 @@ const LearningHistory = () => {
     return sortedData;
   }
 
-  // const filterData = (data: SavedLearningEntry[]) => {
-  //   const filteredData = filterBy === 'topic'
-  //     ? data.filter(entry => entry.topic.toLowerCase().includes(topicFilter.toLowerCase()))
-  //     : data.filter(entry => entry.note.toLowerCase().includes(noteFilter.toLowerCase()))
-  //   return filteredData;
-  // }
+  const filterData = (data: SavedLearningEntry[]) => {
+    const filteredData = filterBy === 'topic'
+      ? data.filter(entry => entry.topic.toLowerCase().includes(topicFilter.toLowerCase()))
+      : data.filter(entry => entry.note.toLowerCase().includes(noteFilter.toLowerCase()))
+    return filteredData;
+  }
 
   const sortedData = sortData(entryByUserQuery.data);
 
-  // const filteredData = filterData(sortedData);
+  const filteredData = filterData(sortedData);
 
-  const totalEntries = entryByUserQuery.data.length;
+  const totalEntries = filteredData.length;
 
   const maxPages = Math.ceil(totalEntries / 9);
 
-  const paginationButtons = () =>
+  const paginationButtons = (maxPages: number) =>
     Array.from({ length: maxPages }, (_, i) => {
       const pageNumber = i + 1;
 
@@ -104,17 +104,17 @@ const LearningHistory = () => {
         </button>
       )
     }
-  );
+    );
 
-  const nineEntries = sortedData.slice(pageIndex * 9, (1 + pageIndex) * 9);
+  const nineEntries = filteredData.slice(pageIndex * 9, (1 + pageIndex) * 9);
 
-  const handlePrevious = () => {
+  const handlePrevious = (pageIndex: number) => {
     if (pageIndex > 0) {
       setPageIndex(prev => prev - 1);
     }
   }
 
-  const handleNext = () => {
+  const handleNext = (pageIndex: number) => {
     if (pageIndex + 1 < maxPages) {
       setPageIndex(prev => prev + 1);
     }
@@ -137,31 +137,17 @@ const LearningHistory = () => {
           Add New Entry
         </button>
       </header>
+      {/* Filter & Sort Bar */}
+      <LearningEntryFilter
+        filterBy={filterBy}
+        setFilterBy={setFilterBy}
+        topicFilter={topicFilter}
+        setTopicFilter={setTopicFilter}
+        noteFilter={noteFilter}
+        setNoteFilter={setNoteFilter}
+      />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
         {nineEntries.map(entry => <EntryItemCard key={entry.id} entry={entry} />)}
-        {/* <div
-          className="group bg-surface-container-low p-6 rounded-xl hover:bg-surface-container transition-all duration-300 refined-border">
-          <div className="flex justify-between items-start mb-6">
-            <div
-              className="w-10 h-10 rounded-lg bg-primary/5 flex items-center justify-center text-primary group-hover:bg-primary/10 transition-colors">
-              <span className="material-symbols-outlined text-xl" data-icon="code">code</span>
-            </div>
-          </div>
-          <h3 className="text-xl font-headline font-bold text-on-surface mb-2 group-hover:text-primary transition-colors">
-            Mastering React Hooks</h3>
-          <p className="text-on-surface-variant text-sm mb-6 leading-relaxed">Deep dive into useEffect and custom hook
-            patterns for state management.</p>
-          <div className="flex items-center justify-between pt-5 border-t border-white/5">
-            <div className="flex items-center gap-2 text-on-surface-variant text-xs font-medium">
-              <span className="material-symbols-outlined text-sm" data-icon="calendar_today">calendar_today</span>
-              Oct 24, 2023
-            </div>
-            <div className="flex items-center gap-2 text-primary font-semibold text-xs">
-              <span className="material-symbols-outlined text-sm" data-icon="schedule">schedule</span>
-              2h 15m
-            </div>
-          </div>
-        </div> */}
       </div>
       {/* <AddEntryModal />
         <LearningEntryFilter
@@ -185,26 +171,17 @@ const LearningHistory = () => {
       <nav aria-label="Pagination" className="flex items-center justify-center gap-2">
         <button
           className="flex items-center gap-1 px-4 py-2 text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors disabled:opacity-30 disabled:pointer-events-none"
-          onClick={handlePrevious}
+          onClick={() => handlePrevious(pageIndex)}
         >
           <span className="material-symbols-outlined text-lg" data-icon="chevron_left">chevron_left</span>
           Previous
         </button>
         <div className="flex items-center gap-1 mx-4">
-          {paginationButtons()}
-          {/* <button className="w-10 h-10 rounded-lg bg-primary text-on-primary font-bold text-sm shadow-md">1</button>
-          <button
-            className="w-10 h-10 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors font-semibold text-sm">2</button>
-          <button
-            className="w-10 h-10 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors font-semibold text-sm">3</button>
-          <button
-            className="w-10 h-10 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors font-semibold text-sm">4</button>
-          <button
-            className="w-10 h-10 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors font-semibold text-sm">5</button> */}
+          {paginationButtons(maxPages)}
         </div>
         <button
           className="flex items-center gap-1 px-4 py-2 text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors"
-          onClick={handleNext}
+          onClick={() => handleNext(pageIndex)}
         >
           Next
           <span
