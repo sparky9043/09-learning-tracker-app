@@ -5,12 +5,12 @@ const baseUrl = '/api/entries'
 
 const getAllEntriesByUser = async () => {
   // Noe that the user lost be logged in. Make sure to test it with /authrequired
-  const response = await axios.get<SavedLearningEntry[]>(`${baseUrl}/loggedin`);
+  const response = await axios.get<SavedLearningEntry[]>(baseUrl);
   return response.data;
 };
 
 const createEntryByUser = async (newEntryObject: NewLearningEntry) => {
-  const response = await axios.post<SavedLearningEntry>(`${baseUrl}/loggedin`, newEntryObject);
+  const response = await axios.post<SavedLearningEntry>(baseUrl, newEntryObject);
   return response.data;
 };
 
@@ -21,7 +21,7 @@ const getOpenAISummaryForEntry = async (promptObject: UserPrompt) => {
 
 const deleteEntryByUser = async (entryId: number) => {
   console.log('inside deleteEntryByUser', entryId);
-  await axios.delete(`${baseUrl}/loggedin/${entryId}`);
+  await axios.delete(`${baseUrl}/${entryId}`);
 };
 
 export default {
