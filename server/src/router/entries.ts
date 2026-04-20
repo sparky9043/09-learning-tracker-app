@@ -35,19 +35,10 @@ entryRouter.get('/', async (_req, res: Response<LearningEntry[]>, next: NextFunc
 // read more about redirect and then see if you can do it correctly
 entryRouter.get('/loggedin', async (req, res: Response<LearningEntry[]>, next: NextFunction) => {
   try {
-    // if (!req.user) {
-    //   return res.redirect('/authrequired');
-    // }
     const userId = req.user!.id;
 
-    if (req.isAuthenticated()) {
-      const learningEntries = await entryQueries.getAllLearningEntriesByUserId(Number(userId));
-      return res.json(learningEntries);
-    } else if (!req.isAuthenticated()) {
-      throw new Error('userid does not match');
-    } else {
-      return res.redirect('/authrequired');
-    }
+    const learningEntries = await entryQueries.getAllLearningEntriesByUserId(Number(userId));
+    res.json(learningEntries);
 
   } catch (error: unknown) {
     next(error);
@@ -69,14 +60,10 @@ entryRouter.get('/:id', async (req: Request<{ id: string }>, res: Response<Learn
 
 entryRouter.post('/loggedin', middleware.newLearningEntryValidator, async (req: Request<ParamsDictionary, unknown, NewLearningEntry>, res: Response<LearningEntry>, next: NextFunction) => {
   try {
-    // if (!req.user) { return res.redirect('/authrequired'); }
 
-    if (req.user) {
-      const savedLearningEntry = await entryQueries.createLearningEntry(req.body);
-      return res.status(201).json(savedLearningEntry);
-    } else {
-      return res.redirect('/authrequired');
-    }
+    const savedLearningEntry = await entryQueries.createLearningEntry(req.body);
+    res.status(201).json(savedLearningEntry);
+
   } catch(error) {
     next(error);
   }
@@ -84,16 +71,15 @@ entryRouter.post('/loggedin', middleware.newLearningEntryValidator, async (req: 
 
 entryRouter.delete('/loggedin/:id', async (req: Request<{ id: string }>, res: Response, next:  NextFunction) => {
   try {
-    if (!req.user) { return res.redirect('/authrequired'); }
     const savedUserId = await userQueries.getUserIdByEntryId(req.params.id);
 
-    if (Number(savedUserId.user_id) !== Number(req.user.id)) {
+    if (Number(savedUserId.user_id) !== Number(req.user?.id)) {
       throw new error.ForbiddenError('access forbidden. user id does not match');
     }
 
     const result = await entryQueries.deleteEntryById(Number(req.params.id));
 
-    return res.status(200).json(result);
+    res.status(200).json(result);
   } catch (error) {
     next(error);
   }
@@ -101,11 +87,9 @@ entryRouter.delete('/loggedin/:id', async (req: Request<{ id: string }>, res: Re
 
 entryRouter.put('/loggedin/:id', async (req: Request<{ id: string }, unknown, NewLearningEntry>, res: Response, next: NextFunction) => {
   try {
-    if (!req.user) { return res.redirect('/authrequired'); }
     const savedUserId = await userQueries.getUserIdByEntryId(req.params.id);
     
-    console.log('inside PUT: ', savedUserId.user_id, req.user.id);
-    if (Number(savedUserId.user_id) !== Number(req.user.id)) {
+    if (Number(savedUserId.user_id) !== Number(req.user?.id)) {
       throw new error.ForbiddenError('access forbidden. user id does not match');
     }
     
