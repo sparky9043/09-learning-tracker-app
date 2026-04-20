@@ -96,7 +96,7 @@ const LoginForm = () => {
                     Login
                   </button>
                 </div>
-                <div className="pt-2">
+                {/* <div className="pt-2">
                   <button
                     type="button"
                     className="w-full bg-linear-to-br from-primary to-primary-dim text-on-primary font-headline font-bold text-lg py-4 rounded-xl shadow-lg shadow-primary/10 hover:shadow-primary/20 transition-all duration-300 active:scale-[0.98]"
@@ -104,7 +104,13 @@ const LoginForm = () => {
                   >
                     Back
                   </button>
-                </div>
+                </div> */}
+                <p className="mt-8 pt-4 border-t border-outline-variant/15 text-center text-on-surface-variant text-sm">
+                    New to the platform? <a className="text-primary font-semibold hover:underline underline-offset-4"
+                    href="#">
+                      Create an account
+                    </a>
+                </p>
               </div>
               <div className="absolute text-red-500">{errorMessage}</div>
             </div>
