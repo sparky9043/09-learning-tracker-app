@@ -114,11 +114,6 @@ const Signup = () => {
           </div>
         </div>
       </main>
-      <div className="sr-only">
-        <img alt="Brand mood"
-          data-alt="minimalist dark workspace with a clean black desk, a single glowing computer screen, and soft indigo accent lighting in a moody atmosphere"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiYE7XDuj3cZHDVr0lAImjAvmniO9MA_ICO3MzxgL0GX0ubbefcNoZ-3VyQqH7l9BtcJrife3-m_T3nKR4EPyae_EMeCSbQ4nMwXuTCft31W_pczzWMK_rtQ83ujyMSUGJLI-TvvkaaGdalnzUKrqX543Y4pG4I7en8Fn52nvPpZc16yhz5-kTofQqLNc3qpVOdfmaTrrGYksSgp91f5HHcaCgC4S2BU5HjkC9s7VnNbg6xhjBkKOH2whJHx7O-IcqlZV-nPGddH0" />
-      </div>
     </div>
   )
 }
