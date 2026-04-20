@@ -16,9 +16,9 @@ passport.use(new LocalStrategy(
         void bcrypt.compare(password, user.password_hash).then(passwordCorrect => {
           if (user && !passwordCorrect) {
             const credentialError = new error.ValidationError('username or password incorrect');
-            return done(credentialError, false, { message: 'invalid credentials '}); // wrong password
+            return done(credentialError, false, { message: 'invalid credentials ' }); // wrong password
           }
-          
+
           if (user && passwordCorrect) {
             const { id } = user;
             return done(null, { id, username });
@@ -55,8 +55,12 @@ loginRouter.post('/api/login', (req: Request<ParamsDictionary, unknown, NewUser>
 
   (passport.authenticate('local', (err: unknown, user: Express.User, info: IVerifyOptions) => {
     if (err) { return next(err); }
-    if (info) { return  res.send(info.message); }
-    if (!user) { return res.redirect('/login'); }
+    if (info) {
+      return res.status(401).json({ error: info.message });
+    }
+    if (!user) {
+      return res.status(401).json({ error: 'Login failed' });
+    }
     req.login(user, (err) => {
       if (err) { return next(err); }
       res.status(201).json({ status: 'success', user });
@@ -76,7 +80,7 @@ loginRouter.get('/authrequired', (req, res) => {
   // console.log('code reached');
   console.log('inside /authrequired');
   if (req.isAuthenticated()) {
-    res.json({ status: 'success', user: req.user});
+    res.json({ status: 'success', user: req.user });
   } else {
     throw new error.ForbiddenError('access forbidden. please make sure you are logged in');
   }
