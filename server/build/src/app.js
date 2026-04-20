@@ -14,11 +14,11 @@ const entries_1 = __importDefault(require("./router/entries"));
 const session_file_store_1 = __importDefault(require("session-file-store"));
 const morgan_1 = __importDefault(require("morgan"));
 const assistant_1 = __importDefault(require("./router/assistant"));
-const path_1 = __importDefault(require("path"));
+// import path from 'path';
 const FileStore = (0, session_file_store_1.default)(express_session_1.default);
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
-app.use(express_1.default.static(path_1.default.join(__dirname, '../dist')));
+app.use(express_1.default.static('dist'));
 app.use((0, morgan_1.default)('dev'));
 app.use((0, express_session_1.default)({
     secret: config_1.default.SESSION_SECRET,
