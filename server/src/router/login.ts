@@ -1,4 +1,4 @@
-import { Request, RequestHandler, Router } from "express";
+import { Request, Router } from "express";
 import passport from "passport";
 import { IVerifyOptions, Strategy as LocalStrategy } from "passport-local";
 import userQueries from "../../db/userQueries";
@@ -49,10 +49,12 @@ loginRouter.get('/login', (_req, res) => {
 // login Router
 loginRouter.post('/api/login', (req: Request<ParamsDictionary, unknown, NewUser>, res, next) => {
   const { username, password } = req.body;
+
   if (!username || !password) {
     throw new error.ValidationError('both username and passwords must be filled out');
-  };
+  }
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   (passport.authenticate('local', (err: unknown, user: Express.User, info: IVerifyOptions) => {
     console.log("AUTH CALLBACK HIT");
     console.log("ERR:", err);
@@ -62,20 +64,17 @@ loginRouter.post('/api/login', (req: Request<ParamsDictionary, unknown, NewUser>
     if (err) { return next(err); }
 
     if (info) {
-      console.log("INFO BLOCK HIT");
       return res.status(401).json({ error: info.message });
     }
 
     if (!user) {
-      console.log("NO USER");
       return res.status(401).json({ error: 'Login failed' });
     }
 
-    console.log("SUCCESS — SENDING RESPONSE");
-
+    // ✅ ONLY THIS LINE MATTERS
     return res.status(200).json({ status: 'success', user });
 
-  }) as RequestHandler)(req, res, next);
+  }))(req, res, next);
 });
 
 loginRouter.post('/api/logout', (req, res, next) => {
