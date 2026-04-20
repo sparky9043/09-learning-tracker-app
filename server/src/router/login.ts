@@ -61,10 +61,12 @@ loginRouter.post('/api/login', (req: Request<ParamsDictionary, unknown, NewUser>
     if (!user) {
       return res.status(401).json({ error: 'Login failed' });
     }
-    req.login(user, (err) => {
-      if (err) { return next(err); }
-      res.status(201).json({ status: 'success', user });
-    });
+    // req.login(user, (err) => {
+    //   if (err) { return next(err); }
+    //   res.status(201).json({ status: 'success', user });
+    // });
+
+    return res.status(200).json({ status: 'success', user });
   }) as RequestHandler)(req, res, next);
 });
 
