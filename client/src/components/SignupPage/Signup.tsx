@@ -1,3 +1,5 @@
+import { Link } from "react-router"
+
 const Signup = () => {
   return (
     <div className="min-h-screen flex items-center justify-center p-6 bg-surface selection:bg-primary/30">
@@ -43,13 +45,13 @@ const Signup = () => {
                 </span>
                 <input
                   className="w-full bg-surface-container-lowest border-none rounded-lg py-4 pl-12 pr-4 text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary transition-all duration-300 font-body text-sm"
-                  id="password" name="password" placeholder="Min. 8 characters" required={true} type="password" />
+                  id="password" name="password" placeholder="********" required={true} type="password" />
               </div>
             </div>
-            <p className="text-[11px] text-outline text-center leading-relaxed px-4">
+            {/* <p className="text-[11px] text-outline text-center leading-relaxed px-4">
               By joining, you agree to our <a className="text-primary hover:underline transition-all" href="#">Terms of
                 Service</a> and <a className="text-primary hover:underline transition-all" href="#">Privacy Policy</a>.
-            </p>
+            </p> */}
             <button
               className="w-full group relative overflow-hidden bg-linear-to-br from-primary to-primary-dim text-on-primary font-headline font-bold py-4 rounded-lg shadow-lg shadow-primary/20 active:scale-[0.98] transition-all duration-200"
               type="submit">
@@ -62,15 +64,12 @@ const Signup = () => {
             </button>
           </form>
           <div className="mt-8 pt-6 border-t border-outline-variant/10 text-center">
-            <a className="font-body text-sm text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">
+            <Link className="font-body text-sm text-on-surface-variant hover:text-primary transition-colors duration-200"
+              to="/login"
+            >
               Already have an account? <span className="font-semibold text-primary">Log in</span>
-            </a>
+            </Link>
           </div>
-        </div>
-        <div className="mt-12 flex justify-center gap-6 opacity-30 grayscale hover:grayscale-0 transition-all duration-500">
-          <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-          <div className="w-1.5 h-1.5 rounded-full bg-tertiary"></div>
-          <div className="w-1.5 h-1.5 rounded-full bg-secondary"></div>
         </div>
       </main>
       <div className="sr-only">
