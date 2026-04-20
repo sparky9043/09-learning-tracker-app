@@ -25,9 +25,6 @@ const assistant = (0, express_1.Router)();
 // });
 assistant.post('/', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        if (!req.user) {
-            res.redirect('/authrequired');
-        }
         const { concepts } = req.body;
         if (!concepts || !Array.isArray(concepts) || concepts.length == 0 || concepts.some(concept => !concept.note || !concept.topic)) {
             throw new error_1.default.ValidationError('please submit the proper format of note and topic');
