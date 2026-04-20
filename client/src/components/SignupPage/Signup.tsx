@@ -1,15 +1,28 @@
+import userService from "@/service/userService";
 import { useState } from "react";
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
 
 const Signup = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const navigate = useNavigate();
 
   const handleCreateUser = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!username || !password) {
-      throw new Error('Please fill out both username and password');
+    try {
+      if (!username || !password) {
+        throw new Error('Please fill out both username and password');
+      }
+
+      const newUser = {
+        username, password
+      };
+
+      userService.createUser(newUser);
+      navigate('/login');
+    } catch (error) {
+      console.error(error);
     }
   }
 
