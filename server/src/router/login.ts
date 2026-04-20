@@ -54,19 +54,27 @@ loginRouter.post('/api/login', (req: Request<ParamsDictionary, unknown, NewUser>
   };
 
   (passport.authenticate('local', (err: unknown, user: Express.User, info: IVerifyOptions) => {
+    console.log("AUTH CALLBACK HIT");
+    console.log("ERR:", err);
+    console.log("USER:", user);
+    console.log("INFO:", info);
+
     if (err) { return next(err); }
+
     if (info) {
+      console.log("INFO BLOCK HIT");
       return res.status(401).json({ error: info.message });
     }
+
     if (!user) {
+      console.log("NO USER");
       return res.status(401).json({ error: 'Login failed' });
     }
-    // req.login(user, (err) => {
-    //   if (err) { return next(err); }
-    //   res.status(201).json({ status: 'success', user });
-    // });
+
+    console.log("SUCCESS — SENDING RESPONSE");
 
     return res.status(200).json({ status: 'success', user });
+
   }) as RequestHandler)(req, res, next);
 });
 
