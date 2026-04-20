@@ -46,24 +46,24 @@ loginRouter.post('/api/login', (req, res, next) => {
     if (!username || !password) {
         throw new error_1.default.ValidationError('both username and passwords must be filled out');
     }
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    (passport_1.default.authenticate('local', (err, user, info) => {
-        console.log("AUTH CALLBACK HIT");
-        console.log("ERR:", err);
-        console.log("USER:", user);
-        console.log("INFO:", info);
+    ;
+    passport_1.default.authenticate('local', (err, user, info) => {
         if (err) {
             return next(err);
         }
         if (info) {
-            return res.status(401).json({ error: info.message });
+            return res.send(info.message);
         }
         if (!user) {
-            return res.status(401).json({ error: 'Login failed' });
+            return res.redirect('/login');
         }
-        // ✅ ONLY THIS LINE MATTERS
-        return res.status(200).json({ status: 'success', user });
-    }))(req, res, next);
+        req.login(user, (err) => {
+            if (err) {
+                return next(err);
+            }
+            res.status(201).json({ status: 'success', user });
+        });
+    })(req, res, next);
 });
 loginRouter.post('/api/logout', (req, res, next) => {
     console.log('logout triggered');
