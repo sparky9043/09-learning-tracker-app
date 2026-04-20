@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import loginService from "../../service/loginService";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useCurrentUserContext } from "@/hooks/useCurrentUserContext";
 
 const LoginForm = () => {
@@ -106,10 +106,11 @@ const LoginForm = () => {
                   </button>
                 </div> */}
                 <p className="mt-8 pt-4 border-t border-outline-variant/15 text-center text-on-surface-variant text-sm">
-                    New to the platform? <a className="text-primary font-semibold hover:underline underline-offset-4"
-                    href="#">
+                    New to the platform? <Link className="text-primary font-semibold hover:underline underline-offset-4"
+                      to="/signup"
+                    >
                       Create an account
-                    </a>
+                    </Link>
                 </p>
               </div>
               <div className="absolute text-red-500">{errorMessage}</div>
