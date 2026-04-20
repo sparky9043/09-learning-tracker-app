@@ -38,7 +38,7 @@ entryRouter.get('/', (_req, res, next) => __awaiter(void 0, void 0, void 0, func
     }
 }));
 // read more about redirect and then see if you can do it correctly
-entryRouter.get('/loggedin', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+entryRouter.get('/', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const userId = req.user.id;
         const learningEntries = yield entryQueries_1.default.getAllLearningEntriesByUserId(Number(userId));
@@ -60,7 +60,7 @@ entryRouter.get('/:id', (req, res, next) => __awaiter(void 0, void 0, void 0, fu
         next(error);
     }
 }));
-entryRouter.post('/loggedin', middleware_1.default.newLearningEntryValidator, (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+entryRouter.post('/', middleware_1.default.newLearningEntryValidator, (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const savedLearningEntry = yield entryQueries_1.default.createLearningEntry(req.body);
         res.status(201).json(savedLearningEntry);
@@ -69,7 +69,7 @@ entryRouter.post('/loggedin', middleware_1.default.newLearningEntryValidator, (r
         next(error);
     }
 }));
-entryRouter.delete('/loggedin/:id', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+entryRouter.delete('/:id', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     try {
         const savedUserId = yield userQueries_1.default.getUserIdByEntryId(req.params.id);
@@ -83,7 +83,7 @@ entryRouter.delete('/loggedin/:id', (req, res, next) => __awaiter(void 0, void 0
         next(error);
     }
 }));
-entryRouter.put('/loggedin/:id', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+entryRouter.put('/:id', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     try {
         const savedUserId = yield userQueries_1.default.getUserIdByEntryId(req.params.id);

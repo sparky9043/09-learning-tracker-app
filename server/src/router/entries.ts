@@ -33,7 +33,7 @@ entryRouter.get('/', async (_req, res: Response<LearningEntry[]>, next: NextFunc
 });
 
 // read more about redirect and then see if you can do it correctly
-entryRouter.get('/loggedin', async (req, res: Response<LearningEntry[]>, next: NextFunction) => {
+entryRouter.get('/', async (req, res: Response<LearningEntry[]>, next: NextFunction) => {
   try {
     const userId = req.user!.id;
 
@@ -58,7 +58,7 @@ entryRouter.get('/:id', async (req: Request<{ id: string }>, res: Response<Learn
   }
 });
 
-entryRouter.post('/loggedin', middleware.newLearningEntryValidator, async (req: Request<ParamsDictionary, unknown, NewLearningEntry>, res: Response<LearningEntry>, next: NextFunction) => {
+entryRouter.post('/', middleware.newLearningEntryValidator, async (req: Request<ParamsDictionary, unknown, NewLearningEntry>, res: Response<LearningEntry>, next: NextFunction) => {
   try {
 
     const savedLearningEntry = await entryQueries.createLearningEntry(req.body);
@@ -69,7 +69,7 @@ entryRouter.post('/loggedin', middleware.newLearningEntryValidator, async (req: 
   }
 });
 
-entryRouter.delete('/loggedin/:id', async (req: Request<{ id: string }>, res: Response, next:  NextFunction) => {
+entryRouter.delete('/:id', async (req: Request<{ id: string }>, res: Response, next:  NextFunction) => {
   try {
     const savedUserId = await userQueries.getUserIdByEntryId(req.params.id);
 
@@ -85,7 +85,7 @@ entryRouter.delete('/loggedin/:id', async (req: Request<{ id: string }>, res: Re
   }
 });
 
-entryRouter.put('/loggedin/:id', async (req: Request<{ id: string }, unknown, NewLearningEntry>, res: Response, next: NextFunction) => {
+entryRouter.put('/:id', async (req: Request<{ id: string }, unknown, NewLearningEntry>, res: Response, next: NextFunction) => {
   try {
     const savedUserId = await userQueries.getUserIdByEntryId(req.params.id);
     
