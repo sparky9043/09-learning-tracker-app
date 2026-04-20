@@ -9,13 +9,14 @@ import entryRouter from './router/entries';
 import SessionFileStore from 'session-file-store';
 import morgan from 'morgan';
 import assistantRouter from './router/assistant';
+import path from 'path';
 
 const FileStore = SessionFileStore(session);
 
 const app = express();
 app.use(express.json());
 
-app.use(express.static('build'));
+app.use(express.static(path.join(__dirname, '../dist')));
 
 app.use(morgan('dev'));
 
