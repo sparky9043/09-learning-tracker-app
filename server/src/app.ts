@@ -15,6 +15,8 @@ const FileStore = SessionFileStore(session);
 const app = express();
 app.use(express.json());
 
+app.use(express.static('dist'));
+
 app.use(morgan('dev'));
 
 app.use(session({
