@@ -35,16 +35,20 @@ entryRouter.get('/', async (_req, res: Response<LearningEntry[]>, next: NextFunc
 // read more about redirect and then see if you can do it correctly
 entryRouter.get('/loggedin', async (req, res: Response<LearningEntry[]>, next: NextFunction) => {
   try {
-    if (!req.user) {
-      return res.redirect('/authrequired');
-    }
-    const userId = req.user.id;
+    // if (!req.user) {
+    //   return res.redirect('/authrequired');
+    // }
+    const userId = req.user!.id;
+
     if (req.isAuthenticated()) {
       const learningEntries = await entryQueries.getAllLearningEntriesByUserId(Number(userId));
       return res.json(learningEntries);
-    } else {
+    } else if (!req.isAuthenticated()) {
       throw new Error('userid does not match');
+    } else {
+      return res.redirect('/authrequired');
     }
+
   } catch (error: unknown) {
     next(error);
   }
@@ -65,9 +69,14 @@ entryRouter.get('/:id', async (req: Request<{ id: string }>, res: Response<Learn
 
 entryRouter.post('/loggedin', middleware.newLearningEntryValidator, async (req: Request<ParamsDictionary, unknown, NewLearningEntry>, res: Response<LearningEntry>, next: NextFunction) => {
   try {
-    if (!req.user) { return res.redirect('/authrequired'); }
-    const savedLearningEntry = await entryQueries.createLearningEntry(req.body);
-    return res.status(201).json(savedLearningEntry);
+    // if (!req.user) { return res.redirect('/authrequired'); }
+
+    if (req.user) {
+      const savedLearningEntry = await entryQueries.createLearningEntry(req.body);
+      return res.status(201).json(savedLearningEntry);
+    } else {
+      return res.redirect('/authrequired');
+    }
   } catch(error) {
     next(error);
   }
