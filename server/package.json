@@ -11,7 +11,7 @@
     "test:entries": "cross-env NODE_ENV=test node --test --require ts-node/register/files src/tests/learning_entries_api.test.ts",
     "test:users": "cross-env NODE_ENV=test node --test --require ts-node/register/files src/tests/users_api.test.ts",
     "test:ai": "cross-env NODE_ENV=test node --test --require ts-node/register/files src/tests/ai_api.test.ts",
-    "start": "cross-env NODE_ENV=dev ts-node --files src/index.ts",
+    "start": "cross-env NODE_ENV=dev node dist/assets/index.js",
     "build": "rm -rf dist && cd ../client && npm install && npm run build && cp -r dist ../server/"
   },
   "keywords": [],
