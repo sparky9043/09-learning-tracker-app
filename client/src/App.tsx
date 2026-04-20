@@ -8,6 +8,7 @@ import Summary from './components/SummaryPage/Summary'
 import AIAssistantPage from './components/AIAssistantPage/AIAssistantPage'
 import BoilerplateOutput from './components/misc/BoilerplateOutput'
 import LearningHistory from './components/DashboardPage/LearningHistory'
+import Signup from './components/SignupPage/Signup'
 // import Summary from './components/SummaryPage/Summary'
 
 function App() {
@@ -19,6 +20,9 @@ function App() {
     }, {
       path: '/login',
       Component: Login,
+    }, {
+      path: '/signup',
+      Component: Signup,
     }, {
       Component: Protected,
       children: [
