@@ -1,6 +1,18 @@
+import { useState } from "react";
 import { Link } from "react-router"
 
 const Signup = () => {
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+
+  const handleCreateUser = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!username || !password) {
+      throw new Error('Please fill out both username and password');
+    }
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center p-6 bg-surface selection:bg-primary/30">
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
@@ -10,14 +22,17 @@ const Signup = () => {
       <main className="relative z-10 w-full max-w-105">
         <div className="text-center mb-12">
           <h1 className="font-headline text-4xl font-extrabold tracking-tighter text-on-background mb-3">
-            Welcomes
+            Welcome
           </h1>
           <p className="text-on-surface-variant font-body text-sm tracking-wide">
             Start your journey into the focused deep work.
           </p>
         </div>
         <div className="glass-card p-8 rounded-xl border-outline-variant/10 shadow-2xl">
-          <form className="space-y-6">
+          <form
+            className="space-y-6"
+            onSubmit={handleCreateUser}
+          >
             <div className="space-y-2">
               <label className="block font-label text-xs font-semibold text-on-surface-variant tracking-widest uppercase"
                 htmlFor="username">
@@ -29,8 +44,15 @@ const Signup = () => {
                   person
                 </span>
                 <input
+                  value={username}
+                  onChange={(event) => setUsername(event.target.value)}
                   className="w-full bg-surface-container-lowest border-none rounded-lg py-4 pl-12 pr-4 text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary transition-all duration-300 font-body text-sm"
-                  id="username" name="username" placeholder="Create your unique handle" required={true} type="text" />
+                  id="username"
+                  name="username"
+                  placeholder="Create your unique handle"
+                  required={true}
+                  type="text"
+                />
               </div>
             </div>
             <div className="space-y-2">
@@ -44,8 +66,15 @@ const Signup = () => {
                   lock
                 </span>
                 <input
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
                   className="w-full bg-surface-container-lowest border-none rounded-lg py-4 pl-12 pr-4 text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary transition-all duration-300 font-body text-sm"
-                  id="password" name="password" placeholder="********" required={true} type="password" />
+                  id="password"
+                  name="password"
+                  placeholder="********"
+                  required={true}
+                  type="password"
+                />
               </div>
             </div>
             {/* <p className="text-[11px] text-outline text-center leading-relaxed px-4">
