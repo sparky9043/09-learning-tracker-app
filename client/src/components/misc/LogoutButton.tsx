@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
-import { useCurrentUserContext } from "../hooks/useCurrentUserContext";
-import loginService from "../service/loginService";
+import { useCurrentUserContext } from "@/hooks/useCurrentUserContext";
+import loginService from "@/service/loginService";
 
 interface LogoutButtonProps {
   children?: string;

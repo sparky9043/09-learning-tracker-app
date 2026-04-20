@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "../ui/button";
 import AddEntryDialog from "./AddEntryDialog";
-import AddLearningEntryForm from "./AddLearningEntryForm";
+// import AddLearningEntryForm from "./AddLearningEntryForm";
 
 const AddEntryModal = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -15,7 +15,7 @@ const AddEntryModal = () => {
             variant="ghost"
             onClick={() => setShowModal(false)}
           > x </Button>
-          <AddLearningEntryForm setShowModal={setShowModal} />
+          {/* <AddLearningEntryForm setShowModal={setShowModal} /> */}
         </AddEntryDialog>}
       <Button onClick={() => setShowModal(true)}>add entry</Button>
     </div>
