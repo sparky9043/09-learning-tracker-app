@@ -18,25 +18,53 @@ const LoginForm = () => {
 
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     try {
-      if (currentUser) {
-        localStorage.removeItem('lastSavedUser');
-        setCurrentUser(null);
-      }
       const savedUserObject = await loginService.login({ username, password });
-      setCurrentUser(savedUserObject.user);
-      localStorage.setItem('lastSavedUser', JSON.stringify(savedUserObject.user));
+
+      console.log("LOGIN RESPONSE:", savedUserObject);
+
+      const user = savedUserObject?.user;
+
+      if (!user) {
+        throw new Error("Login failed: invalid response");
+      }
+
+      setCurrentUser(user);
+      localStorage.setItem('lastSavedUser', JSON.stringify(user));
+
       navigate('/dashboard', { replace: true });
 
     } catch (error) {
       if (error instanceof Error) {
         setErrorMessage(error.message);
-        setTimeout(() => {
-          setErrorMessage(null);
-        }, 5000);
+        setTimeout(() => setErrorMessage(null), 5000);
       }
     }
-  }
+  };
+
+  // Initial Version
+  // const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   try {
+  //     if (currentUser) {
+  //       localStorage.removeItem('lastSavedUser');
+  //       setCurrentUser(null);
+  //     }
+  //     const savedUserObject = await loginService.login({ username, password });
+  //     setCurrentUser(savedUserObject.user);
+  //     localStorage.setItem('lastSavedUser', JSON.stringify(savedUserObject.user));
+  //     navigate('/dashboard', { replace: true });
+
+  //   } catch (error) {
+  //     if (error instanceof Error) {
+  //       setErrorMessage(error.message);
+  //       setTimeout(() => {
+  //         setErrorMessage(null);
+  //       }, 5000);
+  //     }
+  //   }
+  // }
 
   return (
     <main className="min-h-screen flex items-center justify-center pt-16 pb-12 px-6 relative overflow-hidden">
@@ -106,11 +134,11 @@ const LoginForm = () => {
                   </button>
                 </div> */}
                 <p className="mt-8 pt-4 border-t border-outline-variant/15 text-center text-on-surface-variant text-sm">
-                    New to the platform? <Link className="text-primary font-semibold hover:underline underline-offset-4"
-                      to="/signup"
-                    >
-                      Create an account
-                    </Link>
+                  New to the platform? <Link className="text-primary font-semibold hover:underline underline-offset-4"
+                    to="/signup"
+                  >
+                    Create an account
+                  </Link>
                 </p>
               </div>
               <div className="absolute text-red-500">{errorMessage}</div>
