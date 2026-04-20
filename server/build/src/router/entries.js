@@ -40,20 +40,9 @@ entryRouter.get('/', (_req, res, next) => __awaiter(void 0, void 0, void 0, func
 // read more about redirect and then see if you can do it correctly
 entryRouter.get('/loggedin', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        // if (!req.user) {
-        //   return res.redirect('/authrequired');
-        // }
         const userId = req.user.id;
-        if (req.isAuthenticated()) {
-            const learningEntries = yield entryQueries_1.default.getAllLearningEntriesByUserId(Number(userId));
-            return res.json(learningEntries);
-        }
-        else if (!req.isAuthenticated()) {
-            throw new Error('userid does not match');
-        }
-        else {
-            return res.redirect('/authrequired');
-        }
+        const learningEntries = yield entryQueries_1.default.getAllLearningEntriesByUserId(Number(userId));
+        res.json(learningEntries);
     }
     catch (error) {
         next(error);
@@ -73,43 +62,32 @@ entryRouter.get('/:id', (req, res, next) => __awaiter(void 0, void 0, void 0, fu
 }));
 entryRouter.post('/loggedin', middleware_1.default.newLearningEntryValidator, (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        // if (!req.user) { return res.redirect('/authrequired'); }
-        if (req.user) {
-            const savedLearningEntry = yield entryQueries_1.default.createLearningEntry(req.body);
-            return res.status(201).json(savedLearningEntry);
-        }
-        else {
-            return res.redirect('/authrequired');
-        }
+        const savedLearningEntry = yield entryQueries_1.default.createLearningEntry(req.body);
+        res.status(201).json(savedLearningEntry);
     }
     catch (error) {
         next(error);
     }
 }));
 entryRouter.delete('/loggedin/:id', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     try {
-        if (!req.user) {
-            return res.redirect('/authrequired');
-        }
         const savedUserId = yield userQueries_1.default.getUserIdByEntryId(req.params.id);
-        if (Number(savedUserId.user_id) !== Number(req.user.id)) {
+        if (Number(savedUserId.user_id) !== Number((_a = req.user) === null || _a === void 0 ? void 0 : _a.id)) {
             throw new error_1.default.ForbiddenError('access forbidden. user id does not match');
         }
         const result = yield entryQueries_1.default.deleteEntryById(Number(req.params.id));
-        return res.status(200).json(result);
+        res.status(200).json(result);
     }
     catch (error) {
         next(error);
     }
 }));
 entryRouter.put('/loggedin/:id', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     try {
-        if (!req.user) {
-            return res.redirect('/authrequired');
-        }
         const savedUserId = yield userQueries_1.default.getUserIdByEntryId(req.params.id);
-        console.log('inside PUT: ', savedUserId.user_id, req.user.id);
-        if (Number(savedUserId.user_id) !== Number(req.user.id)) {
+        if (Number(savedUserId.user_id) !== Number((_a = req.user) === null || _a === void 0 ? void 0 : _a.id)) {
             throw new error_1.default.ForbiddenError('access forbidden. user id does not match');
         }
         const savedEntry = yield entryQueries_1.default.updateLearningEntry(Number(req.params.id), req.body);
