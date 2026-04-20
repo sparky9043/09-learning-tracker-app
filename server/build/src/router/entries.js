@@ -40,16 +40,19 @@ entryRouter.get('/', (_req, res, next) => __awaiter(void 0, void 0, void 0, func
 // read more about redirect and then see if you can do it correctly
 entryRouter.get('/loggedin', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        if (!req.user) {
-            return res.redirect('/authrequired');
-        }
+        // if (!req.user) {
+        //   return res.redirect('/authrequired');
+        // }
         const userId = req.user.id;
         if (req.isAuthenticated()) {
             const learningEntries = yield entryQueries_1.default.getAllLearningEntriesByUserId(Number(userId));
             return res.json(learningEntries);
         }
-        else {
+        else if (!req.isAuthenticated()) {
             throw new Error('userid does not match');
+        }
+        else {
+            return res.redirect('/authrequired');
         }
     }
     catch (error) {
@@ -70,11 +73,14 @@ entryRouter.get('/:id', (req, res, next) => __awaiter(void 0, void 0, void 0, fu
 }));
 entryRouter.post('/loggedin', middleware_1.default.newLearningEntryValidator, (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        if (!req.user) {
+        // if (!req.user) { return res.redirect('/authrequired'); }
+        if (req.user) {
+            const savedLearningEntry = yield entryQueries_1.default.createLearningEntry(req.body);
+            return res.status(201).json(savedLearningEntry);
+        }
+        else {
             return res.redirect('/authrequired');
         }
-        const savedLearningEntry = yield entryQueries_1.default.createLearningEntry(req.body);
-        return res.status(201).json(savedLearningEntry);
     }
     catch (error) {
         next(error);
