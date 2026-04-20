@@ -9,6 +9,15 @@ const NavBar = () => {
       <div className="text-xl font-extrabold tracking-tighter text-[#a3a6ff] font-headline">
         My Learning Tracker
       </div>
+      <div>
+        <NavLink
+          to='/'
+          replace={true}
+          className="text-on-surface-variant hover:text-[#a3a6ff] text-sm font-label font-medium opacity-80 hover:opacity-100 transition-opacity"
+        >
+          <span className="material-symbols-outlined text-xl" data-icon="home">home</span>
+        </NavLink>
+      </div>
       <div className="flex items-center gap-6">
         <NavLink
           to='/'
