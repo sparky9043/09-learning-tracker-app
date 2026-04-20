@@ -4,7 +4,6 @@ import { LearningEntry, NewLearningEntry, OpenAIResponseSingleEntry, UserPrompt 
 import error from "../errors/error";
 import { ParamsDictionary } from 'express-serve-static-core';
 import middleware from "../utils/middleware";
-import userQueries from "../../db/userQueries";
 import openaiQuery from "../../openai/openaiQuery";
 
 const entryRouter = Router();
@@ -71,11 +70,6 @@ entryRouter.post('/', middleware.newLearningEntryValidator, async (req: Request<
 
 entryRouter.delete('/:id', async (req: Request<{ id: string }>, res: Response, next:  NextFunction) => {
   try {
-    const savedUserId = await userQueries.getUserIdByEntryId(req.params.id);
-
-    if (Number(savedUserId.user_id) !== Number(req.user?.id)) {
-      throw new error.ForbiddenError('access forbidden. user id does not match');
-    }
 
     const result = await entryQueries.deleteEntryById(Number(req.params.id));
 
@@ -87,12 +81,7 @@ entryRouter.delete('/:id', async (req: Request<{ id: string }>, res: Response, n
 
 entryRouter.put('/:id', async (req: Request<{ id: string }, unknown, NewLearningEntry>, res: Response, next: NextFunction) => {
   try {
-    const savedUserId = await userQueries.getUserIdByEntryId(req.params.id);
-    
-    if (Number(savedUserId.user_id) !== Number(req.user?.id)) {
-      throw new error.ForbiddenError('access forbidden. user id does not match');
-    }
-    
+
     const savedEntry = await entryQueries.updateLearningEntry(Number(req.params.id), req.body);
     
     res.send(savedEntry);

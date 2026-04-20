@@ -16,7 +16,6 @@ const express_1 = require("express");
 const entryQueries_1 = __importDefault(require("../../db/entryQueries"));
 const error_1 = __importDefault(require("../errors/error"));
 const middleware_1 = __importDefault(require("../utils/middleware"));
-const userQueries_1 = __importDefault(require("../../db/userQueries"));
 const openaiQuery_1 = __importDefault(require("../../openai/openaiQuery"));
 const entryRouter = (0, express_1.Router)();
 entryRouter.post('/ai/summarize', // OPENAI API ROUTE
@@ -70,12 +69,7 @@ entryRouter.post('/', middleware_1.default.newLearningEntryValidator, (req, res,
     }
 }));
 entryRouter.delete('/:id', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
     try {
-        const savedUserId = yield userQueries_1.default.getUserIdByEntryId(req.params.id);
-        if (Number(savedUserId.user_id) !== Number((_a = req.user) === null || _a === void 0 ? void 0 : _a.id)) {
-            throw new error_1.default.ForbiddenError('access forbidden. user id does not match');
-        }
         const result = yield entryQueries_1.default.deleteEntryById(Number(req.params.id));
         res.status(200).json(result);
     }
@@ -84,12 +78,7 @@ entryRouter.delete('/:id', (req, res, next) => __awaiter(void 0, void 0, void 0,
     }
 }));
 entryRouter.put('/:id', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
     try {
-        const savedUserId = yield userQueries_1.default.getUserIdByEntryId(req.params.id);
-        if (Number(savedUserId.user_id) !== Number((_a = req.user) === null || _a === void 0 ? void 0 : _a.id)) {
-            throw new error_1.default.ForbiddenError('access forbidden. user id does not match');
-        }
         const savedEntry = yield entryQueries_1.default.updateLearningEntry(Number(req.params.id), req.body);
         res.send(savedEntry);
     }
